@@ -2735,8 +2735,10 @@ async def generate_interview_guide_wrapper(resume_text: str, resume_file, job_ur
                         <h2 style="color: #e2e8f0; margin: 0;">✅ Interview Guide Complete</h2>
                         <p style="color: #94a3b8;">Match Score: <span style="color: #10b981; font-weight: bold;">{result.match_score:.1f}%</span></p>
                     </div>
-                    <div class="glass-container">
-                        {result.interview_guide}
+                    <div class="glass-container" style="max-height: none; overflow: visible; word-wrap: break-word; line-height: 1.6;">
+                        <div style="max-width: 100%; overflow-x: auto;">
+                            {result.interview_guide}
+                        </div>
                     </div>
                 </div>
         </div>
@@ -3070,15 +3072,28 @@ def create_interface():
                             <div class="form-title">
                                 <span class="form-icon">💼</span>
                                 Job Posting
+                                <span style="background: linear-gradient(135deg, #3b82f6, #1e40af); color: white; font-size: 10px; padding: 2px 6px; border-radius: 8px; margin-left: 8px; font-weight: 600;">BETA</span>
                             </div>
                             <p class="form-description">The role you're applying for</p>
                         </div>
                     """)
                     
                     job_url = gr.Textbox(
-                        placeholder="Paste job URL (LinkedIn, Indeed, etc.)",
+                        placeholder="Paste job URL (Indeed, Glassdoor, company sites - LinkedIn requires login)",
                         elem_classes=["apple-input"]
                     )
+                    
+                    # LinkedIn Warning
+                    gr.HTML("""
+                        <div style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); padding: 12px; border-radius: 8px; margin: 8px 0; color: #1f2937;">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span style="font-size: 16px;">⚠️</span>
+                                <div style="font-size: 13px;">
+                                    <strong>LinkedIn Notice:</strong> LinkedIn URLs require login access. For best results, use direct company job pages (Indeed, Glassdoor, company careers pages) or copy/paste the job description below.
+                                </div>
+                            </div>
+                        </div>
+                    """)
                     
                     gr.HTML('<div class="form-divider">or</div>')
                     
@@ -3447,9 +3462,11 @@ def create_interface():
                 <div class="success-message">
                     <h3>✅ Analysis Complete</h3>
                     <p>Processing Time: {processing_time:.1f}s • Generated personalized interview guide</p>
-                    <div class="interview-guide-output">
+                    <div class="interview-guide-output" style="max-height: none; overflow: visible; word-wrap: break-word; white-space: pre-wrap;">
                         {score_display}
-                        {formatted_text}
+                        <div style="max-width: 100%; overflow-x: auto; padding: 1rem 0;">
+                            {formatted_text}
+                        </div>
                     </div>
                 </div>
             '''
