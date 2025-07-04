@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IQKiller - Modern Apple Glass UI Preview</title>
+    <style>
+        .glass-container {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1rem 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, 
+                rgba(102, 126, 234, 0.9) 0%, 
+                rgba(118, 75, 162, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .progress-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 1rem;
+            margin: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .step-active {
+            background: rgba(102, 126, 234, 0.2);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.1);
+        }
+        
+        .step-completed {
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+        
+        .news-ticker {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(8px);
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            overflow: hidden;
+        }
+        
+        .news-text {
+            animation: scroll-left 15s linear infinite;
+            white-space: nowrap;
+            color: #e2e8f0;
+            font-size: 0.95rem;
+        }
+        
+        @keyframes scroll-left {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .form-glass {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+        
+        .pulse-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #3b82f6;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.1); }
+        }
+        
+        .gradient-border {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            padding: 2px;
+            border-radius: 18px;
+        }
+        
+        .inner-glass {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            min-height: 100vh;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #e2e8f0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .glass-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 12px;
+            padding: 1rem 2rem;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .glass-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h1 style="font-size: 3rem; margin-bottom: 1rem; font-weight: 700; background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                ⚡ IQKiller
+            </h1>
+            <p style="font-size: 1.4rem; opacity: 0.95; margin-bottom: 0.5rem;">AI-Powered Interview Guide Generator</p>
+            <p style="font-size: 1.1rem; opacity: 0.8;">Resume + Job → Personalized Interview Strategy</p>
+            <div class="news-ticker">
+                <div class="news-text">🚀 AI and Machine Learning roles see 45% growth this quarter</div>
+            </div>
+        </div>
+
+        <!-- Progress Display Demo -->
+        <div class="progress-container">
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <h3 style="color: #e2e8f0; margin: 0;">Processing Your Interview Guide</h3>
+                <p style="color: #94a3b8; margin: 0.5rem 0;">Step 3 of 6</p>
+            </div>
+            <div style="background: rgba(255,255,255,0.1); height: 4px; border-radius: 2px; margin: 1rem 0;">
+                <div style="background: linear-gradient(90deg, #667eea, #764ba2); height: 100%; width: 50%; border-radius: 2px; transition: width 0.5s ease;"></div>
+            </div>
+            
+            <div class="step-indicator step-completed">
+                ✅ <span style="color: #e2e8f0;">🔍 Processing Job Description</span>
+            </div>
+            <div class="step-indicator step-completed">
+                ✅ <span style="color: #e2e8f0;">🎯 Analyzing Requirements</span>
+            </div>
+            <div class="step-indicator step-active">
+                <span class="pulse-dot"></span> <span style="color: #e2e8f0;">📋 Parsing Resume</span>
+            </div>
+            <div class="step-indicator">
+                ⏳ <span style="color: #e2e8f0;">⚖️ Gap Analysis</span>
+            </div>
+            <div class="step-indicator">
+                ⏳ <span style="color: #e2e8f0;">✨ Generating Guide</span>
+            </div>
+            <div class="step-indicator">
+                ⏳ <span style="color: #e2e8f0;">🎨 Finalizing Results</span>
+            </div>
+        </div>
+
+        <!-- Results Preview -->
+        <div class="gradient-border">
+            <div class="inner-glass">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <h2 style="color: #e2e8f0; margin: 0;">✅ Interview Guide Complete</h2>
+                    <p style="color: #94a3b8;">Match Score: <span style="color: #10b981; font-weight: bold;">89.2%</span></p>
+                </div>
+                <div class="glass-container">
+                    <h3 style="color: #e2e8f0;">🎯 Personalized Interview Guide: Data Scientist at Spotify</h3>
+                    <p style="color: #94a3b8;">Your background shows an excellent 89.2% match with this role. Focus on your machine learning expertise and data analysis experience.</p>
+                    <div style="margin: 1rem 0;">
+                        <strong style="color: #10b981;">✅ Your Strengths:</strong> Python, SQL, Machine Learning, TensorFlow, Data Visualization
+                    </div>
+                    <div style="margin: 1rem 0;">
+                        <strong style="color: #3b82f6;">📊 Match Analysis:</strong> 12 strong skill matches, 2 partial matches, 0 gaps
+                    </div>
+                    <div style="margin: 1rem 0;">
+                        <strong style="color: #8b5cf6;">🎯 Interview Strategy:</strong> Lead with your ML pipeline project and emphasize quantitative impact
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Form Demo -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
+            <div class="form-glass">
+                <h4 style="color: #e2e8f0; margin-top: 0;">📋 Your Resume</h4>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: #94a3b8;">📝 Paste your resume text</label>
+                    <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 1rem; min-height: 120px; color: #94a3b8;">
+                        Your resume content will go here...
+                    </div>
+                </div>
+                
+                <h4 style="color: #e2e8f0; margin-top: 2rem;">🎯 Target Job</h4>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: #94a3b8;">🔗 Job posting URL</label>
+                    <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 1rem; color: #94a3b8;">
+                        https://spotify.com/jobs/data-scientist
+                    </div>
+                </div>
+                
+                <button class="glass-button">🚀 Generate Interview Guide</button>
+            </div>
+            
+            <div class="glass-container">
+                <h3 style="color: #e2e8f0; margin-top: 0;">🌟 Modern Apple Glass UI Features</h3>
+                <ul style="color: #94a3b8; line-height: 1.6;">
+                    <li>✨ Glassmorphism design with backdrop blur</li>
+                    <li>📊 Real-time progress tracking with 6 steps</li>
+                    <li>📰 Rotating job market news headlines</li>
+                    <li>🎯 Enhanced visual feedback and animations</li>
+                    <li>📱 Responsive design for all devices</li>
+                    <li>🔥 Smooth transitions and hover effects</li>
+                    <li>🎨 Apple-inspired color gradients</li>
+                    <li>💎 Clean typography and spacing</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- News Ticker Demo -->
+        <div class="news-ticker">
+            <div class="news-text">💼 Remote work opportunities increased 38% across tech companies • 📈 Data Science positions show highest salary growth at 12% YoY</div>
+        </div>
+
+        <!-- Footer -->
+        <div class="glass-container" style="text-align: center; margin-top: 2rem;">
+            <p style="color: #94a3b8;">
+                🚀 Powered by GPT-4o-mini • 🎯 Advanced Skills Matching • 📊 Real-time Gap Analysis
+            </p>
+        </div>
+    </div>
+</body>
+</html> 

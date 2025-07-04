@@ -29,18 +29,4 @@ GOOGLE_PATCH_ENABLED = os.getenv("GOOGLE_PATCH_ENABLED", "true").lower() == "tru
 RATE_LIMIT = {
     "requests_per_minute": 30,
     "requests_per_hour": 500,
-}
-
-# Reddit API Configuration
-REDDIT_CLIENT_ID = os.getenv("REDDIT_CLIENT_ID", "your_reddit_client_id")
-REDDIT_CLIENT_SECRET = os.getenv("REDDIT_CLIENT_SECRET", "your_reddit_client_secret")
-REDDIT_USER_AGENT = "MarketSense/1.0"
-
-# Job-related subreddits for content during processing - Top 5 most relevant
-JOB_SUBREDDITS = [
-    "jobs",              # 2.8M members - General job search and career advice
-    "careerguidance",    # 500K members - Professional career guidance
-    "cscareerquestions", # 800K members - Tech/CS career questions
-    "careeradvice",      # 400K members - General career advice
-    "ITCareerQuestions"  # 200K members - IT specific career questions
-] 
+} 

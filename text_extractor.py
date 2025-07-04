@@ -7,6 +7,12 @@ from llm_client import openai_call
 import openai
 from config import OPENAI_API_KEY
 from metrics import log_metric
+import time
+import os
+import requests
+import anthropic
+from config import ANTHROPIC_API_KEY, LLM_CONFIG
+import tiktoken
 
 async def call_llm_async(messages: List[Dict[str, str]], temperature: float = 0, 
                         max_tokens: int = 400) -> str:
@@ -48,7 +54,7 @@ def extract_entities(raw: str) -> JobCore:
     """Extract job entities using GPT-4o-mini with expanded field set."""
     try:
         json_str = openai_call(raw, timeout=4)
-        data = json.loads(json_str)
+        data = robust_json_parse(json_str)
         
         # Convert posted_hours to posted_days
         posted_days = None
@@ -143,10 +149,13 @@ Leave a key out if not present. No other text."""
     return system_prompt, user_prompt
 
 async def extract_nobs(raw_text: str) -> Dict[str, Any]:
-    """Extract job data using No-BS compact format with single OpenAI call."""
+    """Extract job data using No-BS compact format with smart chunking for long inputs."""
     try:
+        # Process long text if needed
+        processed_text = await process_long_text(raw_text)
+        
         # Get structured prompt
-        system_prompt, user_prompt = build_nobs_prompt(raw_text)
+        system_prompt, user_prompt = build_nobs_prompt(processed_text)
         
         # Single OpenAI call with structured prompts
         messages = [
@@ -156,9 +165,9 @@ async def extract_nobs(raw_text: str) -> Dict[str, Any]:
         
         json_str = await call_llm_async(messages, temperature=0, max_tokens=800)
         
-        # Parse JSON response
+        # Parse JSON response using robust parser
         try:
-            data = json.loads(json_str) if json_str.strip() else {}
+            data = robust_json_parse(json_str)
             log_metric("nobs_extraction_success", {"fields": len(data)})
             
             # Ensure fallback data for empty results
@@ -244,7 +253,7 @@ async def extract_batch(raw: str) -> 'JobCore':
         for response in responses:
             if response.strip():
                 try:
-                    data = json.loads(response)
+                    data = robust_json_parse(response)
                     job_cores.append(JobCore(**{k: v for k, v in data.items() 
                                                 if k in JobCore.__dataclass_fields__}))
                 except (json.JSONDecodeError, TypeError):
@@ -258,4 +267,268 @@ async def extract_batch(raw: str) -> 'JobCore':
         
     except Exception as e:
         log_metric("batch_extraction_error", {"error": str(e)})
-        return JobCore() 
+        return JobCore()
+
+def robust_json_parse(json_str: str, max_retries: int = 2) -> Dict[str, Any]:
+    """
+    Robust JSON parsing that handles markdown code blocks and implements retry logic.
+    
+    Args:
+        json_str: Raw JSON string that may contain markdown formatting
+        max_retries: Number of retry attempts for cleaning and parsing
+    
+    Returns:
+        Parsed JSON dictionary
+    
+    Raises:
+        json.JSONDecodeError: If JSON cannot be parsed after all retries
+    """
+    if not json_str or not json_str.strip():
+        return {}
+    
+    for attempt in range(max_retries + 1):
+        try:
+            # Clean the JSON string progressively
+            cleaned = json_str.strip()
+            
+            # Remove markdown code blocks (```json ... ``` or ``` ... ```)
+            cleaned = re.sub(r'^```(?:json)?\s*\n', '', cleaned, flags=re.MULTILINE | re.IGNORECASE)
+            cleaned = re.sub(r'\n?\s*```\s*$', '', cleaned, flags=re.MULTILINE)
+            
+            # Remove leading/trailing whitespace and common prefixes
+            cleaned = cleaned.strip()
+            
+            # Remove common LLM response prefixes
+            prefixes_to_remove = [
+                "Here's the JSON:",
+                "Here is the JSON:",
+                "JSON:",
+                "Response:",
+                "Result:",
+            ]
+            
+            for prefix in prefixes_to_remove:
+                if cleaned.startswith(prefix):
+                    cleaned = cleaned[len(prefix):].strip()
+            
+            # Try to parse
+            return json.loads(cleaned)
+            
+        except json.JSONDecodeError as e:
+            if attempt == max_retries:
+                # Log the error with context
+                log_metric("json_parse_final_error", {
+                    "error": str(e),
+                    "original_length": len(json_str),
+                    "cleaned_length": len(cleaned) if 'cleaned' in locals() else 0,
+                    "attempts": attempt + 1
+                })
+                raise
+            
+            # For retries, try more aggressive cleaning
+            if attempt < max_retries:
+                # Try to extract JSON from within the string
+                json_match = re.search(r'(\{.*\})', json_str, re.DOTALL)
+                if json_match:
+                    json_str = json_match.group(1)
+                else:
+                    # Try to find JSON array
+                    array_match = re.search(r'(\[.*\])', json_str, re.DOTALL)
+                    if array_match:
+                        json_str = array_match.group(1)
+    
+    return {} 
+
+def count_tokens(text: str, model: str = "gpt-4o-mini") -> int:
+    """
+    Count tokens in text using tiktoken for accurate token counting.
+    
+    Args:
+        text: Input text to count tokens for
+        model: Model name for tokenizer (default: gpt-4o-mini)
+    
+    Returns:
+        Number of tokens
+    """
+    try:
+        # Get the encoding for the model
+        encoding = tiktoken.encoding_for_model(model)
+        return len(encoding.encode(text))
+    except Exception:
+        # Fallback to rough estimation if tiktoken fails
+        return int(len(text.split()) * 1.3)  # Rough tokens-to-words ratio
+
+def smart_chunk_text(text: str, max_tokens: int = 120000, overlap_tokens: int = 2000) -> List[str]:
+    """
+    Intelligently chunk text to stay under token limits with semantic boundaries.
+    
+    Args:
+        text: Input text to chunk
+        max_tokens: Maximum tokens per chunk (default: 120K for 128K context)
+        overlap_tokens: Tokens to overlap between chunks
+    
+    Returns:
+        List of text chunks
+    """
+    # Check if chunking is needed
+    total_tokens = count_tokens(text)
+    if total_tokens <= max_tokens:
+        return [text]
+    
+    log_metric("chunking_required", {
+        "total_tokens": total_tokens,
+        "max_tokens": max_tokens,
+        "estimated_chunks": (total_tokens // max_tokens) + 1
+    })
+    
+    chunks = []
+    
+    # Try to split on semantic boundaries (paragraphs, sentences)
+    paragraphs = text.split('\n\n')
+    current_chunk = ""
+    current_tokens = 0
+    
+    for paragraph in paragraphs:
+        paragraph_tokens = count_tokens(paragraph)
+        
+        # If single paragraph is too large, split by sentences
+        if paragraph_tokens > max_tokens:
+            sentences = paragraph.split('. ')
+            for sentence in sentences:
+                sentence_tokens = count_tokens(sentence)
+                
+                # If single sentence is still too large, force split by words
+                if sentence_tokens > max_tokens:
+                    words = sentence.split()
+                    words_per_chunk = int(max_tokens / 1.3)  # Rough words per chunk
+                    
+                    for i in range(0, len(words), words_per_chunk):
+                        word_chunk = ' '.join(words[i:i + words_per_chunk])
+                        if current_chunk:
+                            chunks.append(current_chunk)
+                            # Add overlap from previous chunk
+                            overlap_words = current_chunk.split()[-int(overlap_tokens / 1.3):]
+                            current_chunk = ' '.join(overlap_words) + ' ' + word_chunk
+                        else:
+                            current_chunk = word_chunk
+                        current_tokens = count_tokens(current_chunk)
+                
+                elif current_tokens + sentence_tokens > max_tokens:
+                    # Start new chunk
+                    if current_chunk:
+                        chunks.append(current_chunk)
+                        # Add overlap
+                        overlap_words = current_chunk.split()[-int(overlap_tokens / 1.3):]
+                        current_chunk = ' '.join(overlap_words) + '. ' + sentence
+                    else:
+                        current_chunk = sentence
+                    current_tokens = count_tokens(current_chunk)
+                else:
+                    current_chunk += '. ' + sentence
+                    current_tokens += sentence_tokens
+        
+        elif current_tokens + paragraph_tokens > max_tokens:
+            # Start new chunk
+            if current_chunk:
+                chunks.append(current_chunk)
+                # Add overlap
+                overlap_words = current_chunk.split()[-int(overlap_tokens / 1.3):]
+                current_chunk = ' '.join(overlap_words) + '\n\n' + paragraph
+            else:
+                current_chunk = paragraph
+            current_tokens = count_tokens(current_chunk)
+        else:
+            current_chunk += '\n\n' + paragraph
+            current_tokens += paragraph_tokens
+    
+    # Add final chunk
+    if current_chunk:
+        chunks.append(current_chunk)
+    
+    log_metric("chunking_completed", {
+        "chunks_created": len(chunks),
+        "avg_tokens_per_chunk": sum(count_tokens(chunk) for chunk in chunks) / len(chunks)
+    })
+    
+    return chunks
+
+async def summarize_chunk(chunk: str) -> str:
+    """
+    Summarize a chunk of text to reduce token count while preserving key information.
+    
+    Args:
+        chunk: Text chunk to summarize
+    
+    Returns:
+        Summarized text
+    """
+    system_prompt = """You are a job description summarizer. Extract and preserve all key information including:
+- Company name and role title
+- Location and work type
+- Salary/compensation information  
+- Required skills and qualifications
+- Job responsibilities
+- Company information and benefits
+- Contact/application details
+
+Maintain specific details while removing redundant text. Keep all technical terms, skill names, and specific requirements."""
+    
+    user_prompt = f"""Summarize this job posting section, preserving all key details:
+
+{chunk}"""
+    
+    messages = [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": user_prompt}
+    ]
+    
+    return await call_llm_async(messages, temperature=0, max_tokens=1000)
+
+async def process_long_text(text: str) -> str:
+    """
+    Process text that exceeds token limits by chunking and summarizing.
+    
+    Args:
+        text: Input text that may be too long
+    
+    Returns:
+        Processed text suitable for analysis
+    """
+    # Check if processing is needed
+    total_tokens = count_tokens(text)
+    if total_tokens <= 120000:  # Under 120K tokens, safe for 128K context
+        return text
+    
+    log_metric("long_text_processing_start", {
+        "original_tokens": total_tokens,
+        "threshold": 120000
+    })
+    
+    # Chunk the text
+    chunks = smart_chunk_text(text, max_tokens=100000, overlap_tokens=1000)
+    
+    # Summarize chunks concurrently
+    summary_tasks = [summarize_chunk(chunk) for chunk in chunks]
+    summaries = await asyncio.gather(*summary_tasks, return_exceptions=True)
+    
+    # Filter out failed summaries and combine
+    valid_summaries = []
+    for i, summary in enumerate(summaries):
+        if isinstance(summary, str):
+            valid_summaries.append(summary)
+        else:
+            log_metric("chunk_summary_error", {"chunk_index": i, "error": str(summary)})
+    
+    # Combine summaries
+    processed_text = '\n\n'.join(valid_summaries)
+    final_tokens = count_tokens(processed_text)
+    
+    log_metric("long_text_processing_complete", {
+        "original_tokens": total_tokens,
+        "final_tokens": final_tokens,
+        "compression_ratio": final_tokens / total_tokens,
+        "chunks_processed": len(chunks),
+        "successful_summaries": len(valid_summaries)
+    })
+    
+    return processed_text 
