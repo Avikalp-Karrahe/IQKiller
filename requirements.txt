@@ -1,0 +1,12 @@
+gradio>=4.0.0
+flask>=2.0.0
+requests
+beautifulsoup4
+typer
+pyyaml
+pdfplumber
+pydantic
+openai>=1.0.0
+anthropic>=0.8.0
+python-dotenv
+google-search-results 
