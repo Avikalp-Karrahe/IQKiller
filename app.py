@@ -1134,7 +1134,7 @@ def get_glassmorphism_css():
         .features-grid {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
+            grid-template-rows: auto auto;
             gap: 20px;
             min-height: 600px;
         }
@@ -1149,6 +1149,8 @@ def get_glassmorphism_css():
             transition: transform 0.3s ease;
             position: relative;
             overflow: visible;
+            height: auto;
+            min-height: 280px;
         }
         
         .feature-card:hover {
