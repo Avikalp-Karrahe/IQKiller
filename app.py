@@ -8,6 +8,19 @@ Apple Human Interface Guidelines-aligned design with proper typography, spacing,
 import gradio as gr
 import time
 import random
+# Debug: Check what files are available
+import os
+print("=== DEBUG: Files in current directory ===")
+print([f for f in os.listdir('.') if f.endswith('.py')])
+print("=== DEBUG: orchestrator.py exists? ===")
+print(os.path.exists('orchestrator.py'))
+if os.path.exists('orchestrator.py'):
+    print("=== DEBUG: orchestrator.py size ===")
+    print(os.path.getsize('orchestrator.py'))
+print("=== DEBUG: Current working directory ===")
+print(os.getcwd())
+print("=== END DEBUG ===")
+
 from orchestrator import Orchestrator, analyze
 from micro.scrape import ScrapeMicroFunction
 from micro.enrich import EnrichMicroFunction
@@ -1123,7 +1136,7 @@ def get_glassmorphism_css():
             grid-template-columns: 2fr 1fr 1fr;
             grid-template-rows: 1fr 1fr;
             gap: 20px;
-            height: 600px;
+            min-height: 600px;
         }
         
         .feature-card {
@@ -1132,10 +1145,10 @@ def get_glassmorphism_css():
             padding: 40px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
             transition: transform 0.3s ease;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
         }
         
         .feature-card:hover {
@@ -2527,7 +2540,8 @@ def create_news_ticker():
     """Create a rotating news ticker with JavaScript cycling"""
     news_items = JOB_MARKET_NEWS
     # Properly escape quotes for JavaScript
-    news_js = ", ".join([f'"{item.replace('"', '\\"')}"' for item in news_items])
+    escaped_items = [item.replace('"', '\\"') for item in news_items]
+    news_js = ", ".join([f'"{item}"' for item in escaped_items])
     
     return f"""
     <div class="news-ticker" id="news-ticker">
