@@ -1132,25 +1132,27 @@ def get_glassmorphism_css():
         }
         
         .features-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            grid-template-rows: auto auto;
-            gap: 20px;
-            min-height: 600px;
+            display: grid !important;
+            grid-template-columns: 2fr 1fr 1fr !important;
+            grid-template-rows: auto auto !important;
+            gap: 20px !important;
+            min-height: 600px !important;
+            height: auto !important;
         }
         
         .feature-card {
-            background: #fff;
-            border-radius: 18px;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            transition: transform 0.3s ease;
-            position: relative;
-            overflow: visible;
-            height: auto;
-            min-height: 280px;
+            background: #fff !important;
+            border-radius: 18px !important;
+            padding: 40px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: flex-start !important;
+            transition: transform 0.3s ease !important;
+            position: relative !important;
+            overflow: visible !important;
+            height: auto !important;
+            min-height: 280px !important;
+            max-height: none !important;
         }
         
         .feature-card:hover {
@@ -1198,10 +1200,15 @@ def get_glassmorphism_css():
         }
         
         .feature-card p {
-            font-size: 17px;
-            line-height: 1.47059;
-            font-weight: 400;
-            color: #86868b;
+            font-size: 17px !important;
+            line-height: 1.47059 !important;
+            font-weight: 400 !important;
+            color: #86868b !important;
+            overflow: visible !important;
+            text-overflow: clip !important;
+            white-space: normal !important;
+            height: auto !important;
+            max-height: none !important;
         }
         
         .feature-icon {
