@@ -1,0 +1,284 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+.gradient-bg {
+  @apply bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-slate-950 dark:via-gray-900 dark:to-slate-900;
+}
+
+.card-gradient {
+  @apply bg-gradient-to-br from-white to-gray-50/50 dark:from-slate-900/90 dark:to-slate-800/90 border border-gray-200/50 dark:border-slate-700/50;
+}
+
+.button-gradient {
+  @apply bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 dark:from-blue-500 dark:to-indigo-500 dark:hover:from-blue-600 dark:hover:to-indigo-600;
+}
+
+.glass-effect {
+  @apply bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border border-gray-200/20 dark:border-slate-700/50;
+}
+
+/* Enhanced dark mode styles with starry night */
+.dark {
+  /* Deep space gradient background */
+  background: linear-gradient(to bottom, 
+    hsl(231, 45%, 3%) 0%, 
+    hsl(240, 60%, 4%) 20%, 
+    hsl(248, 70%, 5%) 40%, 
+    hsl(250, 75%, 3%) 70%, 
+    hsl(240, 80%, 2%) 100%
+  );
+  position: relative;
+}
+
+/* Create starry night effect with pseudo-elements */
+.dark::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  background: 
+    /* Large bright stars */
+    radial-gradient(3px 3px at 5% 15%, rgba(255,255,255,1), transparent 50%),
+    radial-gradient(2px 2px at 15% 25%, rgba(255,255,255,0.9), transparent 50%),
+    radial-gradient(3px 3px at 25% 35%, rgba(255,255,255,1), transparent 50%),
+    radial-gradient(2px 2px at 35% 5%, rgba(255,255,255,0.8), transparent 50%),
+    radial-gradient(4px 4px at 45% 45%, rgba(255,255,255,1), transparent 50%),
+    radial-gradient(2px 2px at 55% 15%, rgba(255,255,255,0.7), transparent 50%),
+    radial-gradient(3px 3px at 65% 55%, rgba(255,255,255,0.9), transparent 50%),
+    radial-gradient(2px 2px at 75% 25%, rgba(255,255,255,0.8), transparent 50%),
+    radial-gradient(3px 3px at 85% 65%, rgba(255,255,255,1), transparent 50%),
+    radial-gradient(2px 2px at 95% 35%, rgba(255,255,255,0.9), transparent 50%),
+    /* Medium stars */
+    radial-gradient(2px 2px at 10% 70%, rgba(255,255,255,0.6), transparent 50%),
+    radial-gradient(1px 1px at 20% 80%, rgba(255,255,255,0.5), transparent 50%),
+    radial-gradient(2px 2px at 30% 60%, rgba(255,255,255,0.7), transparent 50%),
+    radial-gradient(1px 1px at 40% 85%, rgba(255,255,255,0.4), transparent 50%),
+    radial-gradient(2px 2px at 50% 75%, rgba(255,255,255,0.6), transparent 50%),
+    radial-gradient(1px 1px at 60% 90%, rgba(255,255,255,0.5), transparent 50%),
+    radial-gradient(2px 2px at 70% 65%, rgba(255,255,255,0.7), transparent 50%),
+    radial-gradient(1px 1px at 80% 95%, rgba(255,255,255,0.4), transparent 50%),
+    radial-gradient(2px 2px at 90% 75%, rgba(255,255,255,0.6), transparent 50%),
+    /* Small distant stars */
+    radial-gradient(1px 1px at 8% 40%, rgba(255,255,255,0.3), transparent 50%),
+    radial-gradient(1px 1px at 18% 50%, rgba(255,255,255,0.4), transparent 50%),
+    radial-gradient(1px 1px at 28% 20%, rgba(255,255,255,0.3), transparent 50%),
+    radial-gradient(1px 1px at 38% 70%, rgba(255,255,255,0.4), transparent 50%),
+    radial-gradient(1px 1px at 48% 10%, rgba(255,255,255,0.3), transparent 50%),
+    radial-gradient(1px 1px at 58% 40%, rgba(255,255,255,0.4), transparent 50%),
+    radial-gradient(1px 1px at 68% 80%, rgba(255,255,255,0.3), transparent 50%),
+    radial-gradient(1px 1px at 78% 50%, rgba(255,255,255,0.4), transparent 50%),
+    radial-gradient(1px 1px at 88% 20%, rgba(255,255,255,0.3), transparent 50%),
+    radial-gradient(1px 1px at 98% 60%, rgba(255,255,255,0.4), transparent 50%),
+    /* Blue nebula glow */
+    radial-gradient(ellipse at 30% 40%, rgba(29, 78, 216, 0.1) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 60%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
+  animation: twinkleStars 6s ease-in-out infinite alternate;
+}
+
+@keyframes twinkleStars {
+  0% { 
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  25% { 
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  50% { 
+    opacity: 0.6;
+    transform: scale(0.9);
+  }
+  75% { 
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% { 
+    opacity: 0.9;
+    transform: scale(1);
+  }
+}
+
+/* Shooting stars */
+.dark::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background: 
+    radial-gradient(2px 2px at 100px 50px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 200px 100px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 300px 150px, rgba(255,255,255,0.9), transparent);
+  background-size: 400px 200px;
+  animation: shootingStars 12s linear infinite;
+}
+
+@keyframes shootingStars {
+  0% {
+    transform: translateX(-100px) translateY(-100px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100vw) translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Ensure content is above the stars */
+.dark > * {
+  position: relative;
+  z-index: 10;
+}
+
+/* Ensure the main content area has proper z-indexing */
+.dark main,
+.dark .container,
+.dark .max-w-7xl,
+.dark .max-w-5xl,
+.dark .card-gradient,
+.dark .glass-effect {
+  position: relative;
+  z-index: 10;
+}
+
+/* Glowing card effects in dark mode - reduced glow */
+.dark .card-gradient {
+  @apply shadow-xl ring-1;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 8px rgba(59, 130, 246, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+}
+
+.dark .card-gradient:hover {
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  box-shadow: 
+    0 12px 48px rgba(0, 0, 0, 0.4),
+    0 0 15px rgba(59, 130, 246, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transform: translateY(-1px);
+}
+
+/* Enhanced glass effects - subtle theme */
+.dark .glass-effect {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(59, 130, 246, 0.1);
+  backdrop-filter: blur(16px);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 8px rgba(59, 130, 246, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* Glowing text effects - subtle theme */
+.dark h1, .dark h2, .dark h3 {
+  text-shadow: 
+    0 0 10px rgba(96, 165, 250, 0.2),
+    0 0 20px rgba(168, 85, 247, 0.1);
+}
+
+.dark h1 {
+  text-shadow: 
+    0 0 15px rgba(96, 165, 250, 0.25),
+    0 0 30px rgba(168, 85, 247, 0.15);
+}
+
+/* Smooth transitions for theme switching */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Cool progress bar effects */
+.progress-bar {
+  overflow: hidden;
+}
+
+.progress-bar > div {
+  box-shadow: 
+    0 0 8px rgba(59, 130, 246, 0.2),
+    0 0 15px rgba(168, 85, 247, 0.1);
+}
+
+/* Enhanced button styles in dark mode */
+.dark .button-gradient {
+  @apply shadow-lg shadow-blue-500/20;
+}
+
+.dark .button-gradient:hover {
+  @apply shadow-xl shadow-blue-500/30;
+  transform: translateY(-1px);
+}
