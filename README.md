@@ -394,11 +394,9 @@ git push origin feature/amazing-feature
 
 ## 🏆 Testimonials & Success Stories
 
-> *"IQKiller transformed my interview preparation. The AI analysis was spot-on and helped me land my dream job at Google!"* - **Sarah Chen, Software Engineer**
 
-> *"The Google Document AI integration is incredibly fast and accurate. Best interview prep tool I've used."* - **Michael Rodriguez, Product Manager**
+[**Submit Feedback**](https://forms.gle/Mkg1SAkgRgNwsN3y5)
 
-> *"The real-time streaming analysis kept me engaged throughout the process. Fantastic UX!"* - **Emily Johnson, Data Scientist**
 
 ---
 
