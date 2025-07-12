@@ -210,7 +210,7 @@ export async function POST(req: NextRequest) {
     console.log('📦 Response keys:', Object.keys(response))
     console.log('📝 Has markdown:', !!markdown, '- Length:', markdown.length)
     console.log('🌐 Has html:', !!html, '- Length:', html.length)
-    console.log('📋 Has metadata:', !!metadata, '- Keys:', Object.keys(metadata))
+    console.log('Has metadata:', !!metadata, '- Keys:', Object.keys(metadata))
     console.log('🔗 Has links:', !!response.links, '- Count:', response.links?.length || 0)
     console.log('📷 Has screenshot:', !!response.screenshot)
     console.log('⚠️ Warning:', response.warning || 'None')

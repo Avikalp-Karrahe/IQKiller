@@ -200,7 +200,7 @@ RESPONSIBILITIES:
                 variant="outline"
                 size="lg"
               >
-                📋 Load Sample Data
+                Load Sample Data
               </Button>
               <Button 
                 onClick={handleStartDemo}
@@ -231,7 +231,7 @@ RESPONSIBILITIES:
               
               <Card>
                 <CardContent className="pt-6 text-center">
-                  <div className="text-2xl mb-2">📋</div>
+                  <div className="text-2xl mb-2">💼</div>
                   <h3 className="font-semibold">Job Matching</h3>
                   <p className="text-sm text-gray-600">Compatibility scoring</p>
                 </CardContent>
