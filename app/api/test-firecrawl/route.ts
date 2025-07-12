@@ -291,7 +291,7 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    console.log('🎯 Extracted key data:', {
+    console.log('Extracted key data:', {
       title: extractedData.title,
       descriptionLength: extractedData.description.length,
       contentLength: extractedData.contentLength

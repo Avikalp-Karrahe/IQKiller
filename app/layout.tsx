@@ -12,10 +12,10 @@ const fontSans = FontSans({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://iqkiller-vercel.vercel.app"),
-  title: "🎯 IQKiller - AI Interview Preparation",
+  title: "IQKiller - AI Interview Preparation",
   description: "AI-powered interview preparation platform. Upload your resume, analyze job postings, and get personalized interview questions and strategies.",
   icons: {
-    icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🎯</text></svg>'
+    icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">📋</text></svg>'
   }
 };
 

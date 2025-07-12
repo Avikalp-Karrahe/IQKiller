@@ -106,7 +106,7 @@ RESPONSIBILITIES:
           {/* Header */}
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              🎯 IQKiller Streaming Demo
+              IQKiller Streaming Demo
             </h1>
             <p className="text-xl text-gray-600 mb-6">
               Experience real-time AI analysis that breaks through Vercel&apos;s 10-second limit
@@ -231,7 +231,7 @@ RESPONSIBILITIES:
               
               <Card>
                 <CardContent className="pt-6 text-center">
-                  <div className="text-2xl mb-2">🎯</div>
+                  <div className="text-2xl mb-2">📋</div>
                   <h3 className="font-semibold">Job Matching</h3>
                   <p className="text-sm text-gray-600">Compatibility scoring</p>
                 </CardContent>

@@ -648,7 +648,7 @@ export function generateEnhancedQuestions(
   const roleFamily = getRoleFamily(jobContext.role || resumeData.currentRole, jobContext.description)
   const questionCategories = ROLE_CATEGORY_MAPPINGS[roleFamily]
   
-  console.log(`🎯 Dynamic Question Generation:`)
+  console.log(`Dynamic Question Generation:`)
   console.log(`   Role Family: ${roleFamily}`)
   console.log(`   Categories: ${questionCategories.join(', ')}`)
   

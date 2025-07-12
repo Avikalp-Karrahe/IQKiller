@@ -524,7 +524,7 @@ function QuestionDisplay({ question, index }: { question: Question; index: numbe
           {question.relevance && (
             <div>
               <h5 className="text-sm font-medium text-gray-900 dark:text-white mb-1">
-                🎯 Why This Matters
+                Why This Matters
               </h5>
               <p className="text-sm text-gray-600 dark:text-gray-300">
                 {question.relevance}

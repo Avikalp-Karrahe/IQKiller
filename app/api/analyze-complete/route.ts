@@ -164,7 +164,7 @@ export async function POST(req: NextRequest) {
     console.log('✅ Resume analysis complete:', resumeData.name, resumeData.currentRole)
 
     // Step 2: Enhanced Job Matching with Scraped Data (use pre-processed if available)
-    console.log('🎯 === STEP 2: ENHANCED JOB MATCHING ===')
+    console.log('=== STEP 2: ENHANCED JOB MATCHING ===')
     const jobData = body.jobData || {};
     
     // === DEBUG: LOG JOB DATA AFTER ASSIGNMENT ===
@@ -194,7 +194,7 @@ export async function POST(req: NextRequest) {
     
     const matchData = await generateEnhancedJobMatch(resumeData, jobData, body.jobDescription);
     console.log('✅ Enhanced job matching complete:', matchData.overallMatch + '%')
-    console.log('🎯 Match details:', {
+    console.log('Match details:', {
       skillsMatch: matchData.skillsMatch + '%',
       experienceMatch: matchData.experienceMatch + '%',
       missingSkillsCount: matchData.missingSkills.length,
@@ -227,7 +227,7 @@ export async function POST(req: NextRequest) {
              resumeData.experienceYears <= 5 ? 'mid' : 'senior'
     }
     
-    console.log('🎯 Enhanced job context created:', {
+    console.log('Enhanced job context created:', {
       role: jobContext.role,
       company: jobContext.company,
       level: jobContext.level,
@@ -244,7 +244,7 @@ export async function POST(req: NextRequest) {
     
     console.log(`✅ Enhanced question generation complete: ${combinedQuestions.length} questions across ${new Set(combinedQuestions.map((q: any) => q.type)).size} categories`)
     console.log(`📊 Question breakdown: Technical: ${combinedQuestions.filter((q: any) => q.type === 'technical').length}, Behavioral: ${combinedQuestions.filter((q: any) => q.type === 'behavioral').length}, System Design: ${combinedQuestions.filter((q: any) => q.type === 'system-design').length}`)
-    console.log(`🎯 Role detected: ${jobContext.role} (${jobContext.level} level)`)
+    console.log(`Role detected: ${jobContext.role} (${jobContext.level} level)`)
     console.log(`💡 Questions personalized with: Resume-specific details and ${resumeData.technicalSkills.programmingLanguages.slice(0, 2).join(', ')} experience`)
 
     // Step 4: Final Analysis
@@ -427,7 +427,7 @@ export async function POST(req: NextRequest) {
     };
 
     // Step 6: Premium Content Enhancement
-    console.log('🎯 === STEP 6: PREMIUM CONTENT ENHANCEMENT ===')
+          console.log('=== STEP 6: PREMIUM CONTENT ENHANCEMENT ===')
     const premiumContent = generatePremiumContent(enhancedResumeData, jobContext, combinedQuestions);
     console.log('✅ Premium content enhancement complete: preparation timelines, company research, STAR method guide')
     console.log(`📊 Premium features: ${Object.keys(premiumContent.timelineOptions).length} timeline options, ${premiumContent.companyResearch.researchAreas.length} research areas, ${Object.keys(premiumContent.starMethodGuide.storyBank).length} STAR story categories`)
@@ -436,7 +436,7 @@ export async function POST(req: NextRequest) {
     console.log('🎖️ === STEP 7: PREMIUM COACHING FEATURES ===')
     const premiumCoaching = generatePremiumCoaching(enhancedResumeData, jobContext, resumeData.experienceYears <= 2 ? 'junior' : resumeData.experienceYears <= 5 ? 'mid' : 'senior');
     console.log('✅ Premium coaching complete: smart questions, competitive advantage, personal branding, advanced strategies')
-    console.log(`🎯 Coaching features: ${premiumCoaching.smartQuestions.strategicQuestions.length} strategic question categories, ${premiumCoaching.competitiveAdvantage.uniqueValueProposition.coreStrengths.length} core strengths, ${premiumCoaching.personalBranding.brandArchetype.primaryArchetype} brand archetype`)
+    console.log(`Coaching features: ${premiumCoaching.smartQuestions.strategicQuestions.length} strategic question categories, ${premiumCoaching.competitiveAdvantage.uniqueValueProposition.coreStrengths.length} core strengths, ${premiumCoaching.personalBranding.brandArchetype.primaryArchetype} brand archetype`)
     console.log('🎉 === COMPREHENSIVE GUIDE COMPLETE ===');
 
     const endTime = Date.now()

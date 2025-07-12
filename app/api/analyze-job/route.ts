@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
     const jobData = body.jobData
     
     // Enhanced job analysis using scraped data
-    console.log('🎯 === ANALYZING JOB REQUIREMENTS ===')
+    console.log('=== ANALYZING JOB REQUIREMENTS ===')
     
     let jobAnalysis: any = {
       title: jobData.title || jobData.role || 'Position',
