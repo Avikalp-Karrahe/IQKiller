@@ -322,25 +322,7 @@ function OverviewSection({ guide, roleTitle, roleDescription }: {
                   </Button>
                 </div>
 
-                <div>
-                  <p className="text-gray-900 dark:text-white font-medium mb-3">Connect with Avikalp:</p>
-                  <div className="flex gap-3">
-                    <Button 
-                      className="bg-blue-600 hover:bg-blue-700 text-white flex-1"
-                      onClick={() => window.open('https://www.linkedin.com/in/avikalp/', '_blank')}
-                    >
-                      <Linkedin className="w-4 h-4 mr-2" />
-                      LinkedIn
-                    </Button>
-                    <Button 
-                      className="bg-gray-800 hover:bg-gray-900 text-white flex-1"
-                      onClick={() => window.open('https://github.com/Avikalp-Karrahe', '_blank')}
-                    >
-                      <Github className="w-4 h-4 mr-2" />
-                      GitHub
-                    </Button>
-                  </div>
-                </div>
+
               </div>
             </div>
           </CardContent>
@@ -1244,114 +1226,38 @@ function CompanyResearchSection({ premiumContent }: { premiumContent?: any }) {
         </CardContent>
       </Card>
 
-      {/* Community & Creator Section */}
-      <div className="space-y-8">
-        {/* Community Engagement */}
-        <Card className="border-2 border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-950/20">
-          <CardContent className="p-6 text-center">
-            <div className="flex justify-center mb-4">
-              <MessageSquare className="w-8 h-8 text-blue-600 dark:text-blue-400" />
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-              Join the Community Building This
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
-              This tool gets better with every user. Share your interview experience, suggest features, 
-              or just let us know how your prep went. Your input directly shapes what we build next.
-            </p>
-            
-            <div className="flex justify-center gap-4">
-              <Button 
-                variant="default"
-                className="bg-blue-600 hover:bg-blue-700"
-                onClick={() => window.open('https://forms.gle/hnHyghiA6WxPbUE19', '_blank')}
-              >
-                Share Feedback
-              </Button>
-              <Button 
-                variant="outline"
-                onClick={() => window.open('https://github.com/Avikalp-Karrahe/IQKiller', '_blank')}
-              >
-                <Github className="w-4 h-4 mr-2" />
-                Star on GitHub
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Creator Section */}
-        <Card>
-          <CardContent className="p-8">
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Left Side - About the Creator */}
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">About the Creator</h3>
-                
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0">
-                    <img 
-                      src="https://github.com/Avikalp-Karrahe.png?size=256"
-                      alt="Avikalp Karrahe"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                      <strong>Avikalp Karrahe</strong> is an AI Engineer and 3x San Francisco Bay Area hackathon winner building production-grade AI tools, from crisis intelligence systems to autonomous agents. He's currently helping Coca-Cola reduce dispenser downtime using predictive modeling.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="bg-blue-50 dark:bg-blue-950/20 border-l-4 border-blue-400 dark:border-blue-500 p-4 rounded">
-                  <p className="text-blue-800 dark:text-blue-200 italic">
-                    "Interview prep shouldn't be a luxury. IQKiller is for anyone who builds, learns, and dares to apply."
-                  </p>
-                </div>
-              </div>
-
-              {/* Right Side - Want to Reach Job Seekers */}
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Want to Reach Job Seekers?</h3>
-                
-                <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-                  IQKiller reaches professionals actively preparing for interviews at top companies. If you build tools, courses, or services for job seekers, this is where they're looking.
-                </p>
-
-                <div className="mb-6">
-                  <Button 
-                    variant="outline"
-                    className="w-full justify-center mb-4"
-                    onClick={() => window.location.href = 'mailto:akarrahe@ucdavis.edu?subject=Partnership Opportunity'}
-                  >
-                    <Mail className="w-4 h-4 mr-2" />
-                    Partner with Us
-                  </Button>
-                </div>
-
-                <div>
-                  <p className="text-gray-900 dark:text-white font-medium mb-3">Connect with Avikalp:</p>
-                  <div className="flex gap-3">
-                    <Button 
-                      className="bg-blue-600 hover:bg-blue-700 text-white flex-1"
-                      onClick={() => window.open('https://www.linkedin.com/in/avikalp/', '_blank')}
-                    >
-                      <Linkedin className="w-4 h-4 mr-2" />
-                      LinkedIn
-                    </Button>
-                    <Button 
-                      className="bg-gray-800 hover:bg-gray-900 text-white flex-1"
-                      onClick={() => window.open('https://github.com/Avikalp-Karrahe', '_blank')}
-                    >
-                      <Github className="w-4 h-4 mr-2" />
-                      GitHub
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+      {/* Community Engagement */}
+      <Card className="border-2 border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-950/20">
+        <CardContent className="p-6 text-center">
+          <div className="flex justify-center mb-4">
+            <MessageSquare className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+          </div>
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            Join the Community Building This
+          </h3>
+          <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+            This tool gets better with every user. Share your interview experience, suggest features, 
+            or just let us know how your prep went. Your input directly shapes what we build next.
+          </p>
+          
+          <div className="flex justify-center gap-4">
+            <Button 
+              variant="default"
+              className="bg-blue-600 hover:bg-blue-700"
+              onClick={() => window.open('https://forms.gle/hnHyghiA6WxPbUE19', '_blank')}
+            >
+              Share Feedback
+            </Button>
+            <Button 
+              variant="outline"
+              onClick={() => window.open('https://github.com/Avikalp-Karrahe/IQKiller', '_blank')}
+            >
+              <Github className="w-4 h-4 mr-2" />
+              Star on GitHub
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }

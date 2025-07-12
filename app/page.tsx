@@ -314,16 +314,14 @@ export default function IQKillerMainPage() {
     }
   }, [bothAnalysesReady, resumeAnalysisData, jobAnalysisData, comprehensiveAnalysisStatus, startComprehensiveAnalysis])
 
+  return (
+    <div className="gradient-bg min-h-screen">
+      {/* Header Controls - Top Right - Single instance for both views */}
+      <div className="absolute top-4 right-4 z-50">
+        <HeaderControls />
+      </div>
 
-
-  if (showAnalysis) {
-    return (
-      <div className="gradient-bg min-h-screen">
-        {/* Header Controls - Top Right */}
-        <div className="absolute top-4 right-4 z-50">
-          <HeaderControls />
-        </div>
-        
+      {showAnalysis ? (
         <div className="container mx-auto px-4 py-8">
           {/* Header */}
           <div className="text-center mb-8">
@@ -355,284 +353,275 @@ export default function IQKillerMainPage() {
             />
           </div>
         </div>
-      </div>
-    )
-  }
-
-  return (
-    <div className="gradient-bg min-h-screen">
-      {/* Header Controls - Top Right */}
-      <div className="absolute top-4 right-4 z-50">
-        <HeaderControls />
-      </div>
-      
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 glass-effect rounded-full text-sm font-medium mb-6">
-            <Sparkles className="w-4 h-4" />
-            AI-Powered Interview Preparation
-          </div>
-          <h1 className="text-6xl font-bold text-gray-900 dark:text-gray-50 mb-6">
-            IQKiller
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
-            Upload your resume, analyze job postings, and get personalized interview questions, salary negotiation strategies, and real-time preparation insights powered by AI.
-          </p>
-          
-          {/* Feature highlights */}
-          <div className="flex items-center justify-center gap-8 text-gray-500 dark:text-gray-400 mb-12">
-            <div className="flex items-center gap-2">
-              <FileText className="w-5 h-5" />
-                              <span className="text-sm">Resume Analysis</span>
+      ) : (
+        <div className="container mx-auto px-4 py-8">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 glass-effect rounded-full text-sm font-medium mb-6">
+              <Sparkles className="w-4 h-4" />
+              AI-Powered Interview Preparation
             </div>
-            <div className="flex items-center gap-2">
-              <Globe className="w-5 h-5" />
-              <span className="text-sm">Job Scraping</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Brain className="w-5 h-5" />
-              <span className="text-sm">Open Source</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Target className="w-5 h-5" />
-              <span className="text-sm">Strategy</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Content */}
-        <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8 mb-12">
-            {/* Resume Upload with Real-time Analysis */}
-            <div className="card-gradient relative overflow-hidden border-0 shadow-lg rounded-xl bg-card text-card-foreground">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-100/50 to-transparent rounded-full -mr-16 -mt-16"></div>
-              <div className="flex flex-col space-y-1.5 p-6 relative">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg">
-                    <Upload className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="font-semibold tracking-tight text-xl">Upload Your Resume</div>
-                    <div className="text-sm text-muted-foreground">Resume analysis with AI-powered skills extraction</div>
-                  </div>
-                  {/* Resume Analysis Status */}
-                  <div className="flex items-center gap-2">
-                    {resumeAnalysisStatus === 'idle' && <Clock className="w-5 h-5 text-gray-400" />}
-                    {resumeAnalysisStatus === 'processing' && <Loader className="w-5 h-5 text-blue-500 animate-spin" />}
-                    {resumeAnalysisStatus === 'completed' && <CheckCircle className="w-5 h-5 text-green-500" />}
-                    {resumeAnalysisStatus === 'error' && <div className="w-5 h-5 rounded-full bg-red-500" />}
-                  </div>
-                </div>
+            <h1 className="text-6xl font-bold text-gray-900 dark:text-gray-50 mb-6">
+              IQKiller
+            </h1>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
+              Upload your resume, analyze job postings, and get personalized interview questions, salary negotiation strategies, and real-time preparation insights powered by AI.
+            </p>
+            
+            {/* Feature highlights */}
+            <div className="flex items-center justify-center gap-8 text-gray-500 dark:text-gray-400 mb-12">
+              <div className="flex items-center gap-2">
+                <FileText className="w-5 h-5" />
+                <span className="text-sm">Resume Analysis</span>
               </div>
-              <div className="p-6 pt-0 relative">
-                <div className="space-y-4">
-                  <FileUpload onFileUpload={handleResumeUpload} />
-                  {resumeAnalysisStatus === 'processing' && (
-                    <div className="text-sm text-blue-600 font-medium">
-                      🧠 Analyzing resume with AI...
-                    </div>
-                  )}
-                  {resumeAnalysisStatus === 'completed' && (
-                    <div className="text-sm text-green-600 font-medium">
-                      ✅ Resume analysis completed: {resumeAnalysisData?.name} ({resumeAnalysisData?.experienceYears} years)
-                    </div>
-                  )}
-                  {resumeAnalysisStatus === 'error' && (
-                    <div className="text-sm text-red-600 font-medium">
-                      ❌ Resume analysis failed. Please try again.
-                    </div>
-                  )}
-                </div>
+              <div className="flex items-center gap-2">
+                <Globe className="w-5 h-5" />
+                <span className="text-sm">Job Scraping</span>
               </div>
-            </div>
-
-            {/* Job Analysis with Real-time Processing */}
-            <div className="card-gradient relative overflow-hidden border-0 shadow-lg rounded-xl bg-card text-card-foreground">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-100/50 to-transparent rounded-full -mr-16 -mt-16"></div>
-              <div className="flex flex-col space-y-1.5 p-6 relative">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-purple-100 dark:bg-purple-900 rounded-lg">
-                    <Globe className="w-6 h-6 text-purple-600 dark:text-purple-400" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="font-semibold tracking-tight text-xl">Job Analysis</div>
-                    <div className="text-sm text-muted-foreground">Paste URL or job description for analysis</div>
-                  </div>
-                  {/* Job Analysis Status */}
-                  <div className="flex items-center gap-2">
-                    {jobAnalysisStatus === 'idle' && <Clock className="w-5 h-5 text-gray-400" />}
-                    {jobAnalysisStatus === 'processing' && <Loader className="w-5 h-5 text-purple-500 animate-spin" />}
-                    {jobAnalysisStatus === 'completed' && <CheckCircle className="w-5 h-5 text-green-500" />}
-                    {jobAnalysisStatus === 'error' && <div className="w-5 h-5 rounded-full bg-red-500" />}
-                  </div>
-                </div>
+              <div className="flex items-center gap-2">
+                <Brain className="w-5 h-5" />
+                <span className="text-sm">Open Source</span>
               </div>
-              <div className="p-6 pt-0 relative">
-                <JobAnalysis onJobData={handleJobData} />
-                {jobAnalysisStatus === 'processing' && (
-                  <div className="text-sm text-purple-600 font-medium mt-4">
-                    🔍 Analyzing job posting...
-                  </div>
-                )}
-                {jobAnalysisStatus === 'completed' && (
-                  <div className="text-sm text-green-600 font-medium mt-4">
-                    ✅ Job analysis completed: {jobAnalysisData?.title} at {jobAnalysisData?.company}
-                  </div>
-                )}
-                {jobAnalysisStatus === 'error' && (
-                  <div className="text-sm text-red-600 font-medium mt-4">
-                    ❌ Job analysis failed. Please try again.
-                  </div>
-                )}
+              <div className="flex items-center gap-2">
+                <Target className="w-5 h-5" />
+                <span className="text-sm">Strategy</span>
               </div>
             </div>
           </div>
 
-          {/* Analysis Button */}
-          {canAnalyze && (
-            <div className="text-center mb-12">
-              <Button
-                onClick={handleStartAnalysis}
-                disabled={!bothAnalysesReady}
-                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white text-lg px-8 py-4 h-auto shadow-lg transition-all duration-200 disabled:opacity-50"
-              >
-                {comprehensiveAnalysisReady ? (
-                  <>
-                    <Trophy className="w-5 h-5 mr-2" />
-                    View Your Interview Guide (Ready!)
-                  </>
-                ) : comprehensiveAnalysisStatus === 'processing' ? (
-                  <>
-                    <Loader className="w-5 h-5 mr-2 animate-spin" />
-                    Generating Interview Guide...
-                  </>
-                ) : bothAnalysesReady ? (
-                  <>
-                    <Sparkles className="w-5 h-5 mr-2" />
-                    Generate Interview Guide
-                  </>
-                ) : (
-                  <>
-                    <Clock className="w-5 h-5 mr-2" />
-                    Waiting for analyses to complete...
-                  </>
+          {/* Main Content */}
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-8 mb-12">
+              {/* Resume Upload with Real-time Analysis */}
+              <div className="card-gradient relative overflow-hidden border-0 shadow-lg rounded-xl bg-card text-card-foreground">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-100/50 to-transparent rounded-full -mr-16 -mt-16"></div>
+                <div className="flex flex-col space-y-1.5 p-6 relative">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg">
+                      <Upload className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-semibold tracking-tight text-xl">Upload Your Resume</div>
+                      <div className="text-sm text-muted-foreground">Resume analysis with AI-powered skills extraction</div>
+                    </div>
+                    {/* Resume Analysis Status */}
+                    <div className="flex items-center gap-2">
+                      {resumeAnalysisStatus === 'idle' && <Clock className="w-5 h-5 text-gray-400" />}
+                      {resumeAnalysisStatus === 'processing' && <Loader className="w-5 h-5 text-blue-500 animate-spin" />}
+                      {resumeAnalysisStatus === 'completed' && <CheckCircle className="w-5 h-5 text-green-500" />}
+                      {resumeAnalysisStatus === 'error' && <div className="w-5 h-5 rounded-full bg-red-500" />}
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6 pt-0 relative">
+                  <div className="space-y-4">
+                    <FileUpload onFileUpload={handleResumeUpload} />
+                    {resumeAnalysisStatus === 'processing' && (
+                      <div className="text-sm text-blue-600 font-medium">
+                        🧠 Analyzing resume with AI...
+                      </div>
+                    )}
+                    {resumeAnalysisStatus === 'completed' && (
+                      <div className="text-sm text-green-600 font-medium">
+                        ✅ Resume analysis completed: {resumeAnalysisData?.name} ({resumeAnalysisData?.experienceYears} years)
+                      </div>
+                    )}
+                    {resumeAnalysisStatus === 'error' && (
+                      <div className="text-sm text-red-600 font-medium">
+                        ❌ Resume analysis failed. Please try again.
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Job Analysis with Real-time Processing */}
+              <div className="card-gradient relative overflow-hidden border-0 shadow-lg rounded-xl bg-card text-card-foreground">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-100/50 to-transparent rounded-full -mr-16 -mt-16"></div>
+                <div className="flex flex-col space-y-1.5 p-6 relative">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-purple-100 dark:bg-purple-900 rounded-lg">
+                      <Globe className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-semibold tracking-tight text-xl">Job Analysis</div>
+                      <div className="text-sm text-muted-foreground">Paste URL or job description for analysis</div>
+                    </div>
+                    {/* Job Analysis Status */}
+                    <div className="flex items-center gap-2">
+                      {jobAnalysisStatus === 'idle' && <Clock className="w-5 h-5 text-gray-400" />}
+                      {jobAnalysisStatus === 'processing' && <Loader className="w-5 h-5 text-purple-500 animate-spin" />}
+                      {jobAnalysisStatus === 'completed' && <CheckCircle className="w-5 h-5 text-green-500" />}
+                      {jobAnalysisStatus === 'error' && <div className="w-5 h-5 rounded-full bg-red-500" />}
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6 pt-0 relative">
+                  <JobAnalysis onJobData={handleJobData} />
+                  {jobAnalysisStatus === 'processing' && (
+                    <div className="text-sm text-purple-600 font-medium mt-4">
+                      🔍 Analyzing job posting...
+                    </div>
+                  )}
+                  {jobAnalysisStatus === 'completed' && (
+                    <div className="text-sm text-green-600 font-medium mt-4">
+                      ✅ Job analysis completed: {jobAnalysisData?.title} at {jobAnalysisData?.company}
+                    </div>
+                  )}
+                  {jobAnalysisStatus === 'error' && (
+                    <div className="text-sm text-red-600 font-medium mt-4">
+                      ❌ Job analysis failed. Please try again.
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Analysis Button */}
+            {canAnalyze && (
+              <div className="text-center mb-12">
+                <Button
+                  onClick={handleStartAnalysis}
+                  disabled={!bothAnalysesReady}
+                  className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white text-lg px-8 py-4 h-auto shadow-lg transition-all duration-200 disabled:opacity-50"
+                >
+                  {comprehensiveAnalysisReady ? (
+                    <>
+                      <Trophy className="w-5 h-5 mr-2" />
+                      View Your Interview Guide (Ready!)
+                    </>
+                  ) : comprehensiveAnalysisStatus === 'processing' ? (
+                    <>
+                      <Loader className="w-5 h-5 mr-2 animate-spin" />
+                      Generating Interview Guide...
+                    </>
+                  ) : bothAnalysesReady ? (
+                    <>
+                      <Sparkles className="w-5 h-5 mr-2" />
+                      Generate Interview Guide
+                    </>
+                  ) : (
+                    <>
+                      <Clock className="w-5 h-5 mr-2" />
+                      Waiting for analyses to complete...
+                    </>
+                  )}
+                </Button>
+                
+                {/* Status Messages */}
+                {comprehensiveAnalysisReady && (
+                  <p className="text-sm text-green-600 mt-2 font-medium">
+                    🎉 Your personalized interview guide is ready! Click to view.
+                  </p>
                 )}
-              </Button>
+                {comprehensiveAnalysisStatus === 'processing' && (
+                  <p className="text-sm text-blue-600 mt-2">
+                    🚀 Generating your comprehensive interview guide in the background...
+                  </p>
+                )}
+                {bothAnalysesReady && comprehensiveAnalysisStatus === 'idle' && (
+                  <p className="text-sm text-green-600 mt-2">
+                    ✅ Both analyses complete - ready to generate your personalized interview guide!
+                  </p>
+                )}
+              </div>
+            )}
+
+            {/* Feature Cards */}
+            <div className="grid md:grid-cols-3 gap-6 mt-16">
+              <div className="card-gradient text-center p-6 border-0 shadow-lg rounded-xl bg-card text-card-foreground relative overflow-hidden group h-72 flex flex-col"
+                   onMouseEnter={() => setCard1Hovered(true)}
+                   onMouseLeave={() => setCard1Hovered(false)}>
+                {/* Premium gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10 pointer-events-none"></div>
+                {/* Coming Soon Badge */}
+                <div className="absolute top-3 right-3 px-2 py-1 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-xs font-semibold rounded-full shadow-lg">
+                  Coming Soon
+                </div>
+                <div className="relative flex-1 flex flex-col">
+                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <Brain className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-blue-600 dark:text-blue-400 mb-2">Smart Question Generation</h3>
+                  <div className="flex-1 mb-4">
+                    <p className="text-gray-600 dark:text-gray-300 text-sm group-hover:hidden">
+                      AI-generated interview questions tailored to your resume and the specific job requirements.
+                    </p>
+                    <p className="text-blue-600 dark:text-blue-400 text-sm font-medium hidden group-hover:block cursor-pointer" onClick={() => window.open('https://www.linkedin.com/in/avikalp/', '_blank')}>
+                      <span className="flex items-center justify-center">
+                        <Zap className="w-4 h-4 mr-2" />
+                        Wanna speed it up? Come build with us!
+                      </span>
+                    </p>
+                  </div>
+                  {/* Premium feature indicator */}
+                  <CountdownTimer targetDate={new Date('2025-07-26')} title="July 26th" isHovered={card1Hovered} />
+                </div>
+              </div>
               
-              {/* Status Messages */}
-              {comprehensiveAnalysisReady && (
-                <p className="text-sm text-green-600 mt-2 font-medium">
-                  🎉 Your personalized interview guide is ready! Click to view.
-                </p>
-              )}
-              {comprehensiveAnalysisStatus === 'processing' && (
-                <p className="text-sm text-blue-600 mt-2">
-                  🚀 Generating your comprehensive interview guide in the background...
-                </p>
-              )}
-              {bothAnalysesReady && comprehensiveAnalysisStatus === 'idle' && (
-                <p className="text-sm text-green-600 mt-2">
-                  ✅ Both analyses complete - ready to generate your personalized interview guide!
-                </p>
-              )}
-            </div>
-          )}
-
-          {/* Feature Cards */}
-          <div className="grid md:grid-cols-3 gap-6 mt-16">
-            <div className="card-gradient text-center p-6 border-0 shadow-lg rounded-xl bg-card text-card-foreground relative overflow-hidden group h-72 flex flex-col"
-                 onMouseEnter={() => setCard1Hovered(true)}
-                 onMouseLeave={() => setCard1Hovered(false)}>
-              {/* Premium gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10 pointer-events-none"></div>
-              {/* Coming Soon Badge */}
-              <div className="absolute top-3 right-3 px-2 py-1 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-xs font-semibold rounded-full shadow-lg">
-                Coming Soon
+              <div className="card-gradient text-center p-6 border-0 shadow-lg rounded-xl bg-card text-card-foreground relative overflow-hidden group h-72 flex flex-col"
+                   onMouseEnter={() => setCard2Hovered(true)}
+                   onMouseLeave={() => setCard2Hovered(false)}>
+                {/* Premium gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-pink-500/10 pointer-events-none"></div>
+                {/* Coming Soon Badge */}
+                <div className="absolute top-3 right-3 px-2 py-1 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-xs font-semibold rounded-full shadow-lg">
+                  Coming Soon
+                </div>
+                <div className="relative flex-1 flex flex-col">
+                  <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <Target className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-purple-600 dark:text-purple-400 mb-2">Skills Gap Analysis</h3>
+                  <div className="flex-1 mb-4">
+                    <p className="text-gray-600 dark:text-gray-300 text-sm group-hover:hidden">
+                      Identify gaps between your skills and job requirements, with personalized learning recommendations.
+                    </p>
+                    <p className="text-purple-600 dark:text-purple-400 text-sm font-medium hidden group-hover:block cursor-pointer" onClick={() => window.open('https://www.linkedin.com/in/avikalp/', '_blank')}>
+                      <span className="flex items-center justify-center">
+                        <Zap className="w-4 h-4 mr-2" />
+                        Wanna speed it up? Come build with us!
+                      </span>
+                    </p>
+                  </div>
+                  {/* Premium feature indicator */}
+                  <CountdownTimer targetDate={new Date('2025-08-09')} title="August 9th" isHovered={card2Hovered} />
+                </div>
               </div>
-              <div className="relative flex-1 flex flex-col">
-                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Brain className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+              
+              <div className="card-gradient text-center p-6 border-0 shadow-lg rounded-xl bg-card text-card-foreground relative overflow-hidden group h-72 flex flex-col"
+                   onMouseEnter={() => setCard3Hovered(true)}
+                   onMouseLeave={() => setCard3Hovered(false)}>
+                {/* Premium gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 via-transparent to-emerald-500/10 pointer-events-none"></div>
+                {/* Coming Soon Badge */}
+                <div className="absolute top-3 right-3 px-2 py-1 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-xs font-semibold rounded-full shadow-lg">
+                  Coming Soon
                 </div>
-                <h3 className="text-lg font-semibold text-blue-600 dark:text-blue-400 mb-2">Smart Question Generation</h3>
-                <div className="flex-1 mb-4">
-                  <p className="text-gray-600 dark:text-gray-300 text-sm group-hover:hidden">
-                    AI-generated interview questions tailored to your resume and the specific job requirements.
-                  </p>
-                  <p className="text-blue-600 dark:text-blue-400 text-sm font-medium hidden group-hover:block cursor-pointer" onClick={() => window.open('https://www.linkedin.com/in/avikalp/', '_blank')}>
-                    <span className="flex items-center justify-center">
-                      <Zap className="w-4 h-4 mr-2" />
-                      Wanna speed it up? Come build with us!
-                    </span>
-                  </p>
+                <div className="relative flex-1 flex flex-col">
+                  <div className="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <Trophy className="w-6 h-6 text-green-600 dark:text-green-400" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-green-600 dark:text-green-400 mb-2">Salary Negotiation</h3>
+                  <div className="flex-1 mb-4">
+                    <p className="text-gray-600 dark:text-gray-300 text-sm group-hover:hidden">
+                      AI-powered salary insights and negotiation strategies based on market data and your profile.
+                    </p>
+                    <p className="text-green-600 dark:text-green-400 text-sm font-medium hidden group-hover:block cursor-pointer" onClick={() => window.open('https://www.linkedin.com/in/avikalp/', '_blank')}>
+                      <span className="flex items-center justify-center">
+                        <Zap className="w-4 h-4 mr-2" />
+                        Wanna speed it up? Come build with us!
+                      </span>
+                    </p>
+                  </div>
+                  {/* Premium feature indicator */}
+                  <CountdownTimer targetDate={new Date('2025-08-23')} title="August 23rd" isHovered={card3Hovered} />
                 </div>
-                {/* Premium feature indicator */}
-                <CountdownTimer targetDate={new Date('2025-07-26')} title="July 26th" isHovered={card1Hovered} />
-              </div>
-            </div>
-            
-            <div className="card-gradient text-center p-6 border-0 shadow-lg rounded-xl bg-card text-card-foreground relative overflow-hidden group h-72 flex flex-col"
-                 onMouseEnter={() => setCard2Hovered(true)}
-                 onMouseLeave={() => setCard2Hovered(false)}>
-              {/* Premium gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-pink-500/10 pointer-events-none"></div>
-              {/* Coming Soon Badge */}
-              <div className="absolute top-3 right-3 px-2 py-1 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-xs font-semibold rounded-full shadow-lg">
-                Coming Soon
-              </div>
-              <div className="relative flex-1 flex flex-col">
-                <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Target className="w-6 h-6 text-purple-600 dark:text-purple-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-purple-600 dark:text-purple-400 mb-2">Skills Gap Analysis</h3>
-                <div className="flex-1 mb-4">
-                  <p className="text-gray-600 dark:text-gray-300 text-sm group-hover:hidden">
-                    Identify gaps between your skills and job requirements, with personalized learning recommendations.
-                  </p>
-                  <p className="text-purple-600 dark:text-purple-400 text-sm font-medium hidden group-hover:block cursor-pointer" onClick={() => window.open('https://www.linkedin.com/in/avikalp/', '_blank')}>
-                    <span className="flex items-center justify-center">
-                      <Zap className="w-4 h-4 mr-2" />
-                      Wanna speed it up? Come build with us!
-                    </span>
-                  </p>
-                </div>
-                {/* Premium feature indicator */}
-                <CountdownTimer targetDate={new Date('2025-08-09')} title="August 9th" isHovered={card2Hovered} />
-              </div>
-            </div>
-            
-            <div className="card-gradient text-center p-6 border-0 shadow-lg rounded-xl bg-card text-card-foreground relative overflow-hidden group h-72 flex flex-col"
-                 onMouseEnter={() => setCard3Hovered(true)}
-                 onMouseLeave={() => setCard3Hovered(false)}>
-              {/* Premium gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 via-transparent to-emerald-500/10 pointer-events-none"></div>
-              {/* Coming Soon Badge */}
-              <div className="absolute top-3 right-3 px-2 py-1 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-xs font-semibold rounded-full shadow-lg">
-                Coming Soon
-              </div>
-              <div className="relative flex-1 flex flex-col">
-                <div className="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Trophy className="w-6 h-6 text-green-600 dark:text-green-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-green-600 dark:text-green-400 mb-2">Salary Negotiation</h3>
-                <div className="flex-1 mb-4">
-                  <p className="text-gray-600 dark:text-gray-300 text-sm group-hover:hidden">
-                    AI-powered salary insights and negotiation strategies based on market data and your profile.
-                  </p>
-                  <p className="text-green-600 dark:text-green-400 text-sm font-medium hidden group-hover:block cursor-pointer" onClick={() => window.open('https://www.linkedin.com/in/avikalp/', '_blank')}>
-                    <span className="flex items-center justify-center">
-                      <Zap className="w-4 h-4 mr-2" />
-                      Wanna speed it up? Come build with us!
-                    </span>
-                  </p>
-                </div>
-                {/* Premium feature indicator */}
-                <CountdownTimer targetDate={new Date('2025-08-23')} title="August 23rd" isHovered={card3Hovered} />
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   )
 } 
