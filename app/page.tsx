@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { ThemeToggle } from '@/components/ui/theme-toggle'
+import { HeaderControls } from '@/components/ui/header-controls'
 import { Upload, FileText, Globe, Sparkles, Target, Brain, Trophy, Users, CheckCircle, Clock, Loader, Calendar, Zap } from 'lucide-react'
 import StreamingAnalysis from '@/components/streaming-analysis'
 import { FileUpload } from '@/components/file-upload'
@@ -319,9 +319,9 @@ export default function IQKillerMainPage() {
   if (showAnalysis) {
     return (
       <div className="gradient-bg min-h-screen">
-        {/* Theme Toggle - Top Right */}
+        {/* Header Controls - Top Right */}
         <div className="absolute top-4 right-4 z-50">
-          <ThemeToggle />
+          <HeaderControls />
         </div>
         
         <div className="container mx-auto px-4 py-8">
@@ -361,9 +361,9 @@ export default function IQKillerMainPage() {
 
   return (
     <div className="gradient-bg min-h-screen">
-      {/* Theme Toggle - Top Right */}
+      {/* Header Controls - Top Right */}
       <div className="absolute top-4 right-4 z-50">
-        <ThemeToggle />
+        <HeaderControls />
       </div>
       
       <div className="container mx-auto px-4 py-8">
