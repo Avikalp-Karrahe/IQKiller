@@ -38,7 +38,7 @@ B.S. Computer Science, University of California (2019)`
   const sampleJob = `Senior Machine Learning Engineer
 Location: San Francisco, CA | Remote
 
-We're looking for a Senior ML Engineer to join our AI team building next-generation recommendation systems.
+We&apos;re looking for a Senior ML Engineer to join our AI team building next-generation recommendation systems.
 
 REQUIREMENTS:
 • 5+ years of software engineering experience
@@ -109,7 +109,7 @@ RESPONSIBILITIES:
               🎯 IQKiller Streaming Demo
             </h1>
             <p className="text-xl text-gray-600 mb-6">
-              Experience real-time AI analysis that breaks through Vercel's 10-second limit
+              Experience real-time AI analysis that breaks through Vercel&apos;s 10-second limit
             </p>
             <div className="flex justify-center space-x-4">
               <div className="bg-green-100 text-green-800 px-4 py-2 rounded-lg">
@@ -135,7 +135,7 @@ RESPONSIBILITIES:
                   <li>• 2 minutes = timeout crash</li>
                   <li>• No progress feedback</li>
                   <li>• Server keeps crashing</li>
-                  <li>• Won't work on Vercel</li>
+                  <li>• Won&apos;t work on Vercel</li>
                 </ul>
               </CardContent>
             </Card>
@@ -178,7 +178,7 @@ RESPONSIBILITIES:
               <CardHeader>
                 <CardTitle>💼 Job Description</CardTitle>
                 <CardDescription>
-                  Paste the job posting you're applying for
+                  Paste the job posting you&apos;re applying for
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -219,7 +219,7 @@ RESPONSIBILITIES:
 
           {/* Features Preview */}
           <div className="mt-12">
-            <h2 className="text-2xl font-bold text-center mb-8">What You'll Experience</h2>
+            <h2 className="text-2xl font-bold text-center mb-8">What You&apos;ll Experience</h2>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <Card>
                 <CardContent className="pt-6 text-center">

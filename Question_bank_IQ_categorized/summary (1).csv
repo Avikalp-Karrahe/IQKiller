@@ -1,0 +1,749 @@
+idx,title,type,summaries,link
+0,Weekly Aggregation,python,Summary: Group a list of sequential timestamps into weekly lists starting from the first timestamp.,interviewquery.com/questions/weekly-aggregation
+1,Decreasing Comments,product metrics,Identify reasons and metrics for decreasing average comments per user despite user growth in a new city.,interviewquery.com/questions/decreasing-comments
+2,Employee Salaries,sql,"Select the top 3 departments with at least ten employees, ranked by the percentage of employees earning over 100K.",interviewquery.com/questions/employee-salaries
+3,500 Cards,probability,Determine the probability of drawing three cards in increasing order from a shuffled deck of 500 numbered cards.,interviewquery.com/questions/500-cards
+4,First Touch Attribution,sql,Calculate the first touch attribution channel for each user who converted.,interviewquery.com/questions/first-touch-attribution
+5,Find Bigrams,python,Write a function that takes a sentence and returns a list of all its bigrams in order.,interviewquery.com/questions/find-bigrams
+6,Random Number,algorithms,Select a random number from a stream with equal probability using \(O(1)\) space.,interviewquery.com/questions/random-number
+7,Upsell Transactions,sql,Write a query to count users who made additional purchases on different days after their initial purchase.,interviewquery.com/questions/upsell-transactions
+8,Boarding Times Bias,product metrics,Identify potential biases in Jetco's boarding time study and suggest areas for further investigation.,interviewquery.com/questions/boarding-times-bias
+9,First to Six,probability,"Calculate the probability that Amy wins by rolling a ""6"" first in a turn-based die game.",interviewquery.com/questions/first-to-six
+10,Swipe Precision,sql,"Write a SQL query to calculate the average number of right swipes for users with 10, 50, and 100 swipes in a feed ranking experiment, comparing two variants.",interviewquery.com/questions/swipe-precision
+11,Employee Salaries (ETL Error),sql,Write a query to retrieve the latest salary for each employee from the employees table with duplicate salary entries.,interviewquery.com/questions/employee-salaries-etl-error
+12,Four Person Elevator,probability,Calculate the probability that four people in an elevator independently choose different floors out of five.,interviewquery.com/questions/four-person-elevator
+13,Keyword Bidding,machine learning,Build a model to bid on a new unseen keyword using a dataset of keywords and their bid prices.,interviewquery.com/questions/keyword-bidding
+14,Max Width,algorithms,"Summary: Format an array of words into lines of exactly max_width characters, distributing spaces evenly.",interviewquery.com/questions/max-width
+15,One Million Rides,machine learning,Determine if 1 million Seattle ride trips suffice to build an accurate ETA prediction model.,interviewquery.com/questions/one-million-lyft-rides
+16,Third Purchase,sql,"Write a query to find the third purchase of every user from the transactions table, sorted by user_id.",interviewquery.com/questions/third-purchase
+17,Raining in Seattle,probability,"Calculate the probability that it's actually raining in Seattle given that all 3 friends, each with a 2/3 chance of telling the truth, say ""Yes"".",interviewquery.com/questions/is-it-raining-in-seattle
+18,Bank Fraud Model,machine learning,Build a fraud detection model and text messaging service to alert and receive customer responses on suspicious transactions.,interviewquery.com/questions/bank-fraud-model
+19,Replace Words with Stems,python,Stem words in a sentence using the shortest root from a given dictionary.,interviewquery.com/questions/replace-words-with-stems
+20,Empty Neighborhoods,sql,Write a query to return neighborhoods with no users in them.,interviewquery.com/questions/empty-neighborhoods
+21,Sample Size Bias,a/b testing,Determine if an unbalanced AB test with 50K and 200K users will bias results towards the smaller group.,interviewquery.com/questions/sample-size-bias
+22,Revenue Retention,business case,"Calculate the average lifetime value for a SAAS company with a $100 monthly product, 10% churn, and 3.5-month customer retention.",interviewquery.com/questions/revenue-retention
+23,Twenty Variants,a/b testing,Assess whether the significance of one out of 20 A/B test variants is suspicious.,interviewquery.com/questions/twenty-variants
+24,Distribution of 2X - Y,statistics,"Determine the mean and variance of \(2X - Y\) for independent normal variables \(X\sim \mathcal{N}(3, 4)\) and \(Y \sim \mathcal{N}(1, 4)\).",interviewquery.com/questions/distribution-of-2x---y
+25,One Element Removed,algorithms,Find the integer removed from list X to form list Y using O(1) space and O(n) time.,interviewquery.com/questions/one-element-removed
+26,Download Facts,sql,"Calculate the average downloads per day for free and paying accounts, considering only accounts with at least one download.",interviewquery.com/questions/download-facts
+27,Get Top N Frequent Words,python,"Write a function to return the top N frequent words and their frequencies from a given paragraph string, and determine the function's run-time.",interviewquery.com/questions/n-frequent-words
+28,HHT or HTT,probability,"Determine which sequence, HHT or HTT, is more likely to appear first when flipping a fair coin, and calculate the probability.",interviewquery.com/questions/hht-or-htt
+29,Food Delivery Times,machine learning,Summary: Explain why measuring bias is important in predicting food preparation times at a restaurant.,interviewquery.com/questions/food-delivery-times
+30,Over-Budget Projects,sql,"Write a query to forecast project budgets and label them as ""overbudget"" or ""within budget.""",interviewquery.com/questions/over-budget-projects
+31,Stop Words Filter,python,Summary: Write a function to remove stop words from a string and convert it to lowercase.,interviewquery.com/questions/stop-words-filter
+32,Rider Discount,business case,Summary: Evaluate the effectiveness of a 50% rider discount promotion by implementing it and tracking key metrics.,interviewquery.com/questions/half-off-rider-discount
+33,Closest SAT Scores,sql,"Write a query to find two students with the closest SAT scores, prioritizing alphabetically higher names for ties.",interviewquery.com/questions/closest-sat-scores
+34,Biased Random Number Generator,probability,Create an algorithm using an unfair coin to generate a uniformly distributed list of zeros and ones.,interviewquery.com/questions/biased-random-number-generator
+35,Liker's Likers,sql,Count the number of liker's likers from a table of people who like others.,interviewquery.com/questions/liker-s-likers
+36,Median Probability,statistics,"Find the probability that the median of three i.i.d. uniform(0, 4) variables is greater than 3.",interviewquery.com/questions/median-probability
+37,Missing Housing Data,machine learning,Decide how to handle missing square footage data in a Seattle housing price prediction model.,interviewquery.com/questions/missing-housing-data
+38,Jars and Coins,probability,Determine the probability of picking the double-headed coin given 10 heads and the probability of the next toss being a head.,interviewquery.com/questions/jars-and-coins
+39,Find the Missing Number,algorithms,Find the missing number from an array spanning 0 to n with one number missing.,interviewquery.com/questions/find-the-missing-number
+40,Biased five out of six,probability,Calculate the probability of a biased coin landing heads exactly 5 times in 6 tosses.,interviewquery.com/questions/biased-five-out-of-six
+41,Button AB Test,a/b testing,Summary: Design an A/B test to evaluate changes in button color and position on a sign-up page for increased click-through.,interviewquery.com/questions/button-ab-test
+42,Cumulative Distribution,sql,Write a SQL query to generate a cumulative distribution of comments per user with bin intervals of one.,interviewquery.com/questions/cumulative-distribution
+43,Celebrity Mentions,product metrics,Determine metrics to assess Mentions app health and attribute fan interaction increases to app usage versus celebrity engagement.,interviewquery.com/questions/celebrity-mentions
+44,String Subsequence,python,Write a function to check if one string is a subsequence of another string.,interviewquery.com/questions/string-subsequence
+45,Same Side Probability,probability,Calculate the probability that two flips with a randomly chosen fair or biased coin result in the same side.,interviewquery.com/questions/same-side-probability
+46,Rolling Bank Transactions,sql,Write a query to calculate the three-day rolling average of deposits by day from a bank transactions table.,interviewquery.com/questions/rolling-bank-transactions
+47,Survey Response Randomness,statistics,Determine if survey responses are random or truthful by analyzing patterns and inconsistencies.,interviewquery.com/questions/survey-response-randomness
+48,Two Cars,business case,Determine how long it takes for a car traveling at 80 mph to catch up to a car traveling at 60 mph that started an hour earlier.,interviewquery.com/questions/two-cars
+49,Click Data Schema,database design,Design a schema to represent client click data for web app analytics tracking.,interviewquery.com/questions/click-data-schema
+50,Mouse Search,business case,Determine the mouse's location in a 4x4 grid using the fewest subset scans possible.,interviewquery.com/questions/mouse-search
+51,Rejection Reason,machine learning,Determine how to provide rejection reasons for loan applicants without access to feature weights in a binary classification model.,interviewquery.com/questions/rejection-reason
+52,2nd Highest Salary,sql,Select the 2nd highest salary in the engineering department using SQL.,interviewquery.com/questions/2nd-highest-salary
+53,String Shift,algorithms,Determine if string A can be rotated to match string B.,interviewquery.com/questions/string-shift
+54,Fake News Stories,business case,Determine the percentage of fake news on Facebook stories by tomorrow with limited time.,interviewquery.com/questions/fake-news-stories
+55,Unbiased Estimator,statistics,Summary: Explain what an unbiased estimator is and provide a layman-friendly example.,interviewquery.com/questions/unbiased-estimator
+56,Interquartile Distance,algorithms,Summary: Write a function to find the interquartile distance from an unsorted array of numbers.,interviewquery.com/questions/interquartile-distance
+57,Post Success,sql,Summary: Write a query to calculate the daily post success rate for each day in January 2020 from the events table.,interviewquery.com/questions/post-success
+58,Found Item,probability,Calculate the probability that item X is available on Amazon's website given its availability at two warehouses.,interviewquery.com/questions/found-item
+59,Instagram TV Success,product metrics,Summary: Describe how to measure the success of Instagram TV as a Product Data Scientist.,interviewquery.com/questions/instagram-tv-success
+60,Search Algorithm Recall,machine learning,Identify methods to increase recall in product search results without altering the search algorithm.,interviewquery.com/questions/search-algorithm-recall
+61,Crossing Bridges,database design,"Design a table schema to track car entry/exit times and details on Golden Gate bridge, and write queries to find the fastest car time and car model with the fastest average time for the current day.",interviewquery.com/questions/crossing-bridges
+62,Recurring Character,python,"Summary: Write a function to find the first recurring character in a string, treating upper and lower case as distinct.",interviewquery.com/questions/recurring-character
+63,Subscription Overlap,sql,Write a query to check if each user's subscription date range overlaps with any other completed subscription.,interviewquery.com/questions/subscription-overlap
+64,Spam Classifier ,machine learning,Identify metrics to track accuracy and validity of a spam classifier model for emails.,interviewquery.com/questions/spam-classifier
+65,String Mapping,algorithms,Determine if a one-to-one correspondence exists between characters of two strings at the same index.,interviewquery.com/questions/string-mapping
+66,Insurance Leads,product metrics,Identify potential flaws in VP's assumption that more leads directly correlate with longer customer retention.,interviewquery.com/questions/insurance-leads
+67,Sample Time Series,sql,Sample every 4th row from a transactions table ordered by the date.,interviewquery.com/questions/sample-time-series
+68,Booking Regression,machine learning,"Choose between linear regression and random forest regression for predicting Airbnb booking prices, and justify your choice.",interviewquery.com/questions/booking-regression
+69,Counting File Lines,python,Summary: Devise a Python method to count the number of lines in a 100 GB log file.,interviewquery.com/questions/counting-file-lines
+70,Experiment Validity,a/b testing,Assess the validity of a .04 p-value in an AB test for landing page conversion rates.,interviewquery.com/questions/experiment-validity
+71,Random SQL Sample,sql,Summary: Write a query to randomly sample a row from a large table without throttling the database.,interviewquery.com/questions/random-sql-sample
+72,Post Composer Drop,product metrics,"Investigate the cause of the drop in Facebook composer post rates, focusing on photo posts.",interviewquery.com/questions/post-composer-drop
+73,Merge Sorted Lists,algorithms,Merge two sorted lists into one sorted list and determine the time complexity.,interviewquery.com/questions/merge-sorted-lists
+74,Ad Comments,sql,Write a query to calculate the percentage of comments for each ad in the feed versus moments sections.,interviewquery.com/questions/ad-comments
+75,Secret Wins,probability,Determine how many students actually won a coin-tossing game where some lie about winning.,interviewquery.com/questions/secret-wins
+76,Comparing Search Engines,machine learning,Determine which search engine performs better by tracking relevant performance metrics.,interviewquery.com/questions/comparing-search-engines
+77,Notification Deliveries,sql,Write a query to get the distribution of total push notifications before a user converts.,interviewquery.com/questions/notification-deliveries
+78,FAQ Matching,machine learning,Identify machine learning methods for creating a chatbot that matches user questions to FAQ answers.,interviewquery.com/questions/faq-matching
+79,Lazy Raters,probability,Calculate the probability that a movie is rated good given the distribution of careful and lazy raters.,interviewquery.com/questions/lazy-raters
+80,Search Ratings,analytics,"Summary: Write a query to compute and rank search result precision by average rating for each query, rounded to two decimal places.",interviewquery.com/questions/search-ratings
+81,Biggest Tip,python,Find the user who tipped the most from two nonempty lists of user IDs and corresponding tips.,interviewquery.com/questions/biggest-tip
+82,Netflix Retention,product metrics,Determine metrics to measure the success of acquiring new users through a 30-day free trial at Netflix.,interviewquery.com/questions/netflix-retention
+83,Search Ranking,sql,"Get the percentage of search queries where all ratings are below 3, rounded to two decimal places.",interviewquery.com/questions/search-ranking
+84,Impression Reach,probability,Calculate the probability of a user receiving 0 impressions and the probability that every user receives at least 1 impression.,interviewquery.com/questions/impression-reach
+85,Scrambled Tickets,algorithms,Reconstruct the path of a trip from unordered flight tickets to ensure the trip is in order.,interviewquery.com/questions/scrambled-tickets
+86,Variable Error,machine learning,"Determine the validity of a logistic model when a key variable has data quality issues due to missing decimal points, and suggest how to fix it.",interviewquery.com/questions/variable-error
+87,Liked Pages,sql,"Write an SQL query to recommend pages for each user based on their friends' liked pages, excluding pages the user already likes.",interviewquery.com/questions/liked-pages
+88,Poker Pair,probability,Calculate the probability of drawing a pair from a hand of \(N\) cards in a 52-card deck.,interviewquery.com/questions/poker-pair
+89,Buy or Sell,python,Write a function to determine the maximum profit from stock prices and the corresponding buy and sell dates.,interviewquery.com/questions/buy-or-sell
+90,Search CTR,sql,Write a query to analyze if click-through rate is dependent on search result rating.,interviewquery.com/questions/search-ctr
+91,Second Ace,probability,Calculate the probability that the second card drawn from a shuffled deck is not an Ace.,interviewquery.com/questions/second-ace
+92,SMS Confirmations,sql,"Calculate the number of responses grouped by carrier and country for SMSs sent on February 28th, 2020.",interviewquery.com/questions/sms-confirmations
+93,Recruiting Leads,analytics,Analyze the performance of a new LinkedIn feature allowing candidates to message hiring managers without AB testing.,interviewquery.com/questions/recruiting-leads
+94,Random Bucketing,a/b testing,Determine if bucket assignments in an A/B test were genuinely random.,interviewquery.com/questions/random-bucketing
+95,Three Zebras,probability,Calculate the probability that three zebras running along an equilateral triangle's edges do not collide.,interviewquery.com/questions/three-zebras
+96,New Resumes,python,Write a function to return names and ids from urls that aren't in the existing_ids list.,interviewquery.com/questions/new-resumes
+97,2X - Y,statistics,Find the probability that \(2X\) is greater than \(Y\) for two independent standard normal variables \(X\) and \(Y\).,interviewquery.com/questions/2x---y
+98,Employee Project Budgets,sql,"Write a query to find the top five projects with the highest budget to employee count ratio, excluding projects with 0 employees.",interviewquery.com/questions/employee-project-budgets
+99,Most Repetition,algorithms,"Determine which character in a string has the longest continuous repetition, returning the earliest one if tied.",interviewquery.com/questions/most-repetition
+100,Scrapers or Users,business case,Summary: Differentiate between scrapers and real people in a page view dataset.,interviewquery.com/questions/scrapers-or-users
+101,Greatest Common Denominator,algorithms,Summary: Write a function to find the greatest common denominator of a list of integers.,interviewquery.com/questions/greatest-common-denominator
+102,Job Recommendation,machine learning,"Design a job recommendation engine using Linkedin profiles, application history, and user responses about their job search.",interviewquery.com/questions/job-recommendation
+103,Different Card,probability,Calculate the probability that the second card drawn from a deck has a different color or suit than the first card.,interviewquery.com/questions/different-card
+104,Acceptance Rate,sql,"Write a query to calculate the overall acceptance rate of friend requests, rounded to 4 decimal places.",interviewquery.com/questions/acceptance-rate
+105,Group Success,product metrics,Devise metrics to evaluate the success of Facebook Groups.,interviewquery.com/questions/group-success
+106,Median O(1),algorithms,Find the median of a sorted integer list where one integer comprises over 50% of the list in \(O(1)\) time and space.,interviewquery.com/questions/median-o-of-1
+107,Marble Bucket,probability,"Determine the probability that a red marble was pulled from Bucket #1, and then that two red marbles drawn with replacement both came from Bucket #1.",interviewquery.com/questions/marble-bucket
+108,Last Page Number,python,Extract the last correctly ordered page number from an ascending string of integers.,interviewquery.com/questions/last-page-number
+109,New Notification,analytics,Write a query to analyze how unsubscribes impact login rates over time using events and variants tables in an A/B test.,interviewquery.com/questions/new-notification
+110,Permutation Palindrome,algorithms,Determine if a permutation of a given string can form a palindrome.,interviewquery.com/questions/permutation-palindrome
+111,Dasher Payment Structure,product metrics,Evaluate the new payment structure's success by comparing driver earnings and retention before and after implementation.,interviewquery.com/questions/dasher-payment-structure
+112,Approval Drop,statistics,Identify potential causes for a decrease in overall approval rates despite individual product rates remaining flat or increasing.,interviewquery.com/questions/approval-drop
+113,Electricity Supply,machine learning,Model electricity supply for a town by forecasting annual consumption to avoid outages and waste.,interviewquery.com/questions/electricity-supply
+114,Changing Composer,product metrics,"Design an experiment to test if changing Facebook's composer feature to a ""+"" button improves user engagement.",interviewquery.com/questions/changing-composer
+115,Estimating D,statistics,"Estimate \(d\) from \(N\) uniform distribution samples \([0, d]\).",interviewquery.com/questions/estimating-d
+116,Commercial Break,ml system design,Design a classifier to predict the optimal moment for a commercial break in a video.,interviewquery.com/questions/commercial-break
+117,Threaded Comments,product metrics,Summarize the impact of adding comment threading on user activity and suggest metrics to validate hypotheses.,interviewquery.com/questions/threaded-comments
+118,Decreasing Subsequent Values,algorithms,Return an array where each integer is greater than all following integers.,interviewquery.com/questions/decreasing-subsequent-values
+119,Variate Anomalies,statistics,"Design a function to detect anomalies in a univariate dataset, and extend it for bivariate data.",interviewquery.com/questions/variate-anomalies
+120,Above Average Product Prices,sql,"Write a query to find products where the product price is greater than their average transaction total, rounded to two decimal places.",interviewquery.com/questions/above-average-product-prices
+121,Acquisition Threshold,python,Determine the minimum client spending threshold for awarding high spender bonuses while ensuring the return on investment covers the total bonus spend.,interviewquery.com/questions/acquisition-threshold
+122,N Dice,probability,Determine the probability of rolling at least one 3 with two dice and extend to \(N\) dice.,interviewquery.com/questions/n-die
+123,Promoting Instagram,product metrics,Suggest ways to promote Instagram within the Facebook app.,interviewquery.com/questions/promoting-instagram
+124,Equivalent Index,algorithms,"Find the index where the sum of the left half equals the right half in a list of integers, or return -1 if none exists.",interviewquery.com/questions/equivalent-index
+125,Running Dog,statistics,Calculate the total distance a dog covers running back and forth as a man runs across a 100-foot field.,interviewquery.com/questions/running-dog
+126,Delivery Assignments,business case,"Determine criteria for selecting Dashers for deliveries in New York City and Charlotte, considering if they should differ.",interviewquery.com/questions/delivery-assignments
+127,Conversations Distribution,analytics,"Analyze a table of messages sent between users by date, and write a query to find the daily distribution of conversations per user for 2020.",interviewquery.com/questions/conversations-distribution
+128,New Partner Card,business case,Analyze customer spending data to identify potential partners for a new card.,interviewquery.com/questions/new-partner-card
+129,Month Over Month,sql,"Calculate the month-over-month revenue change for 2019 using transactions and products tables, rounding results to 2 decimal places.",interviewquery.com/questions/month-over-month
+130,Encoding Categorical Features,machine learning,Summarize methods to encode a categorical variable with thousands of distinct values.,interviewquery.com/questions/encoding-categorical-features
+131,AB Test Ties,a/b testing,Compare the pros and cons of user-tied tests versus user-untied tests in randomized groups.,interviewquery.com/questions/ab-test-ties
+132,Flipping 576 Times,probability,Calculate the probability of getting at least 312 heads in 576 coin flips.,interviewquery.com/questions/flipping-576-times
+133,Increased Cancellations,product metrics,Investigate the cause of a 5% increase in rider cancellations at Lyft.,interviewquery.com/questions/increased-cancellations
+134,Multicollinearity in Regression,machine learning,Explain how to address multicollinearity in multiple linear regression.,interviewquery.com/questions/multicollinearity-in-regression
+135,Modifying a Billion Rows,database design,Add a column with data to a billion-row table without disrupting user experience.,interviewquery.com/questions/modifying-a-billion-rows
+136,Compute Deviation,python,Calculate the standard deviation for each list of integers in a list of dictionaries without using NumPy.,interviewquery.com/questions/compute-deviation
+137,Credit Card Fraud Model,machine learning,"Summarize your approach for building a fraud detection model using a dataset of 600,000 credit card transactions.",interviewquery.com/questions/credit-card-fraud-model
+138,Lifetime Driver,business case,Project the lifetime and lifetime value of a new driver using 90 days of ride data.,interviewquery.com/questions/lifetime-driver
+139,Minimum Directional Path,algorithms,"Find the minimum steps to move from the northwest to southeast corner of a building grid using unlocked doors, returning -1 if unreachable.",interviewquery.com/questions/minimum-directional-path
+140,Building Lyft Line,business case,"Develop a new Lyft Line algorithm, test it, measure success, and plan rollout.",interviewquery.com/questions/building-lyft-line
+141,Pizza No Show,machine learning,Identify features to include in a model for predicting pizza order no-shows.,interviewquery.com/questions/pizza-no-show
+142,Delivery Fees,business case,Summary: Determine pricing strategy for delivery fees when launching Doordash in a new city.,interviewquery.com/questions/delivery-fees
+143,Incorrect Packets,statistics,Summary: Diagnose and resolve the issue of a packet filling machine incorrectly boxing 25 packets.,interviewquery.com/questions/incorrect-packets
+144,Delivery Online,product metrics,Summary: Design a test to evaluate the success of a feature that advises dashers on optimal online times for delivery demand.,interviewquery.com/questions/delivery-online
+145,Optimal Host,algorithms,Determine which friend should host the party based on minimal travel distance for the group.,interviewquery.com/questions/optimal-host
+146,Docs Metrics,product metrics,Identify the top five metrics to track for assessing Google Docs' health.,interviewquery.com/questions/docs-metrics
+147,Prime to N,python,Write a function that returns a list of all prime numbers up to a given integer N.,interviewquery.com/questions/prime-to-n
+148,NxN Grid Traversal,algorithms,"Determine the number of paths from the top left to bottom right corner of an \(n \times n\) grid, moving only right or down.",interviewquery.com/questions/nxn-grid-traversal
+149,Bernoulli Sample,algorithms,Write a function that returns a sample from a Bernoulli trial given probability `p`.,interviewquery.com/questions/bernoulli-sample
+150,85% vs 82%,machine learning,Summary: Choose between two models with 85% and 82% accuracy.,interviewquery.com/questions/85-vs-82
+151,Time on FB Distribution,statistics,Describe the distribution of daily time spent on Facebook and identify key metrics for analysis.,interviewquery.com/questions/time-on-fb-distribution
+152,Restaurant Recommender,ml system design,"Summary: Describe the process of building a restaurant recommender on Facebook, including data acquisition and potential concerns.",interviewquery.com/questions/restaurant-recommender
+153,Non-Normal AB Testing,a/b testing,Determine the analysis method for non-normal distribution in an AB test and identify the winning variant.,interviewquery.com/questions/non-normal-ab-testing
+154,Active User Probability,machine learning,Design a method to test if more friends increase the likelihood of a Facebook member's 6-month activity retention.,interviewquery.com/questions/active-user-probability
+155,Paired Products,sql,"Write a query to find the top five product pairs purchased together, listing the first alphabetically as p2.",interviewquery.com/questions/paired-products
+156,Location Feature Sharing,analytics,Determine if the optional location-sharing feature causes decreased user satisfaction with the app.,interviewquery.com/questions/location-feature-sharing
+157,Food Prep Features,machine learning,Determine the type of model and features needed to predict restaurant food preparation time.,interviewquery.com/questions/food-prep-features
+158,P-value to a Layman,statistics,"Explain the concept of a p-value in simple, non-technical terms.",interviewquery.com/questions/p-value-to-a-layman
+159,Green Dot,product metrics,Analyze the effectiveness of a LinkedIn chat green dot feature without AB testing.,interviewquery.com/questions/green-dot
+160,Lifetime Plays,sql,Write a query to return the number of songs played on each date for each user from the `song_plays` table.,interviewquery.com/questions/lifetime-plays
+161,Sum to N,python,Find all combinations of integers from a list that sum to a given value N.,interviewquery.com/questions/sum-to-n
+162,Estimated Rounds,probability,Determine the expected number of rounds needed for six people to randomly choose hand positions and form two equal teams.,interviewquery.com/questions/estimated-rounds
+163,Rebalance Probabilities,machine learning,Adjust output probabilities of a binary classifier trained on a down-sampled dataset to apply to the original imbalanced population.,interviewquery.com/questions/rebalance-probabilities
+164,5th Largest Number,algorithms,Write a function that returns a sorted list of the fifth-largest number from each sublist in a list of lists.,interviewquery.com/questions/5th-largest-number
+165,Marketing Channel Metrics,analytics,Summary: Determine metrics to evaluate the value of different marketing channels for a B2B analytics company.,interviewquery.com/questions/marketing-channel-metrics
+166,Significance Time Series,statistics,Determine if the monthly difference in a five-year time series dataset is statistically significant.,interviewquery.com/questions/significance-time-series
+167,Netflix Price,business case,Determine if Netflix subscription price is the key factor influencing consumer decisions.,interviewquery.com/questions/netflix-price
+168,Free Trial Conversion,product metrics,Investigate why users from Country X convert at a higher rate than those from Country Y.,interviewquery.com/questions/free-trial-conversion
+169,Covariance vs Correlation,statistics,Explain the difference between covariance and correlation with an example.,interviewquery.com/questions/covariance-vs-correlation
+170,Type-ahead Search,ml system design,Design a recommendation algorithm for Netflix's type-ahead search feature.,interviewquery.com/questions/type-ahead-search
+171,Listings Recommendation,ml system design,"Create a recommendation engine for rental listings using user demographics, interests, and property metadata.",interviewquery.com/questions/listings-recommendation
+172,Merge N Sorted Lists,algorithms,Combine sorted integer lists into a single sorted list without using sort functions.,interviewquery.com/questions/merge-n-sorted-lists
+173,Swimmer Survival,probability,Calculate the probability of survival for a 5.8-foot tall man swimming in a lake with an average depth of 5.6 feet and a standard deviation of 1 foot.,interviewquery.com/questions/swimmer-survival
+174,New Geography,product metrics,Investigate reasons why the Calm meditation app underperforms in a new country.,interviewquery.com/questions/new-geography
+175,Podcast Search,ml system design,Design a podcast search engine with transcript and metadata capabilities.,interviewquery.com/questions/podcast-search
+176,Profit-Maximizing Dice Game,probability,Determine the expected winnings from a dice game by choosing whether to reroll or keep the first roll for maximum profit.,interviewquery.com/questions/profit-maximizing-dice-game
+177,Nightly Job,python,"Simulate two jobs starting randomly between 7 pm and midnight, calculate annual cost of simultaneous runs causing $1000 downtime.",interviewquery.com/questions/nightly-job
+178,Hundreds of Hypotheses,a/b testing,Consider multiple hypothesis testing adjustments when performing many t-tests.,interviewquery.com/questions/hundreds-of-hypotheses
+179,Data Stream Median,algorithms,Write a function to calculate the median from an ordered integer stream when a new element is added.,interviewquery.com/questions/data-stream-median
+180,Notification Unsubscribes,product metrics,Analyze the impact of increased push notifications on user engagement and unsubscribes in an A/B test.,interviewquery.com/questions/notification-unsubscribes
+181,MLE vs MAP,statistics,"Explain the concepts of MLE and MAP, and differentiate between them.",interviewquery.com/questions/mle-vs-map
+182,Credit Score Estimation,machine learning,Determine if using a credit model's score cutoff of 83% overestimates or underestimates the population's creditworthiness.,interviewquery.com/questions/credit-score-estimation
+183,Average Order Value,sql,"Write a query to calculate the average order value by gender for users who have placed an order, rounding to two decimal places.",interviewquery.com/questions/average-order-value
+184,Influencer Metrics,product metrics,Summarize the metrics to rank 100 Twitter users by influence and quantify it.,interviewquery.com/questions/influencer-metrics
+185,PCA and K-Means,machine learning,Summarize the relationship between PCA and K-means clustering.,interviewquery.com/questions/pca-and-k-means
+186,Kernel Methods,machine learning,"Explain kernel methods in machine learning, their matrix requirements, and the consequences of using an invalid kernel in SVM.",interviewquery.com/questions/kernel-methods
+187,Choosing k,machine learning,Choose the *k* value for *k*-means clustering by using methods like the elbow method or silhouette analysis.,interviewquery.com/questions/choosing-k
+188,Target Indices,algorithms,"Summary: Find indices of two integers in an array that sum to a target integer, or return an empty list if not possible.",interviewquery.com/questions/target-indices
+189,RMS Error,python,Write a function to calculate the root mean squared error (RMSE) between two lists: predictions and target values.,interviewquery.com/questions/rms-error
+190,Six Face Die,probability,Simulate repeatedly rolling a 6-sided die and transferring results to a new die until all faces match to find the average number of rolls needed.,interviewquery.com/questions/six-face-die
+191,Closed Accounts,sql,"Write a query to calculate the percentage of accounts active on Dec 31, 2019, and closed on Jan 1, 2020, rounded to 2 decimal places.",interviewquery.com/questions/closed-accounts
+192,WAU vs Open Rates,product metrics,Investigate factors affecting weekly active users and email open rates to diagnose the discrepancy.,interviewquery.com/questions/wau-vs-open-rates
+193,Game Feature Home,business case,Summary: Evaluate whether Google should build a game feature for Google Home.,interviewquery.com/questions/google-home-game-feature
+194,Debug Marriage Data,business case,Summary: Debug why all insurance clients have `TRUE` for marriage status and determine actual marital status.,interviewquery.com/questions/debug-marriage-data
+195,Friend Requests Down,product metrics,Investigate and address the decline in friend requests reported by a Facebook product manager.,interviewquery.com/questions/friend-requests-down
+196,Google Earth Storage,business case,Estimate the annual storage cost for Google Earth photos.,interviewquery.com/questions/google-earth-storage
+197,Loan Model,machine learning,"Identify the type of model for loan approval, compare it with a new default prediction model, and determine success metrics.",interviewquery.com/questions/loan-model
+198,Statistically Significant Test,a/b testing,Summary: Infer statistical significance of AB test results for landing page click-through rate improvement.,interviewquery.com/questions/statistically-significant-test
+199,Assumptions of Linear Regression,machine learning,List the assumptions of linear regression.,interviewquery.com/questions/assumptions-linear-regression
+200,Correlation in Regression,machine learning,Detect and handle correlation between variables in linear regression to avoid issues like multicollinearity affecting model accuracy.,interviewquery.com/questions/correlation-in-regression
+201,Underpricing Algorithm,machine learning,"Diagnose under-pricing of a product by analyzing availability, demand, and logistics cost factors.",interviewquery.com/questions/underpricing-algorithm
+202,Regress Y on X,statistics,"Determine the coefficient when regressing Y on X with added noise, and analyze the result of regressing X on Y.",interviewquery.com/questions/regress-y-on-x
+203,Repeat Job Postings,sql,Write a query to count users posting each job only once and users posting at least one job multiple times.,interviewquery.com/questions/repeat-job-postings
+204,Normalize Grades,python,Normalize a list of tuples with names and grades to a linear scale between 0 and 1.,interviewquery.com/questions/normalize-grades
+205,Closest Key,algorithms,Find the key in a dictionary whose list contains the input value closest to the start.,interviewquery.com/questions/closest-key
+206,Xgboost vs Random Forest,machine learning,Summarize the differences between XGBoost and random forest algorithms and provide a scenario for choosing one.,interviewquery.com/questions/xgboost-vs-random-forest
+207,Declining Applicants,product metrics,Analyze why job applications are decreasing despite stable job postings on a job board.,interviewquery.com/questions/declining-applicants
+208,Third Party Ad Pricing,business case,Determine how to evaluate and set the price Spotify should pay for an ad in a third-party app.,interviewquery.com/questions/third-party-ad-pricing
+209,A/B Test Power Size,statistics,Determine sample size for AB test and decide if power should increase or decrease to detect small differences.,interviewquery.com/questions/power-size
+210,Cancellation Fees,business case,"Determine the best cancellation fee for Lyft by evaluating the impact of $1, $3, and $5 options.",interviewquery.com/questions/cancellation-fees
+211,Demand Metrics,business case,Identify metrics to assess ride demand and determine thresholds for high demand and low supply in a ride-sharing marketplace.,interviewquery.com/questions/demand-metrics
+212,Ad Raters,probability,"Calculate expected good ad ratings with 100 raters, 1 rater, and find probability a bad rating was from a lazy rater.",interviewquery.com/questions/ad-raters
+213,Google Maps Improvement,business case,Propose improvements for Google Maps and identify metrics to measure their success.,interviewquery.com/questions/google-maps-improvement
+214,Weighted Keys,python,Write a function that returns a dictionary key at random with probability proportional to given weights.,interviewquery.com/questions/weighted-keys
+215,Expected Tests,statistics,Determine the expected wait time for a user to receive a test and the likelihood of selection after the first day.,interviewquery.com/questions/expected-tests
+216,Student Tests,business case,Summary: Determine which student took which test using potentially inaccurate names and dates of birth from two tables.,interviewquery.com/questions/student-tests
+217,Reducing Error Margin,statistics,Determine additional samples needed to reduce margin of error from 3 to 0.3.,interviewquery.com/questions/reducing-error-margin
+218,Decreasing Payments,product metrics,Summary: Investigate the reasons behind the decrease in credit card payment amounts per transaction.,interviewquery.com/questions/decreasing-payments
+219,Coefficients of Logistic Regression,machine learning,Explain how to interpret logistic regression coefficients for categorical and boolean variables.,interviewquery.com/questions/coefficients-of-logistic-regression
+220,Distance Traveled,sql,Write a query to report the distance traveled by each user in descending order.,interviewquery.com/questions/distance-traveled
+221,180 Day Job Postings,sql,Create a query to return the percentage of revoked jobs from the last 180 days using the most recent job posting per job_id.,interviewquery.com/questions/180-day-job-postings
+222,Ranking Metrics,product metrics,Summary: Measure Linkedin newsfeed ranking success and address conflicting success metrics.,interviewquery.com/questions/ranking-metrics
+223,Spanish Scrabble,machine learning,Assign point values to Spanish Scrabble letters without knowing Spanish.,interviewquery.com/questions/spanish-scrabble
+224,Normal Distribution Sample,python,Summary: Write a function to sample from a standard normal distribution.,interviewquery.com/questions/normal-distribution-sample
+225,Ride Requests Model,machine learning,"Summary: Choose an algorithm and features to predict Uber driver's acceptance of ride requests, considering classifier tradeoffs.",interviewquery.com/questions/ride-requests-model
+226,Incentive Scheme,business case,Design an incentive scheme for Uber drivers to encourage them to operate in high-demand city areas.,interviewquery.com/questions/incentive-scheme
+227,Manager Team Sizes,sql,Write a query to find the manager with the largest team size from employees and managers tables.,interviewquery.com/questions/manager-team-sizes
+228,Customer Orders,sql,Identify customers with more than three transactions in both 2019 and 2020.,interviewquery.com/questions/customer-orders
+229,Payments Received,sql,Count customers who signed up in January 2020 and had a successful transaction volume over $100 in their first 30 days.,interviewquery.com/questions/payments-received
+230,Non-Normal Probability Distribution,probability,Explain how a probability distribution can be non-normal and provide an example scenario.,interviewquery.com/questions/non-normal-probability-distribution
+231,Monthly Customer Report,sql,"Write a query to display the number of users, transactions, and total order amount per month for 2020.",interviewquery.com/questions/monthly-customer-report
+232,Increasing Group Comments,product metrics,Propose strategies to increase the number of comments on Facebook Group posts.,interviewquery.com/questions/increasing-group-comments
+233,Ad Raters: Part 2,probability,"Determine the probability a rater is lazy if they rate all ads as good, analyze how this probability changes as the number of ads increases, and devise a rule to classify raters based on significance level.",interviewquery.com/questions/ad-raters-part-2
+234,Evaluate News,machine learning,"Evaluate the model predicting news relevance on Twitter using metrics like accuracy, precision, recall, and F1-score.",interviewquery.com/questions/evaluate-news
+235,Page Recommendations,sql,Query the percentage of users recommending a page who live in the same postal code as the page sponsorship.,interviewquery.com/questions/page-recommendations
+236,Longest Streak Users,sql,Find the top five users with the longest consecutive daily visit streaks from event logs.,interviewquery.com/questions/longest-streak-users
+237,7 Day Streak,sql,Find the percentage of users with at least one seven-day streak of visiting the same URL.,interviewquery.com/questions/seven-day-streak
+238,Flagging Users,business case,Outline strategies to flag fake comment posters on Amazon and scale the process with minimal manual intervention.,interviewquery.com/questions/flagging-fake-users
+239,Duplicate Product Names,business case,Summary: Develop a method to identify and remove duplicate products listed under different names in a large e-commerce database.,interviewquery.com/questions/duplicate-product-names
+240,Target Whitepages,business case,Decide whether the sales team should target individual companies or groups of companies for marketing content.,interviewquery.com/questions/target-whitepages
+241,Campaign Goals,analytics,"Generate a daily report for campaign delivery over the first 7 days, and evaluate campaigns needing attention based on delivery heuristics.",interviewquery.com/questions/campaign-goals
+242,Moving Window,python,Calculate moving window averages for a list of numbers given a specific window size.,interviewquery.com/questions/moving-window
+243,Delivery Estimate Model,machine learning,Determine if the new delivery time estimate model predicts better by comparing its accuracy to the old model's predictions.,interviewquery.com/questions/delivery-estimate-model
+244,Extra Delivery Pay,business case,Determine how to measure the effectiveness of extra pay for delivery drivers during peak hours to meet consumer demand.,interviewquery.com/questions/extra-delivery-pay
+245,Fast Food Database,database design,Summary: Design a database for a fast food restaurant and write SQL queries to find top revenue items and drink order percentages.,interviewquery.com/questions/fast-food-database
+246,Comment Upvotes,sql,"Query top three users with most upvotes on non-deleted 2020 comments, excluding self-upvotes.",interviewquery.com/questions/comment-upvotes
+247,Move Zeros Back,algorithms,Summary: Write a function to move all zeros in an integer array to the end while preserving the order of non-zero elements.,interviewquery.com/questions/move-zeros-back
+248,Newsfeed Model,machine learning,Optimize public vs private content ratio in ranking posts; build a model using relevant features and track appropriate metrics.,interviewquery.com/questions/newsfeed-model
+249,Random Forest Explanation,machine learning,Explain how random forest generates a forest and why it might be preferred over logistic regression.,interviewquery.com/questions/random-forest-explanation
+250,Fraudulent Upvotes,analytics,Identify metrics and write a query to detect users creating multiple accounts to upvote their comments.,interviewquery.com/questions/fradulent-upvotes
+251,Flight Records,sql,"Create a query to form a table of unique location pairs from the flights table, ignoring duplicates.",interviewquery.com/questions/flight-records
+252,Daily Active Users,sql,Count the number of daily active users on each platform for 2020 from a user logs table.,interviewquery.com/questions/daily-active-users
+253,Subscription Retention,sql,"Write a query to calculate the retention rate for each monthly cohort and plan_id over three months after sign-up, ordered by start_month, plan_id, and num_month.",interviewquery.com/questions/subscription-retention
+254,Liked and Commented,sql,Get the percentage of users who have never liked or commented from the events table.,interviewquery.com/questions/liked-and-commented
+255,Skewed Pricing,statistics,Consider whether to address right-skewed home price distribution in predictive model and handle left-skewed target distribution if present.,interviewquery.com/questions/skewed-pricing
+256,Random Seed Function,probability,Determine the distribution and expected value when a random integer function's output is used as the max value for another random function.,interviewquery.com/questions/random-seed-function
+257,Email Marketing System,machine learning,Summary: Build a model to optimally send ten email copies to increase conversions among subscribers.,interviewquery.com/questions/email-marketing-system
+258,Expected Churn,statistics,Calculate the expected churn rate in March assuming uniform new customer acquisition and 20% monthly churn reduction.,interviewquery.com/questions/expected-churn
+259,Lasso vs Ridge,machine learning,Explain the differences between Lasso and Ridge Regression.,interviewquery.com/questions/lasso-ridge
+260,Fractional Shares,product metrics,Define metrics to evaluate the launch success of Robinhood's fractional shares program.,interviewquery.com/questions/fractional-shares
+261,Close Friends Story,product metrics,Determine how to measure the success of Instagram's private stories feature.,interviewquery.com/questions/close-friends-story
+262,Disease Testing Probability,probability,"Calculate the probability that Bob is negative for the disease given his positive test result and his friends' negative results, considering test accuracy rates.",interviewquery.com/questions/disease-testing-probability
+263,Bucket Test Scores,pandas,Write a Pandas function to calculate cumulative percentage of students' test scores within specified buckets for each grade.,interviewquery.com/questions/bucket-test-scores
+264,Increase Search Ads,product metrics,Determine if increased ad revenue despite decreased user searches is beneficial for a search engine company.,interviewquery.com/questions/increase-search-ads
+265,Parents Joining Teens,product metrics,Evaluate the effect on teenage user engagement when their parents join Facebook.,interviewquery.com/questions/parents-joining-teens
+266,Attribution Rules,sql,"Summary: Write a query to assign ""paid"" or ""organic"" attribution to users based on their Facebook or Google visits.",interviewquery.com/questions/attribution-rules
+267,Minimize Wrong Orders,ml system design,Design a machine learning system to minimize missing or incorrect orders for DoorDash.,interviewquery.com/questions/minimize-wrong-orders
+268,Justify a Neural Network,machine learning,Justify the complexity of a neural network model and explain predictions to non-technical stakeholders.,interviewquery.com/questions/justify-neural-network
+269,Fill Rate Drop,product metrics,Investigate causes for a 10% dip in ad fill rate at Facebook.,interviewquery.com/questions/fill-rate-drop
+270,Youtube Recommendations,ml system design,Summary: Design a YouTube video recommendation algorithm and identify key factors for its development.,interviewquery.com/questions/youtube-recommendations
+271,Generating Discover Weekly,ml system design,Design a machine learning system to generate Spotify's Discover Weekly playlist.,interviewquery.com/questions/discover-weekly
+272,Drawing Balls From Bin,python,Simulate drawing a ball from a jar using lists for ball colors and counts.,interviewquery.com/questions/drawing-balls-from-bin
+273,Truncated Distribution,python,Simulate a normal distribution truncated at a given percentile threshold using mean and standard deviation.,interviewquery.com/questions/truncated-distribution
+274,Network Experiment Design,a/b testing,Create control and test groups for Instagram Stories' close friends feature while considering network effects.,interviewquery.com/questions/network-experiment-design
+275,Activity Conversion,analytics,"Write a query to determine if users interacting on the website (likes, comments) purchase more than non-interacting users.",interviewquery.com/questions/activity-conversion
+276,Drawing Random Variable,statistics,Calculate the expected number of days to draw a value higher than 2 from a standard normal distribution.,interviewquery.com/questions/drawing-random-variable
+277,Cumulative Reset,sql,"Write a query to calculate the daily cumulative count of new users, resetting the total each month.",interviewquery.com/questions/cumulative-reset
+278,Bagging vs Boosting,machine learning,"Compare scenarios to choose between bagging and boosting algorithms, including tradeoffs.",interviewquery.com/questions/bagging-vs-boosting
+279,Minimum Change,python,"Write a function to find the minimum number of coins needed to make a given amount of change using coins of 1, 5, 10, and 25 cents.",interviewquery.com/questions/minimum-change
+280,Fake Ad Prevalence,business case,Develop a strategy to reduce fake and problematic ads on Facebook while balancing revenue considerations.,interviewquery.com/questions/fake-ad-prevalence
+281,Regularization and Validation,machine learning,Summary: Determine when to use regularization versus cross-validation to enhance machine learning algorithm performance.,interviewquery.com/questions/regularization-vs-validation
+282,Compute Variance,python,"Write a function to calculate and output the sample variance of a list of integers, rounded to 2 decimal places.",interviewquery.com/questions/compute-variance
+283,Reward Experiment,a/b testing,Explain why the treatment group with rewards had a lower response rate than the control group and suggest improvements for the experiment.,interviewquery.com/questions/reward-experiment
+284,Converted Sessions,probability,Calculate the probability of two sessions both converting and the expected number of conversions for \(N\) sessions with conversion probability \(q\).,interviewquery.com/questions/converted-sessions
+285,WhatsApp Metrics,business case,Identify the key metrics for evaluating WhatsApp's performance.,interviewquery.com/questions/whatsapp-metrics
+286,Merchant Acquisition,machine learning,Build a model to predict target merchants for acquisition when entering a new market.,interviewquery.com/questions/merchant-acquisition
+287,Google Docs Drop,product metrics,"Investigate a 10% drop in Google Docs usage by analyzing user data, feedback, and potential external factors.",interviewquery.com/questions/docs-drop
+288,Fake Algorithm Reviews,probability,"Determine the percentage chance a review is fake when the algorithm detects it as fake, given probabilities of legitimacy and detection accuracy.",interviewquery.com/questions/fake-algorithm-reviews
+289,Amateur Performance,product metrics,Identify data points and metrics to assess if amateur video creators' success has declined compared to superstars.,interviewquery.com/questions/amateur-performance
+290,ETA Experiment,a/b testing,Design an experiment to test ETA range display and determine significance of results.,interviewquery.com/questions/eta-experiment
+291,Listing Bookings Aggregation,database design,"Write a query to count vacation bookings in the last 90 days, last 365 days, and overall.",interviewquery.com/questions/listing-bookings-aggregation
+292,Session Difference,sql,Write a query to find the number of days between each user's first and last session in 2020.,interviewquery.com/questions/session-difference
+293,Dynamic Demand Pricing ,ml system design,"Build a dynamic pricing system for Airbnb based on demand and availability of listings, considering key factors.",interviewquery.com/questions/dynamic-pricing-system
+294,Permanent Deletion Change,product metrics,Determine if auto-deleting Dropbox trash items after 30 days is beneficial by analyzing user data.,interviewquery.com/questions/permanent-deletion-change
+295,Podcast Space,business case,Determine how entering the podcast space impacts customer lifetime value for a subscription-based media company.,interviewquery.com/questions/podcast-space
+296,New UI Effect,a/b testing,Determine if a 5% increase from a UI test variant will persist when applied to all users without novelty effects.,interviewquery.com/questions/new-ui-effect
+297,Friendship Timeline,python,Generate a timeline of friendships with start and end timestamps from lists of friendship beginnings and endings.,interviewquery.com/questions/friendship-timeline
+298,Combinational Dice Rolls,algorithms,"Write a function to list all possible combinations of rolls for `n` dice each with `m` faces, optionally using recursion.",interviewquery.com/questions/combinational-dice-rolls
+299,Estimating Birthdays,machine learning,Propose methods and data to estimate the month and day of people's birthdays for Facebook.,interviewquery.com/questions/estimating-birthdays
+300,Book Combinations,algorithms,Select a combination of at least two books that spends all store credit and has the lowest weight.,interviewquery.com/questions/book-combinations
+301,ATM Robbery,sql,Retrieve user IDs in ascending order whose transactions have exactly a 10-second gap from one another.,interviewquery.com/questions/atm-robbery
+302,Fewer Orders,sql,Identify users who placed fewer than 3 orders or spent less than $500 on products.,interviewquery.com/questions/fewer-orders
+303,Inactive Users,business case,Determine why one million Netflix users haven't logged in for 6 months and decide on actions for re-engagement.,interviewquery.com/questions/inactive-users
+304,Project Pairs,sql,Write a query to find project pairs where one's end date matches another's start date.,interviewquery.com/questions/project-pairs
+305,Total Transactions,sql,Write a query to calculate and order total transaction costs by user in descending order.,interviewquery.com/questions/total-transactions
+306,Last Transaction,sql,"Write a query to retrieve the last transaction for each day from a table of bank transactions, ordered by datetime.",interviewquery.com/questions/last-transaction
+307,Project Budget Error,sql,"Select the top five projects by budget to unique employee count ratio, accounting for duplicate rows in `employee_projects`.",interviewquery.com/questions/project-budget-error
+308,Flatten JSON,python,Flatten a JSON string with nested objects into a single key-value dictionary without using a library.,interviewquery.com/questions/flatten-json
+309,Average Quantity,sql,"Write a query to find the average quantity of each product purchased per transaction each year, sorted by year and product_id.",interviewquery.com/questions/average-quantity
+310,Max Quantity,sql,"Write a query to find the max quantity purchased per product_id each year, sorted by year and product_id.",interviewquery.com/questions/max-quantity
+311,Like Tracker,sql,"Write a query to count distinct users who liked on June 6, 2020, from the events table.",interviewquery.com/questions/like-tracker
+312,Emails Opened,sql,Summary: Write a query to find the number of users who have opened an email from the `events` table.,interviewquery.com/questions/emails-opened
+313,Popular Actions,sql,"Query the events table to find and rank the top 5 actions performed during Thanksgiving week, handling ties in rank.",interviewquery.com/questions/popular-actions
+314,Popular Apple Actions,sql,"Write a query to find the top 5 ranked actions on Apple platforms in November 2020, with tied ranks.",interviewquery.com/questions/popular-apple-actions
+315,Improve Search Results,product metrics,Investigate and determine metrics to assess the effectiveness of the Facebook app's search feature for activities in San Francisco.,interviewquery.com/questions/improve-search-results
+316,Shortest Transformation,algorithms,Find the shortest transformation sequence length from `begin_word` to `end_word` by changing one letter at a time using words from `word_list`.,interviewquery.com/questions/shortest-transformation
+317,N-gram Dictionary,python,Write a function `get_ngrams` that returns a dictionary of n-grams and their frequency from a given string.,interviewquery.com/questions/n-gram-dictionary
+318,Top Three Salaries,sql,"Write a query to get the top 3 highest employee salaries by department, including full name, department name, and salary, sorted by department name and salary.",interviewquery.com/questions/top-three-salaries
+319,Intersecting Lines,algorithms,"Summary: Given a list of line tuples (slope, y-intercept) and an x_range, write a function to find intersecting lines.",interviewquery.com/questions/intersecting-lines
+320,Retailer Data Warehouse,database design,Design a data mart or warehouse for an online retailer using a star schema.,interviewquery.com/questions/retailer-data-warehouse
+321,Stories Feature Change,product metrics,Summary: Decide whether to launch an Instagram feature change that decreases engagement for new users but increases it for long-term users.,interviewquery.com/questions/stories-feature-change
+322,Interest Rates,business case,Determine which user owes more in a year based on their credit card interest rates and monthly payments.,interviewquery.com/questions/interest-rates
+323,Target Value Search,algorithms,"Search for a target value in a rotated sorted array and return its index or -1 if not found, with \(O(\log n)\) complexity.",interviewquery.com/questions/target-value-search
+324,Coin Flip Probability,probability,"Determine the probability of winning 100 dollars in a coin flip game starting with 30 dollars, gaining 1 dollar for heads and losing 1 dollar for tails, until reaching 0 or 100 dollars.",interviewquery.com/questions/coin-flip-probability
+325,Fair Coin,probability,"Determine if a coin is fair based on flipping it 10 times, resulting in 8 tails and 2 heads.",interviewquery.com/questions/fair-coin
+326,Best Measure,statistics,Discuss when to use mean vs. median and how to calculate their confidence intervals.,interviewquery.com/questions/best-measure
+327,Losing Users,product metrics,Summary: Investigate the claim that Facebook is losing young users by identifying verification methods and test metrics.,interviewquery.com/questions/losing-users
+328,Same Characters,algorithms,Check if each string in a list has all identical characters and determine the program's complexity.,interviewquery.com/questions/same-characters
+329,Using R Squared,statistics,Identify the downside of using only the R-Squared value to assess model fit and relationship between variables.,interviewquery.com/questions/using-r-squared
+330,Direct Mail,business case,Recommend short and long-term direct mail strategies and methods to measure their impact.,interviewquery.com/questions/direct-mail
+331,Low Precision,machine learning,Improve a classification model's precision for predicting e-commerce purchases.,interviewquery.com/questions/low-precision
+332,How Many Friends,algorithms,Write a function to find how many friends each person has from a list of friendship groups.,interviewquery.com/questions/how-many-friends
+333,Term Frequency,python,Summary: Write a program to calculate and round the term frequency for each word in a given document string.,interviewquery.com/questions/term-frequency
+334,Linear Regression Parameters,algorithms,Transpose a matrix and estimate linear regression parameters from given X and y values.,interviewquery.com/questions/linear-regression-parameters
+335,Business Days,python,Summary: Write a program to calculate the number of business days between two given dates.,interviewquery.com/questions/business-days
+336,Swiping App Design,database design,Design a database schema for a Tinder-like dating app and suggest optimizations.,interviewquery.com/questions/swiping-app-design
+337,Check Normality,python,"Write a function to check if a list of 100 integers is normally distributed using the 68-95-99.7 rule, returning a deviation score.",interviewquery.com/questions/check-normality
+338,Pool Matching,algorithms,"Create a function to match candidates based on availability and interests, returning itineraries for each unique pair.",interviewquery.com/questions/pool-matching
+339,Licensing Valuation,business case,Summary: Determine how to value the benefit of renewing a deal to keep a hit TV series on Netflix.,interviewquery.com/questions/licensing-valuation
+340,Customer Success vs. Free Trial,business case,Recommend whether to hire a customer success manager or offer a free trial for a new software product.,interviewquery.com/questions/cs-vs-free-trial
+341,Email Blast,business case,Evaluate the effectiveness and potential consequences of sending a mass email blast to boost revenue.,interviewquery.com/questions/email-blast
+342,Multi-Reaction,database design,Summary: Describe your approach and database modifications for adding multi-reaction functionality to Facebook posts and comments.,interviewquery.com/questions/multi-reaction
+343,Music Database,database design,"Summary: Design a relational database schema for storing metadata about songs, including title, length, date added, artist, album, track number, release year, and genre.",interviewquery.com/questions/music-database
+344,Dice Worth Rolling,probability,"Determine if a game is worth playing where rolling two dice to sum seven wins $21, but each roll costs $10.",interviewquery.com/questions/dice-worth-rolling
+345,Stories Success,product metrics,Identify testing strategies and metrics to measure Facebook stories' success without using A/B testing.,interviewquery.com/questions/stories-success
+346,Address Schema,database design,Design a schema to track customer address changes and subsequent occupants' move-in history.,interviewquery.com/questions/address-schema
+347,Rearranging Digits,algorithms,"Write a function to return the smallest number larger than a given multi-digit string by rearranging its digits, or `None` if not possible.",interviewquery.com/questions/rearranging-digits
+348,Late Orders,statistics,"Determine whether average or median is better for measuring lateness, especially with a right-skewed distribution, and interpret the implications for late orders.",interviewquery.com/questions/late-orders
+349,Search Increase,analytics,Evaluate the success of an advertising campaign with a 10% weekly increase in search clicks and determine if improvements are needed.,interviewquery.com/questions/search-increase
+350,Career Jumping,analytics,Write a query to analyze if data scientists who switch jobs more often get promoted to manager roles faster than those who stay longer.,interviewquery.com/questions/career-jumping
+351,Slow SQL Query,business case,Summarize how to identify and optimize a slow-running SQL query.,interviewquery.com/questions/slow-sql-query
+352,Related Jobs Optimization,ml system design,Summary: Explain a scalable method to find the top 10 related jobs for millions of new job postings daily using NLP techniques.,interviewquery.com/questions/related-jobs-optimization
+353,Stranded Miner,probability,Calculate the expected number of days a miner will spend before exiting a mine with two paths and random choices.,interviewquery.com/questions/stranded-miner
+354,Prime Music Integration,product metrics,Determine the overall impact of integrating Prime Music with Alexa on subscriptions.,interviewquery.com/questions/prime-music-integration
+355,Advertisement Matching,machine learning,Determine the key metric (click-through rate or conversion rate) and machine learning algorithm to maximize ad revenue.,interviewquery.com/questions/advertisement-matching
+356,Random Difference,python,"Generate M samples from a normal distribution of size N, returning the average difference between the 5th and 6th lowest values.",interviewquery.com/questions/random-difference
+357,Perfectly Separable,statistics,Explain the outcome of running logistic regression on perfectly linearly separable data.,interviewquery.com/questions/perfectly-separable
+358,Video Pins,product metrics,"Determine the optimal percentage of video pins to increase user engagement and audience size, and decide how many search results should be videos.",interviewquery.com/questions/video-pins
+359,Out of Stock Inventory,product metrics,Identify business hypotheses to test based on stock-out data for companies across different countries.,interviewquery.com/questions/out-of-stock-inventory
+360,Ride Coupon,probability,"Calculate the budget for dispensing $5 coupons to \(N\) riders with probability \(p\), and find probabilities for both or only one of two passengers receiving the coupon.",interviewquery.com/questions/ride-coupon
+361,Matrix Analysis,python,Convert a matrix of employee counts into a matrix of department percentage shares per company.,interviewquery.com/questions/matrix-analysis
+362,Double Card Value,probability,Calculate the probability that one card is double the value of the other when two cards are drawn from a deck of 100 cards with replacement.,interviewquery.com/questions/double-card-value
+363,Random Forest Expansion,machine learning,Determine if increasing the number of trees in a random forest model sequentially will always enhance its accuracy.,interviewquery.com/questions/random-forest-expansion
+364,Mutated Offspring,probability,Determine the probability that \(D\) has one normal and one mutated gene given that \(E\) appears normal.,interviewquery.com/questions/mutated-offspring
+365,User Journey Analysis,analytics,Summarize user event data from forum app tables to analyze journeys and recommend UI improvements.,interviewquery.com/questions/user-journey-analysis
+366,Expected Loops,statistics,Tie 100 rope ends in random pairs until none remain; expect to form one closed loop.,interviewquery.com/questions/expected-loops
+367,Integer String Addition,python,Write a function that adds all combinations of adjacent integers from a given string of integers.,interviewquery.com/questions/integer-string-addition
+368,Duplicate Rows,sql,Write a query to return only duplicate rows from a `users` table.,interviewquery.com/questions/duplicate-rows
+369,CTR by Age,sql,"Find the top three age groups by decade with the highest clickthrough rate in 2021, prioritizing older groups when rates are tied.",interviewquery.com/questions/ctr-by-age
+370,Lowest Paid,sql,Find the 3 lowest-paid employees who have completed at least 2 projects.,interviewquery.com/questions/lowest-paid
+371,Impute Median,pandas,Impute missing values in a dataframe of California cheese prices with the median price.,interviewquery.com/questions/impute-median
+372,Customer Analysis,pandas,Summarize a dataframe of sales data to show each customer's most recent sale date and total purchase count.,interviewquery.com/questions/customer-analysis
+373,Rain on Rainy Days,pandas,Write a function to find the median rainfall for days with non-zero rainfall in a dataframe.,interviewquery.com/questions/rain-on-rainy-days
+374,First Names Only,pandas,Extract first names from full names in a dataframe while retaining user IDs.,interviewquery.com/questions/first-names-only
+375,Notification Type Conversion,sql,"Determine the conversion rate for each notification type using tables notifications, notification_events, and purchases, considering specific attribution rules.",interviewquery.com/questions/notification-type-conversion
+376,Best Slot Machine,probability,Identify the slot machine with the highest win-rate using a finite number of coins.,interviewquery.com/questions/best-slot-machine
+377,Most Valuable Artwork,business case,Optimize selecting the highest value artwork from 100 pieces shown in random order without revisiting.,interviewquery.com/questions/most-valuable-artwork
+378,1000 Sample Classifier,machine learning,"Determine if logistic regression is suitable for a dataset with 1000 samples and 10,000 features.",interviewquery.com/questions/1000-sample-classifier
+379,Previous NaN Values,pandas,"Fill NaN values in a dataframe's 'value' column with the previous non-NaN value for the same 'client_id' in ascending 'ranking' order, or use the previous value if no such 'client_id' exists.",interviewquery.com/questions/previous-nan-values
+380,Over 100 Dollars,pandas,"Join `transactions` and `products` dataframes, compute total transaction value, and return transactions with value over $100.",interviewquery.com/questions/over-100-dollars
+381,Matrix Rotation,python,Rotate a given 2D array by 90 degrees in the clockwise direction.,interviewquery.com/questions/matrix-rotation
+382,Good Grades and Favorite Colors,pandas,Select rows from a dataframe where the student's favorite color is green or red and their grade is above 90.,interviewquery.com/questions/good-grades-and-favorite-colors
+383,Complete Addresses,pandas,"Combine two dataframes to create complete addresses with street, city, state, and zip code.",interviewquery.com/questions/complete-addresses
+384,Monthly Product Sales,sql,"Write a query to pivot a table of monthly sales data, displaying each product's total amount sold per month as separate columns.",interviewquery.com/questions/monthly-product-sales
+385,Mapping Nicknames,machine learning,Summary: Design a machine learning model to map legal first names to likely nicknames.,interviewquery.com/questions/mapping-nicknames
+386,Bomb Detection,machine learning,"Design model inputs and outputs, measure accuracy, and test a bomb detection model for border crossings.",interviewquery.com/questions/bomb-detection
+387,Matching Siblings,machine learning,Summary: Develop a method to match Facebook users with siblings and evaluate it using appropriate metrics.,interviewquery.com/questions/matching-siblings
+388,Comments Histogram,sql,"Write a SQL query to create a histogram of the number of comments per user in January 2020, with a ""0"" bucket for comments outside this period.",interviewquery.com/questions/comments-histogram
+389,Time Series Discrepancies,machine learning,Analyze a volatile asset's price data for discrepancies at a global trading company.,interviewquery.com/questions/time-series-discrepancies
+390,Gradient Descent Calculation,python,Implement gradient descent to find the line of best fit for a list of coordinates without using libraries.,interviewquery.com/questions/gradient-descent-calculation
+391,Custom Filter,business case,Summary: Use data to persuade a fast-food franchise to purchase another Snapchat custom filter.,interviewquery.com/questions/custom-filter
+392,Market Opening Experiment,a/b testing,Identify significant metrics based on p-values and assess if Robinhood should implement push notifications for all users.,interviewquery.com/questions/market-opening-experiment
+393,Intelligent Restaurant Review,machine learning,Build a sentiment classifier to isolate attributes in restaurant reviews and report associated sentiments.,interviewquery.com/questions/intelligent-restaurant-review
+394,Free Seats,sql,Write a query to find the number of unpurchased seats for each flight using the given tables.,interviewquery.com/questions/free-seats
+395,Employees Before Managers,sql,Summary: Find employee names who joined before their managers using two tables: employees and managers.,interviewquery.com/questions/employees-before-managers
+396,Dropbox Database,database design,Design a database for a file storage company to handle various file types and track file updates and history.,interviewquery.com/questions/dropbox-database
+397,Index Fund Return ,algorithms,Calculate total profit from index fund investments using daily prices and transactions.,interviewquery.com/questions/index-fund-return
+398,Valid Anagram,algorithms,Determine if two strings are anagrams of each other without considering identical words.,interviewquery.com/questions/valid-anagram
+399,Common Prefix,algorithms,Write a function that returns the longest common prefix from a list of strings.,interviewquery.com/questions/common-prefix
+400,Forecasting New Year Revenue,business case,Outline a method to forecast Facebook's revenue for the next year.,interviewquery.com/questions/forecasting-new-year-revenue
+401,Analyzing Churn Behavior,business case,"Summary: Suggest metrics, graphs, and models to analyze churn behavior for monthly and yearly Netflix subscriptions.",interviewquery.com/questions/analyzing-churn-behavior
+402,Common Item Frequency,python,Create a function to list name pairs with their common item count from a given list of name-item pairs.,interviewquery.com/questions/common-item-frequency
+403,Precision and Recall,python,Write a function to calculate precision and recall from a 2-D matrix of predicted and actual values.,interviewquery.com/questions/precision-recall
+404,Second Longest Flight,sql,"Extract the 2nd longest flight between each city pair from a flights table, ordered by flight id.",interviewquery.com/questions/second-longest-flight
+405,Email Discount Effectiveness,analytics,Summary: Determine the effectiveness of a 20% discount email campaign in increasing revenue from free-tier sign-ups.,interviewquery.com/questions/email-discount-effectiveness
+406,Outreach Strategy,analytics,Summary: Analyze Facebook account managers' call data to develop strategies for increasing outreach connection rates with business owners.,interviewquery.com/questions/outreach-strategy
+407,DAU Gradual Decline,product metrics,Summary: Validate if a consistent 1% weekly DAU drop is statistically significant and outline analysis structure.,interviewquery.com/questions/dau-gradual-decline
+408,Trending Sort,machine learning,"Summary: Explain your approach to building a ""hot posts"" or ""trending posts"" feature to increase engagement on Reddit.",interviewquery.com/questions/trending-sort
+409,Random Weighted Driver,sql,Perform a weighted random selection of a driver from the `drivers` table based on the `weighting` column.,interviewquery.com/questions/random-weighted-driver
+410,Minimum Absolute Distance,algorithms,Calculate the minimum absolute distance between integers in an array and return all pairs with that difference in ascending order.,interviewquery.com/questions/minimum-absolute-distance
+411,Order Addresses,sql,Write a query to calculate the percentage of transactions shipped to users' primary addresses.,interviewquery.com/questions/order-addresses
+412,Third Unique Song,sql,"Write a query to find the earliest date each user played their third unique song, or return their name with NULL if they played fewer than three.",interviewquery.com/questions/third-unique-song
+413,Density to Cumulative,python,Convert a list of probability density function values to a cumulative distribution function.,interviewquery.com/questions/density-to-cumulative
+414,Rain in N Days,python,Summary: Calculate the probability it will rain on the nth day given it rained the past two days.,interviewquery.com/questions/rain-in-n
+415,Multiple Select Data,analytics,Analyze multi-select survey data to derive insights on voter preferences for political candidates.,interviewquery.com/questions/multiple-select-data
+416,Meaningful Session Calculation,analytics,"Define ""session"" using event data and write a query to find average sessions per day.",interviewquery.com/questions/meaningful-session-calculation
+417,Uniform Car Maker,sql,Write a query to output a random car manufacturer's name from the `cars` table with equal probability.,interviewquery.com/questions/uniform-car-maker
+418,Sports App Cheater,statistics,Identify dishonest users in a sports app by analyzing metrics like pace and elevation gain using statistical methods to detect anomalies.,interviewquery.com/questions/sports-app-cheater
+419,High School Sticker,business case,Verify a user's high school attendance for a new Instagram feature using stickers.,interviewquery.com/questions/high-school-sticker
+420,Marketing Dollar Efficiency,a/b testing,"Design an a/b test to efficiently allocate the marketing budget across new channels like Youtube, Google, Facebook, and direct mail.",interviewquery.com/questions/marketing-dollar-efficiency
+421,Maximal Substring,algorithms,Find the maximal substring shared by two given strings.,interviewquery.com/questions/maximal-substring
+422,Rectangle Overlap,python,"Determine if two rectangles defined by ordered pairs overlap, returning True if they do and False otherwise.",interviewquery.com/questions/rectangle-overlap
+423,Testing Price Increase,a/b testing,Design a two-week A/B test to evaluate the impact of increased subscription pricing on business outcomes.,interviewquery.com/questions/testing-price-increase
+424,Unified Inbox,product metrics,Summary: Determine if allowing third-party messaging on Instagram is beneficial.,interviewquery.com/questions/unified-inbox
+425,Overfit Avoidance,machine learning,Summary: Explain strategies to combat overfitting in tree-based classification models.,interviewquery.com/questions/overfit-avoidance
+426,Quantify Uncertainty,machine learning,Quantify the uncertainty of a time-series forecasting model using past predicted and true stock prices.,interviewquery.com/questions/quantify-uncertainty
+427,K Nearest Entries,algorithms,Write a function to find the closest element in a sorted list to a given number and return it with `k` adjacent elements.,interviewquery.com/questions/k-nearest-entries
+428,Possible Triangles,algorithms,Determine the number of possible triangles that can be formed using the given list of side lengths.,interviewquery.com/questions/possible-triangles
+429,Messenger Payments,business case,"Determine if adding a payment feature to Messenger is a good business decision by analyzing user demand, competition, and potential revenue.",interviewquery.com/questions/messenger-payments
+430,Facebook Stories,business case,Evaluate the potential benefits and drawbacks of adding Instagram Stories to Facebook.,interviewquery.com/questions/facebook-stories
+431,Possibly Biased Coin,statistics,Design a test to determine if a two-sided coin is fair or biased and describe the outcome indicating bias.,interviewquery.com/questions/possibly-biased-coin
+432,Uber Eats Success,product metrics,Determine metrics to measure Uber Eats' success and its net positive value for Uber.,interviewquery.com/questions/uber-eats-success
+433,Design Poker Schema,database design,Design a schema for a poker deck and write queries to determine a user's hand and the best hand among nine players.,interviewquery.com/questions/design-poker-schema
+434,Classification and Regression,machine learning,Summarize the key differences between classification and regression models.,interviewquery.com/questions/classification-and-regression
+435,Bootstrapping Samples,statistics,"Explain the concept of bootstrapping a data set and discuss when and why it is used, including its pros and cons.",interviewquery.com/questions/bootstrapping-samples
+436,Annual Retention,sql,"Formulate a query to calculate the average annual retention rate for each product by year, based on active subscriptions at year's end.",interviewquery.com/questions/annual-retention
+437,Deer Density,business case,Estimate the deer population within a national park's borders.,interviewquery.com/questions/deer-density
+438,Facebook Autocomplete,business case,Design an autocomplete feature for Facebook's search bar and measure its effectiveness.,interviewquery.com/questions/facebook-autocomplete
+439,Greater Release Dates,python,Return the list with more release dates after a given date from two input lists.,interviewquery.com/questions/greater-release-dates
+440,Community Health Metrics,analytics,Suggest three metrics to monitor Stack Overflow community health using post data and write SQL queries for them.,interviewquery.com/questions/community-health-metrics
+441,Programming Risk Combat,algorithms,"Simulate a Risk battle with given squad sizes and return True if the attacker wins, otherwise False.",interviewquery.com/questions/programming-risk-combat
+442,Monotonic Function,statistics,Explain the concept of a monotonic function and its significance in metric transformations.,interviewquery.com/questions/monotonic-function
+443,Logistic Regression from Scratch,python,"Build a logistic regression model from scratch using gradient descent and log-likelihood without intercept or penalty, using numpy and pandas only.",interviewquery.com/questions/logistic-regression-from-scratch
+444,Adding a Constant to a Sample,statistics,Determine the impact on sample statistics when adding a constant to all database entries.,interviewquery.com/questions/adding-c-to-sample
+445,KNN From Scratch,algorithms,"Summary: Build a k Nearest Neighbors classification model using Euclidean distance, rerunning with k-1 for ties, without scikit-learn.",interviewquery.com/questions/knn-from-scratch-2
+446,Random Forest from Scratch,algorithms,Build a random forest model from scratch to classify a new binary point using all permutations of data columns for tree splits.,interviewquery.com/questions/random-forest-from-scratch
+447,Measuring Customer Service Quality,business case,Determine customer service quality in Facebook Marketplace chats for small business interactions.,interviewquery.com/questions/measuring-customer-service-quality
+448,Best DAU,analytics,Determine which executive's strategy best increases DAU by analyzing relevant data points and metrics.,interviewquery.com/questions/best-dau
+449,Evaluating Revenue Decline,analytics,Analyze transaction data to identify causes of revenue loss in an ecommerce company over 12 months.,interviewquery.com/questions/evaluating-revenue-decline
+450,Split Data Without Pandas,python,Split a string-represented list of dictionaries into training and testing sets with a 70:30 ratio using numpy for randomization.,interviewquery.com/questions/split-data-without-pandas
+451,Check Matching Parentheses,algorithms,Write a string parser that checks if parentheses in each string from a list are correctly matched.,interviewquery.com/questions/check-matching-parentheses
+452,Tag Counter,python,"Create a tag counter function that counts occurrences of tag groups in a text, case-insensitively.",interviewquery.com/questions/tag-counter
+453,Digit Accumulator,python,Summary: Write a function to return the sum of all digits in a floating-point number string.,interviewquery.com/questions/digit-accumulator
+454,Area Under the ROC Curve,machine learning,Explain how to build an ROC curve metric to evaluate model performance and choose the best model based on AUC results.,interviewquery.com/questions/area-under-the-roc-curve
+455,Stratified Split,pandas,"Split a dataframe into train and test sets stratified by a specified column, and return the count of ""no"" class columns in the training set.",interviewquery.com/questions/stratified-split
+456,Chronological Order in Boosting,machine learning,Determine if separating Netflix users by membership year is beneficial for training a boosting algorithm to predict credit card info entry.,interviewquery.com/questions/chronological-order-in-boosting
+457,String Palindromes,algorithms,Write a function to determine if a given string is a palindrome.,interviewquery.com/questions/string-palindromes
+458,Marked Lists,algorithms,"Merge two alphabetically sorted string lists, marking items with ""1"" or ""2"" based on their origin.",interviewquery.com/questions/marked-lists
+459,Find Mismatched Words,python,"Create a function to return a list of words not common in both sentences, treating words case-insensitively.",interviewquery.com/questions/find-mismatched-words
+460,Fill None Values,python,"Summary: Replace `None` values in a sorted list with the most recent non-`None` value, assuming `0` for initial `None`.",interviewquery.com/questions/fill-none-values
+461,Swap Variables,python,Swap the values of keys `a` and `b` in a dictionary without declaring new variables.,interviewquery.com/questions/swap-variables
+462,Scalped Ticket,probability,"Calculate the expected cost of attending a game with a 20% chance of a $50 ticket failing, necessitating a $70 purchase.",interviewquery.com/questions/scalped-ticket
+463,Word Frequency,python,"Parse a list of poem sentences to return a dictionary of word frequencies, with lowercase words grouped by their occurrence count.",interviewquery.com/questions/word-frequency
+464,Sum to Zero,python,"Write a function to return a subset of integers that sums to zero, excluding the number zero itself.",interviewquery.com/questions/sum-to-zero
+465,t Value via SQL,sql,Calculate the t-value and degrees of freedom to compare average prices of category 9 products with others in an eCommerce store.,interviewquery.com/questions/t-value-sql
+466,Alphabet Sum,python,Sum the ordinal positions of letters in each word from a list of strings to return their alphabet sums.,interviewquery.com/questions/alphabet-sum
+467,Sort Strings,algorithms,Write a function from scratch to sort a list of strings in ascending order without using the built-in `sorted` function.,interviewquery.com/questions/sort-strings
+468,Call Center Resource Management,business case,Summary: Determine the best model and metrics for allocating call center agents to clients needing support.,interviewquery.com/questions/call-center-resource-management
+469,Value of College,business case,"Design a system to recommend colleges to students aiming to maximize educational value based on program data, finances, and alumni salary history.",interviewquery.com/questions/value-of-college
+470,Effectiveness of Sales,business case,Determine which products should go on sale to maximize Black Friday profit using historical price data.,interviewquery.com/questions/effectiveness-of-sales
+471,Decision Tree Evaluation,machine learning,Evaluate the suitability of a decision tree for predicting loan repayment and assess its performance pre- and post-deployment.,interviewquery.com/questions/decision-tree-evaluation
+472,Dog Rescue Robot,machine learning,Summary: Modify a neural network to improve distinguishing between pugs and pit bulls given mislabeled training data and challenging conditions.,interviewquery.com/questions/dog-rescue-robot
+473,Count Transactions,sql,"Summarize SQL queries to count total transactions, unique users, paid transactions over $100, and highest revenue product.",interviewquery.com/questions/count-transactions
+474,Strictly Decreasing PDF,probability,"Show that if the probability density function \(f_X\) of a continuous random variable is strictly decreasing, then the median \(m\) is greater than or equal to the mean \(\mu\).",interviewquery.com/questions/strictly-decreasing-pdf
+475,Different Parcel Effectiveness,statistics,Determine a statistical test to compare damage probabilities between two parcel types and conclude if p=0.4 and q=0.6.,interviewquery.com/questions/different-parcel-effectiveness
+476,Approximate Ad Views,probability,Calculate the probability of viewing more than 10 ads out of 100 posts using the standard normal distribution's cdf.,interviewquery.com/questions/approximate-ad-views
+477,All Tails Consecutive,probability,Find the probability of flipping 10 coins to get exactly three consecutive tails.,interviewquery.com/questions/all-tails-consecutive
+478,Yelp-like System,database design,"Design a database schema for a restaurant review app with user profiles, reviews, and update capabilities.",interviewquery.com/questions/yelp-like-system
+479,Separate Models for Age Groups,machine learning,Evaluate whether splitting the model for older and new users is beneficial for predicting paid subscription conversion.,interviewquery.com/questions/separate-models-for-age-groups
+480,Automated Labeling,ml system design,Summarize how to create a machine learning model to classify social media posts by topic given a large data scale.,interviewquery.com/questions/automated-labeling
+481,Detecting Firearm Sales,ml system design,Design a system to automatically detect and prevent firearm listings on a marketplace.,interviewquery.com/questions/detecting-firearm-sales
+482,Audio Chat Success,analytics,"Evaluate the success of the audio chat feature by analyzing its impact on purchase conversions, and write a query to determine this effect.",interviewquery.com/questions/audio-chat-success
+483,Significant Order Value,a/b testing,Determine if the difference in average order value between men and women is statistically significant.,interviewquery.com/questions/significant-order-value
+484,Inception Architecture,ml system design,"Explain the use and benefits of ""inception architecture"" in convolutional neural networks for image recognition.",interviewquery.com/questions/inception-architecture
+485,t Value via Pandas,pandas,Calculate the t-value for the mean of a dataframe column against a given null hypothesis mean \(μ_0\).,interviewquery.com/questions/t-value-via-pandas
+486,Total Time in Flight,sql,Summary: Write a query to calculate daily flight time in minutes for each plane from a flights table.,interviewquery.com/questions/total-time-in-flight
+487,Creating Companies Table,database design,Create a new `production_companies` table from a scraped list by removing duplicates and correcting errors.,interviewquery.com/questions/creating-companies-table
+488,Reddit-like Notifications,database design,Design the backend and data model for a notification system in a Reddit-style discussion app.,interviewquery.com/questions/reddit-like-notifications
+489,Top 3 Users,sql,"Use the RANK window function to display the top three users by downloads each day, ordered by date and daily rank.",interviewquery.com/questions/top-3-users
+490,Always Excited Users,sql,"Find users who were ""Excited"" but never ""Bored"" with any ad campaign.",interviewquery.com/questions/always-excited-users
+491,Unique Work Days,sql,"Write a query to find how many unique calendar days each employee worked, ordered by `employee_id`.",interviewquery.com/questions/unique-work-days
+492,Time Difference,sql,"Query the rides table to find ride durations over two hours in minutes, sorted by duration descending.",interviewquery.com/questions/time-difference
+493,Percentage of Revenue by Year,sql,"Calculate the percentage of total revenue generated in the first and last recorded years from the annual_payments table, rounding to two decimal places.",interviewquery.com/questions/percentage-of-revenue-by-year
+494,Transactions in the Last 5 Days,sql,"Find the count of users who made at least one transaction each day from January 1-5, 2020, using the bank_transactions table.",interviewquery.com/questions/transactions-in-the-last-5-days
+495,Ride-Sharing App Schema,database design,"Design a database schema for a ride-sharing app to record rides between riders and drivers, including table structure and relationships.",interviewquery.com/questions/ride-sharing-app-schema
+496,Retention Rate Disparity,analytics,Investigate retention disparity across Facebook products and identify its causes.,interviewquery.com/questions/retention-rate-disparity
+497,Friends vs Posts,business case,Develop a strategy to address the inverse relationship between friend count and post frequency on Facebook.,interviewquery.com/questions/friends-vs-posts
+498,Email Campaign,analytics,Summary: Define and query metrics to evaluate the success of an email campaign using user visit and email data.,interviewquery.com/questions/email-campaign
+499,Uber User Journey,analytics,Summary: Determine frequency of incorrect Uber pickup locations using only user location data.,interviewquery.com/questions/uber-user-journey
+500,Meta in an Emerging Market,business case,Summary: Propose a strategy to promote Meta's products in an emerging market to grow its userbase.,interviewquery.com/questions/meta-in-an-emerging-market
+501,Average Ride Duration,sql,"Write a query to find average ride duration in minutes, sorted by passenger_user_id.",interviewquery.com/questions/average-ride-duration
+502,Focus Group Analysis,analytics,Analyze focus group ratings of 100 TV series pilots by 1000 participants to determine which should be featured on Netflix.,interviewquery.com/questions/focus-group-analysis
+503,Summing Numeric Strings,algorithms,"Sum two strings representing numbers without converting them to integers, returning the result as a string.",interviewquery.com/questions/summing-numeric-strings
+504,Counting Vehicles,python,Write a function to calculate the number of vehicles between given start and end checkpoints in a list.,interviewquery.com/questions/counting-vehicles
+505,Nearest Common Ancestor,algorithms,Find the nearest common parent node for two given nodes in a binary tree of unique positive numbers.,interviewquery.com/questions/nearest-common-ancestor
+506,Filling Supermarket Bag,algorithms,Pick items with given values and capacities to maximize total value without exceeding bag capacity.,interviewquery.com/questions/filling-supermarket-bag
+507,Dijkstra implementation,algorithms,Implement Dijkstra's shortest path algorithm for a given graph with a known source node.,interviewquery.com/questions/dijkstra-implementation
+508,Fake News on Newsfeed,product metrics,"Design a newsfeed system that detects and filters fake news by determining if the news is healthy, including system design, training data collection, and feature extraction.",interviewquery.com/questions/fake-news-on-newsfeed
+509,Feedback Sentiment Analysis,machine learning,Summarize how to train a sentiment analysis model by converting raw text data into numerical vectors.,interviewquery.com/questions/feedback-sentiment-analysis
+510,Scaling Up Recommender,ml system design,Scale a recommender system from thousands to millions of movies/users for Netflix training.,interviewquery.com/questions/scaling-up-recommender
+511,Ad Placement Value,business case,"Calculate the overall advertising cost per transaction based on given impression cost, click-through rate, and transaction rate.",interviewquery.com/questions/ad-placement-value
+512,Infer Location from Activity,machine learning,Summary: Develop a method to infer a customer's location from their credit card activity for fraud detection.,interviewquery.com/questions/infer-location-from-activity
+513,Size of Joins,sql,Create a subquery for the top 3 ads by popularity and return the number of rows resulting from different SQL joins with these ads.,interviewquery.com/questions/size-of-joins
+514,Feed Impression,sql,Query the percentage of users who viewed a pin within seven days of its posting and engaged with any pin at any time.,interviewquery.com/questions/feed-impression
+515,Search Linked List,algorithms,Write a function to check if a target value exists in a linked list represented by a dictionary-based structure.,interviewquery.com/questions/search-linked-list
+516,Bag of Different Coins,probability,"Calculate the expected number of heads when drawing and flipping 100 coins from a bag containing fair, double-headed, and double-tailed coins.",interviewquery.com/questions/bag-of-different-coins
+517,"f(x,y) in Interval",python,"Given an interval [L,R] and integer N, write a function to return all positive integer pairs (x,y) such that \(5^x \cdot 3^y \in [L,R]\) and \(x,y < N\).",interviewquery.com/questions/f-x-y--in-interval
+518,User Experience Percentage,sql,"Write a query to find the percentage of users who held ""Data Analyst"" immediately before ""Data Scientist"" from the table `user_experiences`.",interviewquery.com/questions/user-experience-percentage
+519,Repeated Category Purchase,sql,"Identify first-time and repeat purchases in product categories, outputting a table with a boolean for previous purchases.",interviewquery.com/questions/purchased-product
+520,Instant Eat Reintroduction,product metrics,"Summary: Assess whether Uber Eats should reintroduce ""Instant eat"" by evaluating its potential impact on delivery efficiency and customer satisfaction.",interviewquery.com/questions/instant-eat-reintroduction
+521,Location Frequency,python,"Return the top location `(x,y)` for each truck model (Mercedes or BMW) based on the list of locations.",interviewquery.com/questions/location-frequency
+522,Apartment Pricing,business case,"Determine considerations for setting apartment rent, calculate optimal rent, and find optimal price from tenant bids.",interviewquery.com/questions/apartment-pricing
+523,Causal Email Journey ,analytics,Investigate if the redesigned email campaign caused a conversion rate increase by analyzing historical data trends and controlling for external factors.,interviewquery.com/questions/causal-email-journey
+524,Recency Weighted Salaries,algorithms,Compute the average salary of a data scientist using a recency weighted average on past salaries.,interviewquery.com/questions/recency-weighted-salaries
+525,Generating Continuous Forecasts,algorithms,Summary: Build a function to return daily forecasted revenue over N days with linear growth from day one revenue to a total target.,interviewquery.com/questions/generating-continuous-forecasts
+526,Automatic Histogram,python,"Create a function to generate a histogram dictionary with x bins from a given integer list, excluding zero-value bins.",interviewquery.com/questions/automatic-histogram
+527,Walking Robot,algorithms,"Determine the full path of a robot navigating a 4x4 matrix, moving forward or turning right when blocked, until it reaches the destination or repeats the path.",interviewquery.com/questions/walking-robot
+528,Decreasing Ride Costs,business case,Evaluate the impact of reducing fees on growth prospects for riders and drivers in a ride-sharing app.,interviewquery.com/questions/decreasing-ride-costs
+529,Generative vs Discriminative,machine learning,Explain the difference between generative and discriminative models to your manager and determine which model is more suitable for classifying emails as spam or not spam.,interviewquery.com/questions/generative-vs-discriminative
+530,WallStreetBets Sentiment Analysis,ml system design,Identify potential issues when developing a sentiment analysis model for WallStreetBets subreddit data.,interviewquery.com/questions/wallstreetbets-sentiment-analysis
+531,Score Based on Review,ml system design,Summary: Design an ML system to predict movie scores from review text using 10K movie reviews.,interviewquery.com/questions/score-based-on-review
+532,Explain Neural Nets to Kids,machine learning,Explain neural networks to kindergarten kids using simple analogies and concepts.,interviewquery.com/questions/explain-neural-nets-to-kids
+533,Pre-Launching Shows,a/b testing,"Summary: Determine the best 10,000 customers for a TV show pre-launch and outline the performance measurement process.",interviewquery.com/questions/pre-launching-shows
+534,Food Delivery Refund Policy,business case,Create a standardized refund policy balancing customer sentiment and goodwill against revenue tradeoffs.,interviewquery.com/questions/food-delivery-refund-policy
+535,Scaling With More Layers,ml system design,Explain how the backpropagation algorithm scales with the number of layers and nodes in a deep neural network.,interviewquery.com/questions/scaling-with-more-layers
+536,Sequentially Fill in Integers,sql,Write a query to repeat each integer in `tbl_numbers` by its own value times.,interviewquery.com/questions/sequentially-fill-in-integers
+537,Triangle as Binary Array,algorithms,"Create a function that returns a 2D list representing an isosceles triangle using 0s and 1s, or None if the given height and base can't form a triangle.",interviewquery.com/questions/triangle-as-binary-array
+538,Average Revenue per Customer,sql,"Calculate the average revenue per client from a payments table with two revenue lines, rounding to two decimals.",interviewquery.com/questions/average-revenue-per-customer
+539,Clustering Basketball Players,machine learning,Summarize methods to evaluate clustering model effectiveness without pre-labeled data for grouping similar basketball players.,interviewquery.com/questions/clustering-basketball-players
+540,Tower of Hanoi,algorithms,"Develop an algorithm to solve the Tower of Hanoi puzzle for `n` disks, moving them from peg `A` to peg `C`, and return every step taken.",interviewquery.com/questions/tower-of-hanoi
+541,Words in Encrypted String,algorithms,Decrypt an encrypted document using a given equation and count occurrences of a target word.,interviewquery.com/questions/words-in-encrypted-string
+542,Meta-classifier in Stacking,ml system design,Choose a meta-classifier for a stacking model in a spam classifier and justify your choice.,interviewquery.com/questions/meta-classifier-in-stacking
+543,Processing Large CSV,database design,Describe how to process and clean a 100GB CSV file without loading it entirely into memory.,interviewquery.com/questions/processing-large-csv
+544,Free Shipping Mention Test,a/b testing,Evaluate the A/B test results to determine if surfacing free shipping increased conversions significantly.,interviewquery.com/questions/free-shipping-mention-test
+545,Hotel Occupancy Prediction,ml system design,"Design an ML model to predict hotel occupancy rates, specify training data, and outline performance evaluation methods.",interviewquery.com/questions/hotel-occupancy-prediction
+546,Bounds for Coffee and Tea Drinkers,statistics,Determine the upper and lower bounds for the proportion of respondents who like both tea and coffee based on survey data.,interviewquery.com/questions/bound-for-coffee-and-tea-drinkers
+547,Total Spent on Products,sql,Query total amount spent on each item by users registered in 2022.,interviewquery.com/questions/total-spent-on-products
+548,Completed Shipments,sql,"Create a report indicating whether shipments were delivered during a customer's membership period, marking 'Y' or 'N' accordingly.",interviewquery.com/questions/completed-shipments
+549,Pathfinder in Maze,algorithms,Determine if there is a path from the starting cell to the target cell in a maze represented by a grid.,interviewquery.com/questions/pathfinder-in-maze
+550,Append Frequency,python,"Return a string with an addendum after each character indicating its frequency, excluding spaces and characters from the discard list.",interviewquery.com/questions/append-frequency
+551,Dictionary Unique Values,python,Extract unique values from a dictionary where each value appears only once.,interviewquery.com/questions/dictionary-unique-values
+552,ReLu vs Tanh,machine learning,"Choose between ReLu and Tanh for hidden layers in a neural network to classify chair images, and justify your choice.",interviewquery.com/questions/relu-vs-tanh
+553,Largest Wireless Packages,sql,"Write a query to find the maximum number of packages sent by a device for each SSID in the first 10 minutes of January 1, 2022.",interviewquery.com/questions/largest-wireless-packages
+554,Correlated Features in Forests,machine learning,Explain how highly correlated features affect feature importance measurement in a random forest.,interviewquery.com/questions/correlated-features-in-forests
+555,Dice Rolls From Continuous Uniform,python,Simulate a fair dice roll using a continuous uniform random number generator.,interviewquery.com/questions/dice-rolls-from-continuous-uniform
+556,Backpropagation Explanation,machine learning,"Summarize the function, intuition, and drawbacks of the backpropagation algorithm in neural networks, and optionally derive and prove its effectiveness.",interviewquery.com/questions/backpropagation-explanation
+557,Total Conversation Threads,sql,"Count unique conversation threads in the `messenger_sends` table, treating switched `receiver_id` and `sender_id` as the same thread.",interviewquery.com/questions/total-conversation-threads
+558,Average Commute Time,sql,Write a query to calculate average commute time for each commuter and overall in New York from the rides table.,interviewquery.com/questions/average-commute-time
+559,Largest Salary by Department,sql,Summary: Retrieve the largest salary for each department from the `employees` table.,interviewquery.com/questions/largest-salary-by-department
+560,Best Performing Advertisers,sql,Identify the top three revenue days for each advertiser with the highest weekly revenue in 2021.,interviewquery.com/questions/best-performing-advertisers
+561,Daily Logins,sql,"Calculate how many users logged in the same number of times on January 1st, 2022, using the `user_logins` table.",interviewquery.com/questions/daily-logins
+562,Identifying Good Investors,ml system design,"Design a machine learning system using transaction data to identify ""good"" investors on Robinhood.",interviewquery.com/questions/identifying-good-investors
+563,Concentric Circles,algorithms,Determine if circle c with given radius and center lies between two concentric circles a and b.,interviewquery.com/questions/concentric-circles
+564,Select All Flights,sql,Select all entries from the `flights` table containing flight information.,interviewquery.com/questions/select-all-flights
+565,Why Do We Need Time Series Models?,statistics,Explain the purpose and necessity of time series models compared to simpler regression models.,interviewquery.com/questions/why-time-series
+566,AR and MA,statistics,Summarize the AR and MA components of ARIMA models and explain how to determine their order.,interviewquery.com/questions/ar-and-ma
+567,Softmax vs Logistic,statistics,"Explain the logistic and softmax functions, their differences, and their usefulness in logistic regression.",interviewquery.com/questions/softmax-vs-logistic
+568,SELECTive Wine Connoisseur,sql,"Query the `wines` table to find `id`s of wines with ≥13% alcohol, ash <2.4, and color intensity <3.",interviewquery.com/questions/selective-wine-connoisseur
+569,Total Salary,sql,Calculate the total salary of all employees from the `employees` table.,interviewquery.com/questions/total-salary
+570,Exam Scores,sql,Pivot the `exam_scores` table to track each student's scores across four exams.,interviewquery.com/questions/exam-scores
+571,Why Do You Want to Work With Us,business case,Summary: Provide strategies for responding to interview questions about company interest and personal job fit.,interviewquery.com/questions/why-do-you-want-to-work-with-us
+572,Your Strengths and Weaknesses,business case,Summarize how to answer questions about manager feedback and personal strengths and weaknesses.,interviewquery.com/questions/your-strengths-and-weaknesses
+573,Disagreeing Colleagues,business case,Describe a situation where colleagues disagreed with your approach and how you engaged them to address their concerns.,interviewquery.com/questions/disagreeing-colleagues
+574,Exceeding Expectations,business case,"Describe a project where you surpassed expectations, detailing your actions and achievements.",interviewquery.com/questions/exceeding-expectations
+575,Video Game Respawn Model,machine learning,Build a model or algorithm to generate respawn locations for an online third-person shooter game.,interviewquery.com/questions/video-game-respawn-model
+576,Credit Card Outreach,business case,Summary: Develop a strategy to select the best 1000 small businesses from 100K for a credit card partnership.,interviewquery.com/questions/credit-card-outreach
+577,Banner Ad Strategy Success,a/b testing,Determine the success of a banner ad strategy for an online media company.,interviewquery.com/questions/banner-ad-strategy-success
+578,Adam Optimizer,machine learning,Summarize the differences and benefits of the Adam optimization algorithm compared to other methods in neural network image classification.,interviewquery.com/questions/adam-optimizer
+579,Clustering With Mixed Variable Types,machine learning,Identify clustering algorithms unsuitable for mixed data types and suggest alternatives.,interviewquery.com/questions/clustering-with-mixed-variable-types
+580,loc vs iloc,pandas,Explain the difference between `loc` and `iloc` functions in `pandas` DataFrames.,interviewquery.com/questions/loc-vs-iloc
+581,Cancellation Time Limit,business case,Determine the time threshold for canceling a ride request without penalty in a ride-sharing app.,interviewquery.com/questions/cancellation-time-limit
+582,Measuring Text Difficulty,ml system design,Devise an algorithm to quantify the reading difficulty of text for non-fluent language speakers.,interviewquery.com/questions/measuring-text-difficulty
+583,Returning Last Element,python,Summary: Write a function to return the last element of a given list.,interviewquery.com/questions/returning-last-element
+584,Type I and II Errors,statistics,Explain type I and type II errors in hypothesis testing and their mathematical probabilities.,interviewquery.com/questions/type-i-and-ii-errors
+585,Z and t-Tests,statistics,"Explain the purpose and differences of Z and t-tests, and when to use each.",interviewquery.com/questions/z-and-t-tests
+586,International e-Commerce Warehouse,sql,"Summary: Design an end-to-end architecture for an e-commerce company, considering factors and clarifying questions.",interviewquery.com/questions/international-e-commerce-warehouse
+587,Prioritizing Deadlines,business case,Explain how to prioritize and stay organized with multiple deadlines.,interviewquery.com/questions/prioritizing-deadlines
+588,Handling Conflicts,business case,"Describe your approach to resolving conflict with co-workers or stakeholders you dislike, including an example.",interviewquery.com/questions/handling-conflicts
+589,Linear vs Logistic Regression,statistics,Summarize the differences between Logistic and Linear Regression and when to use each in practice.,interviewquery.com/questions/linear-vs-logistic-regression
+590,k-Means from Scratch,machine learning,"Implement the k-means clustering algorithm from scratch in Python for a 2D NumPy array, returning the cluster assignment for each point.",interviewquery.com/questions/k-means-from-scratch
+591,D2C Socks e-Commerce,analytics,Identify key business health metrics for an e-commerce D2C sock business dashboard.,interviewquery.com/questions/d2c-sock-e-commerce
+592,Confidence Interval Explanation,statistics,"Explain what a confidence interval is, its usefulness, and how to calculate it.",interviewquery.com/questions/confidence-interval-explanation
+593,Payment Data Pipeline,database design,Design an ETL pipeline to transfer Stripe payment data into a data warehouse for analytics.,interviewquery.com/questions/payment-data-pipeline
+594,Top 5 Turnover Risk,sql,Find the five lowest-paid employees who have completed at least three projects.,interviewquery.com/questions/top-5-turnover-risk
+595,Slacking Employees Salaries,sql,Find the sum of salaries for employees assigned to projects without any completed (End_dt is NULL).,interviewquery.com/questions/slacking-employees-salaries
+596,Swipe Payment API,database design,"Design a database system for Swipe Inc. to store API keys and transaction details, outlining functional and non-functional requirements.",interviewquery.com/questions/swipe-payment-api
+597,Subway Machine Learning Model,database design,"Design a solution to predict hourly subway ridership per station using real-time data feeds, ensuring seamless integration with client systems.",interviewquery.com/questions/subway-machine-learning-model
+598,Data Pipelines and Aggregation,database design,"Summary: Design a data pipeline to provide hourly, daily, and weekly active user data for an hourly-refreshing dashboard.",interviewquery.com/questions/data-pipelines-and-aggregation
+599,Clickstream Data,database design,Design a cost-effective data analytics solution for storing and querying 600 million daily clickstream events with a two-year retention period.,interviewquery.com/questions/clickstream-data
+600,Same Algorithm Different Success,machine learning,Summary: Explain why a machine learning algorithm might produce varying success rates on the same dataset.,interviewquery.com/questions/same-algorithm-different-success
+601,Friend Request Acceptance Rate,sql,"Evaluate if UI notifications increased friend request acceptance by finding the acceptance rate for requests sent in the four weeks prior to July 2nd, 2022.",interviewquery.com/questions/friend-request-acceptance-rate
+602,Visible Buildings,algorithms,Write a function to find the maximum number of visible buildings from the left side by removing some buildings.,interviewquery.com/questions/visible-buildings
+603,Level Of Rain Water In 2D Terrain,python,Calculate the total amount of rainwater trapped between terrain levels in a 2D array with time complexity O(n) and space complexity O(n).,interviewquery.com/questions/level-of-rain-water
+604,Avg Friend Requests By Age Group,sql,Find the average number of accepted friend requests per age group and order results in descending order.,interviewquery.com/questions/avg-friend-requests-by-age-group
+605,Longest Increasing Subsequence,algorithms,Write a Python function to find the length of the longest increasing subsequence in a list of integers.,interviewquery.com/questions/longest-increasing-subsequence
+606,Groups of Anagrams,algorithms,"Write a Python function that groups a list of strings into sublists of anagrams, sorted alphabetically and with no duplicates.",interviewquery.com/questions/groups-of-anagrams
+607,Targeted sum,algorithms,Find three integers in a list whose sum is closest to a given target and return that sum.,interviewquery.com/questions/targeted-sum
+608,Last Element of a Singly Linked List,python,"Return the last node of a singly linked list, or null if the list is empty.",interviewquery.com/questions/last-element-of-a-singly-linked-list
+609,Integer to Roman,python,Convert each integer in a list to its Roman numeral representation up to 1000.,interviewquery.com/questions/integer-to-roman
+610,Maximum Profit,python,Write a Python function to calculate the maximum profit from stock prices with up to two buy/sell transactions.,interviewquery.com/questions/maximum-profit
+611,Median Household Income,sql,Write a SQL query to compute the median household income for each city from a survey responses table.,interviewquery.com/questions/median-household-income
+612,Branch Sales Pivot,sql,Write a query to create a pivot table showing total sales for each branch by year from separate yearly sales tables.,interviewquery.com/questions/branch-sales-pivot
+613,Rolling Average Steps,sql,"Calculate the 3-day rolling average of steps for each user, excluding the first 2 days.",interviewquery.com/questions/rolling-average-steps
+614,Cumulative Sales By Product,sql,"Summary: Write a SQL query to calculate the cumulative sum of sales for each product, sorted by product_id and date.",interviewquery.com/questions/cumulative-sales-by-product
+615,Weighted Average Campaigns,sql,Summary: Write a SQL query to calculate and round the weighted average score for each email campaign based on open and click rates.,interviewquery.com/questions/weighted-average-campaigns
+616,Department Expenses,sql,"Write a SQL query to calculate and return each department's total and average expenses for 2022, sorted by total expense in descending order.",interviewquery.com/questions/department-expenses
+617,Minimum Parking Spots,python,Calculate the minimum number of parking spots needed for buses given their arrival and departure times.,interviewquery.com/questions/minimum-parking-spots
+618,Sum Numbers As Strings,python,"Create a Python function to sum two very large integers given as strings, handling '+' or '-' signs, without converting them to integers.",interviewquery.com/questions/sum-numbers-as-strings
+619,Equal Binary Subarrays,python,Find the maximum length of a contiguous subarray with equal numbers of 0s and 1s in a binary array.,interviewquery.com/questions/equal-binary-subarrays
+620,N-Gram Count,python,Write a function that returns a dictionary of n-gram counts for a given string and integer n.,interviewquery.com/questions/n-gram-count
+621,Tic-Tac-Toe Outcome,python,"Write a function to evaluate a tic-tac-toe board and return 'X', 'O', 'Draw', or 'Not Finished'.",interviewquery.com/questions/tic-tac-toe-outcome
+622,Minimum Moves to 2048,python,Calculate the minimum number of moves required to reach a given tile value in the 2048 game.,interviewquery.com/questions/minimum-moves-to-2048
+623,Weighted Average Sales,sql,"Calculate the 3-day weighted moving average of sales for each product using specific weights, only for dates with two preceding dates.",interviewquery.com/questions/weighted-average-sales
+624,Weighted Average With Missing Dates,sql,Calculate the 3-day rolling weighted average for new daily users from the acquisitions table.,interviewquery.com/questions/weighted-average-with-missing-dates
+625,Ticket Agent Analysis,sql,"Count total tickets, those assigned to agents, and those unassigned (with NULL agent_id) using a SQL query.",interviewquery.com/questions/ticket-agent-analysis
+626,Cumulative Sales Since Last Restocking,sql,"Query the running total of sales for each product since its last restocking event, ordered by product_id.",interviewquery.com/questions/cumulative-sales-since-last-restocking
+627,Book Availability Update,pandas,"Write a function to update the `copies_available` for a specific `book_id` in a dataframe, returning the updated dataframe or the original if `book_id` is not found.",interviewquery.com/questions/book-availability-update
+628,Player Analysis,sql,Write a query to count players who played 6-9 games and those who played 10 or more games.,interviewquery.com/questions/player-analysis
+629,Interpolating Missing Temperatures,pandas,Interpolate missing daily temperature readings in a time-series dataframe using linear interpolation per city.,interviewquery.com/questions/interpolating-missing-temperatures
+630,Weighted Average Email Campaign,sql,Summary: Write a SQL query to calculate the weighted average score for email campaigns using specified weights for open and click rates.,interviewquery.com/questions/weighted-average-email-campaign
+631,Find Duplicate Numbers in a List,python,"Identify all duplicate values in a list of integers, including both positive and negative numbers.",interviewquery.com/questions/find-duplicate-numbers-in-a-list
+632,Find the Missing Element,python,Identify the missing integer from a full list by comparing it to a nearly identical list with one element removed.,interviewquery.com/questions/find-the-missing-element
+633,Triplet Counting,python,Find all triplets in an integer array that sum to a given number `k`.,interviewquery.com/questions/counting-triplets-that-sum-to-a-query-number
+634,Sum of Matrix Elements,python,Write a function to return the sum of all elements in a given integer matrix.,interviewquery.com/questions/sum-of-matrix-elements
+635,Shortest Path Algorithms,algorithms,Find the shortest path in a graph represented by a 2D array from a given start node to an end node using any shortest path algorithm.,interviewquery.com/questions/shortest-path-algorithms
+636,Unstructured Data Pipeline (ETL),database design,Design an ETL pipeline to collect and aggregate unstructured multimedia data from videos for model input.,interviewquery.com/questions/unstructured-data-pipeline-etl
+637,Digital Classroom System Design,database design,"Design a database for ""Slack for School"" identifying critical entities and interactions, outline an ETL process for student interaction insights, and draft a SQL query for assignment submission trends.",interviewquery.com/questions/digital-classroom-system-design
+638,Probability of Forming a Triangle,probability,Calculate the probability that three randomly broken stick pieces can form a triangle.,interviewquery.com/questions/probability-of-forming-a-triangle
+639,Explaining Linear Regression to Different Audiences,machine learning,"Explain linear regression to a child, a first-year college student, and a seasoned mathematician, each in an audience-appropriate way.",interviewquery.com/questions/explaining-linear-regression-to-different-audiences
+640,Implementing the Fibonacci Sequence in Three Different Methods,algorithms,"Implement the Fibonacci sequence algorithm recursively, iteratively, and using memoization.",interviewquery.com/questions/implementing-the-fibonacci-sequence-in-three-different-methods
+641,Simulating Coin Tosses,python,"Create a function that simulates coin tosses based on the number of tosses and probability of heads, returning a list of 'H' or 'T' outcomes.",interviewquery.com/questions/simulating-coin-tosses
+642,Bootstrapping Confidence Intervals,python,Perform bootstrap sampling on an array to calculate and return a confidence interval as a tuple rounded to the tenths place.,interviewquery.com/questions/bootstrapping-confidence-intervals
+643,Maximum Common Substring,python,Write a function to find the longest common substring between two input strings.,interviewquery.com/questions/maximum-common-substring
+644,Finding The Mode,python,"Determine the mode(s) of an integer array, returning multiple modes in ascending order if necessary.",interviewquery.com/questions/finding-the-mode
+645,Prime Numbers Identification,algorithms,"Summary: Identify and return all prime numbers from an integer array, or an empty array if none exist.",interviewquery.com/questions/get-the-prime-numbers-of-an-array
+646,Released Patients,sql,Find all dates where the hospital released more patients than the previous day.,interviewquery.com/questions/released-patients
+647,Priority Queue Using Linked List,algorithms,"Implement a priority queue using a linked list with insert, delete, and peek operations based on priority.",interviewquery.com/questions/priority-queue-using-linked-list
+648,Text Editor With OOP,python,"Design three classes: `text_editor`, `moving_text_editor`, and `smart_text_editor` with specified functionalities, including write, delete, special operations, and get methods.",interviewquery.com/questions/text-editor-with-oop
+649,Binary Tree Validation,algorithms,Determine if a given binary tree is a valid binary search tree (BST).,interviewquery.com/questions/binary-tree-validation
+650,Cashflow Interest Projection,business case,"Choose between two Facebook Ads payment options, considering fees and payment timelines.",interviewquery.com/questions/cashflow-interest-projection
+651,POS Subscription Retention,business case,"Calculate the retention rate needed for a subscription model to break even with a traditional sale model over two, four, and six years.",interviewquery.com/questions/pos-subscription-retention
+652,John's New Best Friend,sql,"Identify a potential friend for John using database tables and a point-based system, considering mutual friends, shared page likes, and disqualifying blocked and current friends.",interviewquery.com/questions/johns-new-best-friend
+653,Find the First Non-Repeating Character in a String,algorithms,"Find the index of the first non-repeating character in a given string, or return -1 if none exist.",interviewquery.com/questions/find-the-first-non-repeating-character-in-a-string
+654,Finding the Maximum Number in a List,python,"Write a function that returns the maximum number in a list of integers, or `None` if the list is empty.",interviewquery.com/questions/finding-the-maximum-number-in-a-list
+655,Flatten N-Dimensional Array to 1D Array,python,Flatten an N-dimensional nested list into a 1D list of integers.,interviewquery.com/questions/flatten-n-dimensional-array-to-1d-array
+656,E-Commerce Subscription Retention,business case,Determine the retention rate needed for a subscription model to exceed non-subscription revenue.,interviewquery.com/questions/e-commerce-subscription-retention
+657,Descending Alphanumeric Sorting,algorithms,Sort an array of strings by letters alphabetically and numbers in descending order.,interviewquery.com/questions/descending-alphanumeric-sorting
+658,Generate Shopping List from Recipes,sql,Summary: Write a query to sum the total mass of each grocery item required across three recipe tables.,interviewquery.com/questions/generate-shopping-list-from-recipes
+659,Length Of Longest Palindrome,algorithms,Find the length of the largest palindrome that can be formed from a given string's characters.,interviewquery.com/questions/length-of-longest-palindrome
+660,Basic Regex,algorithms,"Implement a regex parser with `.` matching any character and `*` matching zero or more of the preceding element, ensuring full string match.",interviewquery.com/questions/basic-regex
+661,Identifying User Sessions,sql,"Write a query to label each event with a session number, where a session is consecutive events within 60 minutes for the same user.",interviewquery.com/questions/identifying-user-sessions
+662,Digitizing Student Test Scores,analytics,"Summary: Identify drawbacks of current student test score layouts, suggest formatting for better analysis, and describe common issues in messy datasets.",interviewquery.com/questions/digitizing-student-test-scores
+663,Radix Addition,algorithms,Add two non-empty linked lists representing reversed digits of two integers and return the sum as a linked list in reverse order.,interviewquery.com/questions/add-two-numbers-represented-by-linked-lists
+664,Find the Index with Equal Left and Right Sum,algorithms,"Find the index where the left sum equals the right sum in a list of integers, or return -1 if none exists.",interviewquery.com/questions/find-the-index-with-equal-left-and-right-sum
+665,Bias vs. Variance Tradeoff,machine learning,Explain the bias-variance tradeoff in the context of building and selecting machine learning models for loan approval.,interviewquery.com/questions/bias-vs-variance-tradeoff
+666,Upsell Carousel,product metrics,Determine whether replacing store-brand items with national-brand products in the app's up-sell carousel increases sales.,interviewquery.com/questions/upsell-carousel
+667,Departmental Spend By Quarter,sql,"Calculate total spend for IT, HR, Marketing, and Other departments per fiscal quarter from 2023 transactions.",interviewquery.com/questions/departmental-spend-by-quarter
+668,HR Salary Reporting,sql,"Summary: Write a query to calculate sum of regular salaries, overtime pay, and total compensations per job title.",interviewquery.com/questions/hr-salary-reporting
+669,Categorize Sales,sql,"Categorize and sum sales by region based on amount, region, and date conditions for performance analysis.",interviewquery.com/questions/categorize-sales
+670,Support Vector Machines vs Deep Learning Models,machine learning,Summarize the scenarios and pros/cons of using SVMs over deep learning models for classification problems.,interviewquery.com/questions/svm-vs-dl
+671,Flight Modeling,database design,"Summary: Design a data model for airports, hubs, and flight paths with fuel cost weights to find the shortest path through non-hub airports.",interviewquery.com/questions/flight-modeling
+672,Bias - Variance Tradeoff and Class Imbalance in Finance,ml system design,"Build a credit card fraud detection model using historical data, considering model types, bias-variance tradeoff, and class imbalance complexities.",interviewquery.com/questions/variance-tradeoff-and-class-imbalance-in-finance
+673,Singly Linked List,algorithms,"Create a `SinglyLinkedList` class with methods to add or remove elements at the head or tail, check for item existence, access elements by index, and return the list length.",interviewquery.com/questions/singly-linked-list
+674,Reverse List Starting at Index K,python,Reverse the linked list from the given position to the end and update the head node.,interviewquery.com/questions/reverse-at-kth-position
+675,The Brackets Problem,algorithms,"Verify if a string containing parentheses, brackets, and braces is balanced by ensuring each opening character has a corresponding closing character.",interviewquery.com/questions/the-brackets-problem
+676,Fixed Length Arrays: Addition,algorithms,"Implement an `Array` class with fixed size 6, supporting methods for length, item retrieval, and element insertion at front, back, or specified index, raising `ArrayFull` if full.",interviewquery.com/questions/array-operations-fixed-length-arrays-1
+677,Fixed-Length Arrays: Deletion,algorithms,"Implement a fixed-size `Array` class with pop, search, contains, abolish, and equality operations for arrays of size 6.",interviewquery.com/questions/array-operations-fixed-length-arrays-2
+678,LRU Cache 1,algorithms,"Implement a class `LRUCache` with methods for initializing with a capacity, retrieving values by key, and adding key-value pairs while maintaining least recently used eviction policy.",interviewquery.com/questions/lru-cache-1
+679,Tower of Hanoi Algorithm,algorithms,"Describe the approach to solve the Tower of Hanoi puzzle with three discs, moving them from the leftmost to the rightmost rod.",interviewquery.com/questions/tower-of-hanoi-algorithm
+680,Slow OLAP Aggregations,database design,Identify reasons for OLAP system slowdowns in monthly/quarterly reports and suggest an aggregation strategy to improve performance.,interviewquery.com/questions/slow-olap-aggregations
+681,Parking Application System Design,database design,"Design a parking app system that updates spot prices in real time, uses user location to find nearby spots, and tracks incurred parking costs.",interviewquery.com/questions/parking-application-system-design
+682,Binary Tree Conversion,algorithms,Convert a sorted list into a balanced binary search tree and return the root TreeNode.,interviewquery.com/questions/binary-tree-conversion
+683,TikTok FYP Algorithm,algorithms,Summarize features for a collaborative filtering TikTok recommendation engine and describe model testing and validation.,interviewquery.com/questions/tiktok-fyp-algorithm
+684,Coin Dispenser,algorithms,Create a function to return optimal change for a given dollar amount using provided coin denominations.,interviewquery.com/questions/coin-dispenser
+685,Ugly Powers,algorithms,"Determine if all elements in a set are ugly powers by checking if they are positive integers with prime factors as a subset of 2, 3, and 5.",interviewquery.com/questions/ugly-powers
+686,Cross-Platform Optimization,analytics,"Optimize cross-platform user experience by analyzing user interaction data to determine unique mobile-only users, web-only visitor percentage, and user distribution across mobile, web, and both platforms.",interviewquery.com/questions/cross-platform-optimization
+687,Friends Over Engagement,a/b testing,"Design an A/B test at Meta to evaluate if the ""People You May Know"" feature reduces engagement for users with more friends.",interviewquery.com/questions/friends-over-engagement
+688,A Simpler KNN From Scratch,machine learning,Implement a function to find the nearest data point using Euclidean distance without external libraries.,interviewquery.com/questions/knn-from-scratch-1
+689,Pop Tail,algorithms,"Remove the tail of a doubly linked list in \(O(1)\) time, returning the head and new tail as a list or `None` if empty.",interviewquery.com/questions/pop-tail
+690,Average Unique Counts,sql,Identify the user with the highest average number of unique item categories per order from two tables.,interviewquery.com/questions/average-number-of-unique-items-categories-per-order
+691,Cyclic Detection,python,"Write a function to determine if a linked list is cyclic, returning True if it is and False otherwise.",interviewquery.com/questions/cyclic-detection
+692,Swapping Nodes,algorithms,Swap nodes at positions x and y in a singly linked list using pointer manipulation.,interviewquery.com/questions/swapping-nodes
+693,Explaining LDA,machine learning,Explain the concept and practical use cases of linear discriminant analysis in machine learning.,interviewquery.com/questions/explaining-lda-linear-discriminant-analysis
+694,Martingale Strategy,probability,Explain the Martingale strategy and its potential application in online advertising.,interviewquery.com/questions/martingale-strategy
+695,Romantic Reduction,analytics,Suggest strategies to increase engagement for users in relationships who post less.,interviewquery.com/questions/romantic-reduction
+696,Foreign Key Constraints,database design,Explain why foreign key constraints are preferred over normal BIGINT fields and when to use cascade delete or set null.,interviewquery.com/questions/foreign-key-constraints
+697,Text Search System,database design,"Summary: Design a pipeline to convert resumes from images and PDFs to queryable text for analytics, NLP, and search API use.",interviewquery.com/questions/text-search-system
+698,Google Docs Autosave System,ml system design,"Summary: Suggest improvements to Google Docs' autosave feature to enhance throughput and reduce latency, considering disk write bottlenecks.",interviewquery.com/questions/google-docs-autosave-system
+699,Impossibly Iterative Fibonacci,python,"Write a recursive function `fib` to return the nth Fibonacci number, with loops and certain libraries restricted.",interviewquery.com/questions/impossibly-iterative-fibonacci
+700,Data Preparation for Imbalanced Data,machine learning,Summarize methods to prepare imbalanced data for a machine learning model.,interviewquery.com/questions/data-preparation-for-imbalanced-data
+701,Cross-Culture Reports,database design,"Ensure data quality across ETL platforms by implementing validation, monitoring, and translation consistency checks.",interviewquery.com/questions/cross-culture-reports
+702,Stick Break,probability,Determine the probability that three pieces from a stick broken at two random points can form a triangle.,interviewquery.com/questions/stick-break
+703,Facebook Watch Party,product metrics,"Summarize considerations and performance indicators for deciding on implementing Facebook's ""Watch Party"" feature.",interviewquery.com/questions/facebook-watch-party
+704,Unsafe Content ML Design,ml system design,Design a machine learning system to detect unsafe content for a social media platform.,interviewquery.com/questions/unsafe-content-ml-design
+705,External Sorting,algorithms,Sort a 100GB file with only 10GB of RAM using external sorting techniques.,interviewquery.com/questions/external-sorting
+706,Risk Assessment Model,machine learning,Design a machine learning model to classify individuals' risk of major health issues based on health features.,interviewquery.com/questions/risk-assessment-model
+707,Boosting Instagram Stories,product metrics,Suggest a new feature for Instagram Stories and provide rationale for its selection.,interviewquery.com/questions/boosting-instagram-stories
+708,Using APIs for Downstream Tasks,machine learning,"Design an ML system to extract, transform, and store data from Reddit and Bloomberg APIs for downstream model use.",interviewquery.com/questions/using-apis-for-downstream-tasks
+709,MLE for Default Prediction,statistics,Estimate the log-likelihood function and MLE for the probability of default using historical loan data.,interviewquery.com/questions/mle-for-default-prediction
+710,Linear Combination of Normal Distributions,statistics,"Find the mean and variance of the distribution of \(2X - Y\) given \(X \sim N (3, 2^2)\) and \(Y \sim N(1, 2^2)\).",interviewquery.com/questions/linear-combination-of-normal-distributions
+711,Proof k-Means Converges,machine learning,Prove that a k-Means clustering algorithm will converge in a finite number of steps by sketching out a logical proof.,interviewquery.com/questions/proof-k-means-converges
+712,Understanding Dynamic Pricing Strategy,analytics,Summarize the benefits of dynamic pricing and methods to estimate supply and demand.,interviewquery.com/questions/understanding-dynamic-pricing-strategy
+713,Decreasing Tech Debt,analytics,Propose strategies to reduce tech debt and improve developer efficiency at a fintech startup.,interviewquery.com/questions/decreasing-tech-debt
+714,Facebook Story Success,product metrics,Determine metrics for evaluating the success of Facebook Stories.,interviewquery.com/questions/facebook-story-success
+715,Sales Leaderboard,analytics,Design a database and engineering system for a real-time sales dashboard for McDonald's branches.,interviewquery.com/questions/sales-leaderboard
+716,Relational Migration,database design,"Plan a transition from a document database to a relational database for a social network, focusing on user authentication, connections, and interactions.",interviewquery.com/questions/relational-migration
+717,Unified Live Comments,database design,"Design a system to process and display real-time comments and reactions across Instagram, Facebook, Facebook Gaming, and WhatsApp for live streaming integration.",interviewquery.com/questions/unified-live-comments
+718,Facebook Job Board Design,a/b testing,Design an A/B test to evaluate the effectiveness of a proposed Facebook job board product.,interviewquery.com/questions/facebook-job-board-design
+719,Uber Eats Customer Experience,product metrics,Identify key parameters to enhance customer experience on Uber Eats.,interviewquery.com/questions/uber-eats-customer-experience
+720,Distributed Authentication Model,machine learning,"Design a facial recognition system for employee and contractor clock-in, clock-out, and secure access.",interviewquery.com/questions/distributed-authentication-model
+721,Live Comments,database design,"Summary: Design a system for real-time data processing and display across platforms with persistent comments, reactions, and AI censorship; recommend handling latency and static or dynamic censorship.",interviewquery.com/questions/live-comments
+722,Simple Explanations,analytics,Explain insights and methods in simple terms using relatable analogies for a non-technical audience.,interviewquery.com/questions/simple-explanations
+723,Hurdles In Data Projects,analytics,"Summarize a data project you worked on, including challenges faced.",interviewquery.com/questions/hurdles-in-data-projects
+724,Success Measurement,a/b testing,Summarize an analytics experiment you designed and how you measured its success.,interviewquery.com/questions/success-measurement
+725,Data Cleaning Experiences,pandas,Describe a project involving cleaning and organizing a large dataset.,interviewquery.com/questions/data-cleaning-experiences
+726,Presentations and Insights,analytics,Rate your comfort level with presenting insights.,interviewquery.com/questions/presentations-and-insights
+727,Accessible Data,business case,Identify effective methods for making data accessible to non-technical individuals.,interviewquery.com/questions/accessible-data
+728,Stakeholder Communication,analytics,Describe a challenging communication experience with stakeholders and how you resolved it.,interviewquery.com/questions/stakeholder-communication
+729,User System Response Times,sql,Compute the average response time for each user to respond to system messages using two tables.,interviewquery.com/questions/user-system-response-times
+730,One-Hot Encoder,algorithms,"Write a function to one-hot encode a list, assigning the most significant bit to the first unique element.",interviewquery.com/questions/one-hot-encoder
+731,Dynamic Game Summary,sql,Create a `scoreline` column in the `scores` table to summarize each game as `{Result} by {Score}` using a SQL query.,interviewquery.com/questions/dynamic-game-summary
+732,SFTP Pipeline,database design,Design a pipeline to process CSV files received intermittently via SFTP for usability.,interviewquery.com/questions/sftp-pipeline
+733,Blogging Platform Schema,database design,"Design a database schema for a blogging platform with tables for users, posts, comments, and tags, including relationships and constraints.",interviewquery.com/questions/blogging-platform-schema
+734,Three Indexes Adding Zero,algorithms,Find all sets of 3 indices in a sorted array whose elements sum to 0.,interviewquery.com/questions/three-indexes-adding-zero
+735,Risk Model for a Mortgage Bank,business case,Describe your approach to building a predictive model for loan default risk as a data scientist at a mortgage bank.,interviewquery.com/questions/default-risk-model-mortgage
+736,Tradeoffs Between Precision and Recall,business case,Assess the business implications of a default risk model with high recall but low precision for a mortgage bank.,interviewquery.com/questions/tradeoffs-between-precision-and-recall
+737,Optimizing Threshold Adjustment in Default Risk Models,machine learning,Set the decision threshold for a default risk model to minimize overall financial loss.,interviewquery.com/questions/optimizing-threshold-adjustment
+738,Choosing Between Python and SQL,sql,Choose between Python or SQL for preprocessing a large mortgage dataset and justify your choice.,interviewquery.com/questions/choosing-between-python-and-sql
+739,Analyzing Store Performance,business case,"Identify factors affecting store performance, prioritize them, and analyze relevant data to recommend improvements.",interviewquery.com/questions/store-performance-analysis
+740,Optimizing Supply Chain Efficiency,business case,"Identify key metrics for assessing supply chain performance and propose strategies to optimize efficiency, reduce costs, and enhance customer satisfaction using technology and data analytics.",interviewquery.com/questions/optimizing-supply-chain-efficiency
+741,Analyzing Multiple Data Sources,analytics,"Summary: Describe your approach to analyzing and extracting insights from diverse datasets like transactions, user behavior, and fraud logs.",interviewquery.com/questions/analyzing-multiple-data-sources
+742,Interpreting Fraud Detection Trends,analytics,Interpret fraud trend graphs to identify emerging patterns and use insights to enhance detection processes.,interviewquery.com/questions/interpreting-fraud-detection-trends
+743,Designing a Fraud Detection System,product metrics,Summary: Identify key metrics to track and prevent fraudulent transactions in a real-time fraud detection system.,interviewquery.com/questions/designing-a-fraud-detection-system
+744,Lifetime Value (LTV) for Subscription Service,product metrics,Summary: Identify factors and data points to calculate LTV for subscription services and ensure model accuracy for customer value insights.,interviewquery.com/questions/lifetime-value-for-subscription-service
+745,A/B Test Results for Conversion,a/b testing,Set up and analyze an A/B test to determine which payment page version yields higher conversion rates.,interviewquery.com/questions/ab-test-results-for-conversion
+746,Ad Engagement Analysis for Qualified Users,sql,"Write a query to calculate the engagement rate for each ad type, considering only users who have seen at least three different ad types in the last 48 hours, and sort by highest engagement rate.",interviewquery.com/questions/ad-engagement-analysis-for-qualified-users
+747,Trial Test Analysis,sql,"Calculate conversion rates for control and trial groups from `ab_tests` and `subscriptions` tables, considering variant-specific conversion criteria.",interviewquery.com/questions/trial-test-analysis

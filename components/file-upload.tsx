@@ -161,11 +161,11 @@ export function FileUpload({ onFileContent, onFileUpload }: FileUploadProps) {
                 </div>
                 <div className="bg-white dark:bg-gray-900 rounded-md p-3 border border-green-200 dark:border-green-800">
                   <p className="text-sm text-gray-700 dark:text-gray-300 font-mono leading-relaxed">
-                    "{extractedData.text.slice(0, 200)}..."
+                    &quot;{extractedData.text.slice(0, 200)}...&quot;
                   </p>
                 </div>
                 <p className="text-xs text-green-600 dark:text-green-400 mt-2">
-                  ✨ High-quality text extraction powered by Google's advanced AI
+                  ✨ High-quality text extraction powered by Google&apos;s advanced AI
                 </p>
               </div>
             </div>

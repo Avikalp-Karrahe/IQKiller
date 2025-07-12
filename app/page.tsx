@@ -312,7 +312,7 @@ export default function IQKillerMainPage() {
       console.log('🚀 Auto-starting comprehensive analysis in background...')
       startComprehensiveAnalysis()
     }
-  }, [bothAnalysesReady, resumeAnalysisData, jobAnalysisData, comprehensiveAnalysisStatus])
+  }, [bothAnalysesReady, resumeAnalysisData, jobAnalysisData, comprehensiveAnalysisStatus, startComprehensiveAnalysis])
 
 
 

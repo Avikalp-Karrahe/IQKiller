@@ -15,7 +15,7 @@ async function parsePdf(buffer: Buffer, filename: string) {
     
     if (!projectId || !processorId) {
       console.log('Google Document AI not configured, using fallback')
-      return useFallbackExtraction(buffer, filename)
+      return fallbackExtraction(buffer, filename)
     }
     
     // Construct the processor name
@@ -37,7 +37,7 @@ async function parsePdf(buffer: Buffer, filename: string) {
     
     if (!result.document?.text) {
       console.log('No text extracted, using fallback')
-      return useFallbackExtraction(buffer, filename)
+      return fallbackExtraction(buffer, filename)
     }
     
     const extractedText = result.document.text.trim()
@@ -48,12 +48,12 @@ async function parsePdf(buffer: Buffer, filename: string) {
   } catch (error) {
     console.error('Document AI extraction failed:', error)
     console.log('Falling back to placeholder extraction')
-    return useFallbackExtraction(buffer, filename)
+    return fallbackExtraction(buffer, filename)
   }
 }
 
 // Fallback function for when Document AI is not available
-function useFallbackExtraction(buffer: Buffer, filename: string) {
+function fallbackExtraction(buffer: Buffer, filename: string) {
   const placeholderText = `
 RESUME EXTRACTED FROM PDF - ${filename}
 

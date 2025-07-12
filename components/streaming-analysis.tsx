@@ -499,7 +499,7 @@ export default function StreamingAnalysis({ resumeText, jobDescription, jobData,
             </h1>
             
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Built by an AI Engineer who's been on both sides of interviews. Get personalized questions, 
+              Built by an AI Engineer who&apos;s been on both sides of interviews. Get personalized questions, 
               insights, and prep strategies for any role in seconds.
             </p>
           </div>
