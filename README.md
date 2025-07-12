@@ -172,7 +172,7 @@ IQKiller/
 │   ├── 📋 comprehensive-guide-display.tsx # Study guides
 │   ├── 🎮 quiz.tsx           # Interactive quizzes
 │   ├── 📄 file-upload.tsx    # PDF upload interface
-│   └── 💼 job-analysis.tsx   # Job analysis dashboard
+│   └── job-analysis.tsx   # Job analysis dashboard
 ├── 📚 lib/                   # Utility Functions & Schemas
 │   ├── 🤖 enhanced-resume-parser.ts    # AI resume processing
 │   ├── ❓ enhanced-question-generator.ts # Smart question AI

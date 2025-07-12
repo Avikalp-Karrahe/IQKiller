@@ -140,7 +140,7 @@ Return ONLY a JSON object with this exact structure:
     const extracted = JSON.parse(completion.choices[0].message.content)
     console.log('✅ === JSON parsed successfully ===')
     console.log('👤 Extracted name:', extracted.name)
-    console.log('💼 Experience:', extracted.experienceYears, 'years')
+    console.log('Experience:', extracted.experienceYears, 'years')
     
     // Convert to full DetailedResumeData format
     const result: DetailedResumeData = {
@@ -321,7 +321,7 @@ function createSmartFallback(resumeText: string): DetailedResumeData {
   
   console.log('✅ === SMART FALLBACK COMPLETED ===')
   console.log('👤 Name extracted:', name)
-  console.log('💼 Role determined:', role)
+  console.log('Role determined:', role)
   console.log('🛠️ Skills found:', Object.values(skills).flat().length)
   
   return result;

@@ -176,7 +176,7 @@ RESPONSIBILITIES:
 
             <Card>
               <CardHeader>
-                <CardTitle>💼 Job Description</CardTitle>
+                <CardTitle>Job Description</CardTitle>
                 <CardDescription>
                   Paste the job posting you&apos;re applying for
                 </CardDescription>
@@ -231,7 +231,7 @@ RESPONSIBILITIES:
               
               <Card>
                 <CardContent className="pt-6 text-center">
-                  <div className="text-2xl mb-2">💼</div>
+                  <div className="text-2xl mb-2 font-bold">JM</div>
                   <h3 className="font-semibold">Job Matching</h3>
                   <p className="text-sm text-gray-600">Compatibility scoring</p>
                 </CardContent>
