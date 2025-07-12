@@ -567,7 +567,7 @@ export default function IQKillerMainPage() {
                   </p>
                 </div>
                 {/* Premium feature indicator */}
-                <CountdownTimer targetDate={new Date('2025-07-17')} title="July 17th" isHovered={card1Hovered} />
+                <CountdownTimer targetDate={new Date('2025-07-12')} title="July 12th" isHovered={card1Hovered} />
               </div>
             </div>
             
@@ -597,7 +597,7 @@ export default function IQKillerMainPage() {
                   </p>
                 </div>
                 {/* Premium feature indicator */}
-                <CountdownTimer targetDate={new Date('2025-07-31')} title="July 31st" isHovered={card2Hovered} />
+                <CountdownTimer targetDate={new Date('2025-07-26')} title="July 26th" isHovered={card2Hovered} />
               </div>
             </div>
             
@@ -627,7 +627,7 @@ export default function IQKillerMainPage() {
                   </p>
                 </div>
                 {/* Premium feature indicator */}
-                <CountdownTimer targetDate={new Date('2025-08-14')} title="August 14th" isHovered={card3Hovered} />
+                <CountdownTimer targetDate={new Date('2025-08-09')} title="August 9th" isHovered={card3Hovered} />
               </div>
             </div>
           </div>
