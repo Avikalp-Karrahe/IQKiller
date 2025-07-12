@@ -60,19 +60,19 @@
 }
 
 .gradient-bg {
-  @apply bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-indigo-900;
+  @apply bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-slate-950 dark:via-gray-900 dark:to-slate-900;
 }
 
 .card-gradient {
-  @apply backdrop-blur-sm bg-white/80 dark:bg-slate-800/80 border border-white/20 dark:border-slate-700/30 shadow-xl hover:shadow-2xl transition-all duration-500;
+  @apply bg-gradient-to-br from-white to-gray-50/50 dark:from-slate-900/90 dark:to-slate-800/90 border border-gray-200/50 dark:border-slate-700/50;
 }
 
 .button-gradient {
-  @apply bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-2xl transition-all duration-300 hover:scale-105;
+  @apply bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 dark:from-blue-500 dark:to-indigo-500 dark:hover:from-blue-600 dark:hover:to-indigo-600;
 }
 
 .glass-effect {
-  @apply backdrop-blur-sm bg-white/80 dark:bg-slate-800/80 border border-white/20 dark:border-slate-700/30 shadow-xl;
+  @apply bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border border-gray-200/20 dark:border-slate-700/50;
 }
 
 /* Enhanced dark mode styles with starry night */

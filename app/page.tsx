@@ -318,51 +318,41 @@ export default function IQKillerMainPage() {
 
   if (showAnalysis) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-indigo-900">
-        {/* Enhanced animated background */}
-        <div className="fixed inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-purple-600/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-purple-400/20 to-pink-600/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-indigo-400/10 to-cyan-600/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
-        </div>
-        
+      <div className="gradient-bg min-h-screen">
         {/* Header Controls - Top Right */}
-        <div className="absolute top-6 right-6 z-50">
+        <div className="absolute top-4 right-4 z-50">
           <HeaderControls />
         </div>
         
-        <div className="relative z-10 container mx-auto px-4 py-8">
-          {/* Enhanced Header */}
-          <div className="text-center mb-12">
+        <div className="container mx-auto px-4 py-8">
+          {/* Header */}
+          <div className="text-center mb-8">
             <Button
               variant="outline"
               onClick={() => setShowAnalysis(false)}
-              className="mb-6 backdrop-blur-sm bg-white/80 dark:bg-slate-800/80 border-white/20 dark:border-slate-700/30 hover:bg-white/90 dark:hover:bg-slate-700/90 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              className="mb-4 glass-effect"
             >
               ← Start New Analysis
             </Button>
-            <h1 className="text-5xl font-bold bg-gradient-to-r from-slate-800 via-blue-600 to-indigo-600 dark:from-slate-200 dark:via-blue-400 dark:to-indigo-400 bg-clip-text text-transparent mb-4">
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-50 mb-2">
               IQKiller Analysis
             </h1>
-            <p className="text-xl text-slate-600 dark:text-slate-300 font-medium">
+            <p className="text-lg text-gray-600 dark:text-gray-300">
               Real-time AI-powered interview preparation
             </p>
           </div>
 
-          {/* Enhanced Streaming Analysis */}
-          <div className="backdrop-blur-sm bg-white/80 dark:bg-slate-800/80 rounded-2xl p-8 shadow-2xl border border-white/20 dark:border-slate-700/30 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-purple-50/50 dark:from-slate-800/50 dark:to-indigo-900/50 pointer-events-none"></div>
-            <div className="relative z-10">
-              <StreamingAnalysis
-                resumeText={resumeText}
-                jobDescription={jobData.description || JSON.stringify(jobData)}
-                jobData={jobData}
-                resumeAnalysisData={resumeAnalysisData}
-                jobAnalysisData={jobAnalysisData}
-                preComputedResults={comprehensiveAnalysisData}
-                onComplete={handleAnalysisComplete}
-              />
-            </div>
+          {/* Enhanced Streaming Analysis with pre-processed data */}
+          <div className="glass-effect rounded-xl p-6 shadow-lg">
+            <StreamingAnalysis
+              resumeText={resumeText}
+              jobDescription={jobData.description || JSON.stringify(jobData)}
+              jobData={jobData}
+              resumeAnalysisData={resumeAnalysisData}
+              jobAnalysisData={jobAnalysisData}
+              preComputedResults={comprehensiveAnalysisData}
+              onComplete={handleAnalysisComplete}
+            />
           </div>
         </div>
       </div>
@@ -370,245 +360,165 @@ export default function IQKillerMainPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-indigo-900 relative overflow-hidden">
-      {/* Enhanced animated background elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-purple-600/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-purple-400/20 to-pink-600/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-indigo-400/10 to-cyan-600/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
-        
-        {/* Floating particles */}
-        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-blue-400/40 rounded-full animate-bounce delay-300"></div>
-        <div className="absolute top-3/4 right-1/4 w-3 h-3 bg-purple-400/40 rounded-full animate-bounce delay-700"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-2 h-2 bg-indigo-400/40 rounded-full animate-bounce delay-1100"></div>
-      </div>
-      
+    <div className="gradient-bg min-h-screen">
       {/* Header Controls - Top Right */}
-      <div className="absolute top-6 right-6 z-50">
+      <div className="absolute top-4 right-4 z-50">
         <HeaderControls />
       </div>
       
-      <div className="relative z-10 container mx-auto px-4 py-8">
-        {/* Enhanced Header */}
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 px-6 py-3 backdrop-blur-sm bg-white/80 dark:bg-slate-800/80 border border-white/20 dark:border-slate-700/30 rounded-full text-sm font-semibold mb-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-            <Sparkles className="w-4 h-4 text-blue-500" />
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              AI-Powered Interview Preparation
-            </span>
+      <div className="container mx-auto px-4 py-8">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 glass-effect rounded-full text-sm font-medium mb-6">
+            <Sparkles className="w-4 h-4" />
+            AI-Powered Interview Preparation
           </div>
-          
-          <h1 className="text-7xl font-bold bg-gradient-to-r from-slate-800 via-blue-600 to-indigo-600 dark:from-slate-200 dark:via-blue-400 dark:to-indigo-400 bg-clip-text text-transparent mb-8 tracking-tight">
+          <h1 className="text-6xl font-bold text-gray-900 dark:text-gray-50 mb-6">
             IQKiller
           </h1>
-          
-          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-4xl mx-auto mb-10 leading-relaxed font-medium">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
             Upload your resume, analyze job postings, and get personalized interview questions, salary negotiation strategies, and real-time preparation insights powered by AI.
           </p>
           
-          {/* Enhanced feature highlights */}
-          <div className="flex items-center justify-center gap-10 text-slate-500 dark:text-slate-400 mb-16">
-            <div className="flex items-center gap-3 group cursor-pointer">
-              <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg group-hover:bg-blue-200 dark:group-hover:bg-blue-800/50 transition-all duration-300">
-                <FileText className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-              </div>
-              <span className="text-sm font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">Resume Analysis</span>
+          {/* Feature highlights */}
+          <div className="flex items-center justify-center gap-8 text-gray-500 dark:text-gray-400 mb-12">
+            <div className="flex items-center gap-2">
+              <FileText className="w-5 h-5" />
+                              <span className="text-sm">Resume Analysis</span>
             </div>
-            <div className="flex items-center gap-3 group cursor-pointer">
-              <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg group-hover:bg-purple-200 dark:group-hover:bg-purple-800/50 transition-all duration-300">
-                <Globe className="w-5 h-5 text-purple-600 dark:text-purple-400" />
-              </div>
-              <span className="text-sm font-medium group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">Job Scraping</span>
+            <div className="flex items-center gap-2">
+              <Globe className="w-5 h-5" />
+              <span className="text-sm">Job Scraping</span>
             </div>
-            <div className="flex items-center gap-3 group cursor-pointer">
-              <div className="p-2 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg group-hover:bg-emerald-200 dark:group-hover:bg-emerald-800/50 transition-all duration-300">
-                <Brain className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-              </div>
-              <span className="text-sm font-medium group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-300">Open Source</span>
+            <div className="flex items-center gap-2">
+              <Brain className="w-5 h-5" />
+              <span className="text-sm">Open Source</span>
             </div>
-            <div className="flex items-center gap-3 group cursor-pointer">
-              <div className="p-2 bg-amber-100 dark:bg-amber-900/30 rounded-lg group-hover:bg-amber-200 dark:group-hover:bg-amber-800/50 transition-all duration-300">
-                <Target className="w-5 h-5 text-amber-600 dark:text-amber-400" />
-              </div>
-              <span className="text-sm font-medium group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors duration-300">Strategy</span>
+            <div className="flex items-center gap-2">
+              <Target className="w-5 h-5" />
+              <span className="text-sm">Strategy</span>
             </div>
           </div>
         </div>
 
-        {/* Enhanced Main Content */}
+        {/* Main Content */}
         <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8 mb-16">
-            {/* Enhanced Resume Upload Card */}
-            <div className="group relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-600/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-              <div className="relative backdrop-blur-sm bg-white/80 dark:bg-slate-800/80 border border-white/20 dark:border-slate-700/30 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] overflow-hidden">
-                <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-blue-100/50 to-purple-100/50 dark:from-blue-900/30 dark:to-purple-900/30 rounded-full -mr-20 -mt-20 group-hover:scale-110 transition-transform duration-500"></div>
-                
-                <div className="relative p-8">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="p-3 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300">
-                      <Upload className="w-7 h-7 text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-200 mb-1">Upload Your Resume</h3>
-                      <p className="text-slate-600 dark:text-slate-400 font-medium">Resume analysis with AI-powered skills extraction</p>
-                    </div>
-                    {/* Enhanced Status Indicator */}
-                    <div className="flex items-center gap-2">
-                      {resumeAnalysisStatus === 'idle' && (
-                        <div className="p-2 bg-slate-100 dark:bg-slate-700 rounded-full">
-                          <Clock className="w-5 h-5 text-slate-400" />
-                        </div>
-                      )}
-                      {resumeAnalysisStatus === 'processing' && (
-                        <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-full">
-                          <Loader className="w-5 h-5 text-blue-500 animate-spin" />
-                        </div>
-                      )}
-                      {resumeAnalysisStatus === 'completed' && (
-                        <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-full shadow-lg">
-                          <CheckCircle className="w-5 h-5 text-green-500" />
-                        </div>
-                      )}
-                      {resumeAnalysisStatus === 'error' && (
-                        <div className="p-2 bg-red-100 dark:bg-red-900/30 rounded-full">
-                          <div className="w-5 h-5 rounded-full bg-red-500" />
-                        </div>
-                      )}
-                    </div>
+          <div className="grid lg:grid-cols-2 gap-8 mb-12">
+            {/* Resume Upload with Real-time Analysis */}
+            <div className="card-gradient relative overflow-hidden border-0 shadow-lg rounded-xl bg-card text-card-foreground">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-100/50 to-transparent rounded-full -mr-16 -mt-16"></div>
+              <div className="flex flex-col space-y-1.5 p-6 relative">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg">
+                    <Upload className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                   </div>
-                  
-                  <div className="space-y-4">
-                    <FileUpload onFileUpload={handleResumeUpload} />
-                    {resumeAnalysisStatus === 'processing' && (
-                      <div className="flex items-center gap-3 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
-                        <div className="animate-spin rounded-full h-4 w-4 border-2 border-blue-500 border-t-transparent"></div>
-                        <span className="text-sm text-blue-700 dark:text-blue-300 font-medium">
-                          Analyzing resume with AI...
-                        </span>
-                      </div>
-                    )}
-                    {resumeAnalysisStatus === 'completed' && (
-                      <div className="flex items-center gap-3 p-4 bg-green-50 dark:bg-green-900/20 rounded-xl border border-green-200 dark:border-green-800">
-                        <CheckCircle className="w-4 h-4 text-green-500" />
-                        <span className="text-sm text-green-700 dark:text-green-300 font-medium">
-                          Resume analysis completed: {resumeAnalysisData?.name} ({resumeAnalysisData?.experienceYears} years)
-                        </span>
-                      </div>
-                    )}
-                    {resumeAnalysisStatus === 'error' && (
-                      <div className="flex items-center gap-3 p-4 bg-red-50 dark:bg-red-900/20 rounded-xl border border-red-200 dark:border-red-800">
-                        <div className="w-4 h-4 rounded-full bg-red-500" />
-                        <span className="text-sm text-red-700 dark:text-red-300 font-medium">
-                          Resume analysis failed. Please try again.
-                        </span>
-                      </div>
-                    )}
+                  <div className="flex-1">
+                    <div className="font-semibold tracking-tight text-xl">Upload Your Resume</div>
+                    <div className="text-sm text-muted-foreground">Resume analysis with AI-powered skills extraction</div>
                   </div>
+                  {/* Resume Analysis Status */}
+                  <div className="flex items-center gap-2">
+                    {resumeAnalysisStatus === 'idle' && <Clock className="w-5 h-5 text-gray-400" />}
+                    {resumeAnalysisStatus === 'processing' && <Loader className="w-5 h-5 text-blue-500 animate-spin" />}
+                    {resumeAnalysisStatus === 'completed' && <CheckCircle className="w-5 h-5 text-green-500" />}
+                    {resumeAnalysisStatus === 'error' && <div className="w-5 h-5 rounded-full bg-red-500" />}
+                  </div>
+                </div>
+              </div>
+              <div className="p-6 pt-0 relative">
+                <div className="space-y-4">
+                  <FileUpload onFileUpload={handleResumeUpload} />
+                  {resumeAnalysisStatus === 'processing' && (
+                    <div className="text-sm text-blue-600 font-medium">
+                      🧠 Analyzing resume with AI...
+                    </div>
+                  )}
+                  {resumeAnalysisStatus === 'completed' && (
+                    <div className="text-sm text-green-600 font-medium">
+                      ✅ Resume analysis completed: {resumeAnalysisData?.name} ({resumeAnalysisData?.experienceYears} years)
+                    </div>
+                  )}
+                  {resumeAnalysisStatus === 'error' && (
+                    <div className="text-sm text-red-600 font-medium">
+                      ❌ Resume analysis failed. Please try again.
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
 
-            {/* Enhanced Job Analysis Card */}
-            <div className="group relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-600/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-              <div className="relative backdrop-blur-sm bg-white/80 dark:bg-slate-800/80 border border-white/20 dark:border-slate-700/30 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] overflow-hidden">
-                <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-purple-100/50 to-pink-100/50 dark:from-purple-900/30 dark:to-pink-900/30 rounded-full -mr-20 -mt-20 group-hover:scale-110 transition-transform duration-500"></div>
-                
-                <div className="relative p-8">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="p-3 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300">
-                      <Globe className="w-7 h-7 text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-200 mb-1">Job Analysis</h3>
-                      <p className="text-slate-600 dark:text-slate-400 font-medium">Paste URL or job description for analysis</p>
-                    </div>
-                    {/* Enhanced Status Indicator */}
-                    <div className="flex items-center gap-2">
-                      {jobAnalysisStatus === 'idle' && (
-                        <div className="p-2 bg-slate-100 dark:bg-slate-700 rounded-full">
-                          <Clock className="w-5 h-5 text-slate-400" />
-                        </div>
-                      )}
-                      {jobAnalysisStatus === 'processing' && (
-                        <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-full">
-                          <Loader className="w-5 h-5 text-purple-500 animate-spin" />
-                        </div>
-                      )}
-                      {jobAnalysisStatus === 'completed' && (
-                        <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-full shadow-lg">
-                          <CheckCircle className="w-5 h-5 text-green-500" />
-                        </div>
-                      )}
-                      {jobAnalysisStatus === 'error' && (
-                        <div className="p-2 bg-red-100 dark:bg-red-900/30 rounded-full">
-                          <div className="w-5 h-5 rounded-full bg-red-500" />
-                        </div>
-                      )}
-                    </div>
+            {/* Job Analysis with Real-time Processing */}
+            <div className="card-gradient relative overflow-hidden border-0 shadow-lg rounded-xl bg-card text-card-foreground">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-100/50 to-transparent rounded-full -mr-16 -mt-16"></div>
+              <div className="flex flex-col space-y-1.5 p-6 relative">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-purple-100 dark:bg-purple-900 rounded-lg">
+                    <Globe className="w-6 h-6 text-purple-600 dark:text-purple-400" />
                   </div>
-                  
-                  <div className="space-y-4">
-                    <JobAnalysis onJobData={handleJobData} />
-                    {jobAnalysisStatus === 'processing' && (
-                      <div className="flex items-center gap-3 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-xl border border-purple-200 dark:border-purple-800">
-                        <div className="animate-spin rounded-full h-4 w-4 border-2 border-purple-500 border-t-transparent"></div>
-                        <span className="text-sm text-purple-700 dark:text-purple-300 font-medium">
-                          Analyzing job posting...
-                        </span>
-                      </div>
-                    )}
-                    {jobAnalysisStatus === 'completed' && (
-                      <div className="flex items-center gap-3 p-4 bg-green-50 dark:bg-green-900/20 rounded-xl border border-green-200 dark:border-green-800">
-                        <CheckCircle className="w-4 h-4 text-green-500" />
-                        <span className="text-sm text-green-700 dark:text-green-300 font-medium">
-                          Job analysis completed: {jobAnalysisData?.title} at {jobAnalysisData?.company}
-                        </span>
-                      </div>
-                    )}
-                    {jobAnalysisStatus === 'error' && (
-                      <div className="flex items-center gap-3 p-4 bg-red-50 dark:bg-red-900/20 rounded-xl border border-red-200 dark:border-red-800">
-                        <div className="w-4 h-4 rounded-full bg-red-500" />
-                        <span className="text-sm text-red-700 dark:text-red-300 font-medium">
-                          Job analysis failed. Please try again.
-                        </span>
-                      </div>
-                    )}
+                  <div className="flex-1">
+                    <div className="font-semibold tracking-tight text-xl">Job Analysis</div>
+                    <div className="text-sm text-muted-foreground">Paste URL or job description for analysis</div>
+                  </div>
+                  {/* Job Analysis Status */}
+                  <div className="flex items-center gap-2">
+                    {jobAnalysisStatus === 'idle' && <Clock className="w-5 h-5 text-gray-400" />}
+                    {jobAnalysisStatus === 'processing' && <Loader className="w-5 h-5 text-purple-500 animate-spin" />}
+                    {jobAnalysisStatus === 'completed' && <CheckCircle className="w-5 h-5 text-green-500" />}
+                    {jobAnalysisStatus === 'error' && <div className="w-5 h-5 rounded-full bg-red-500" />}
                   </div>
                 </div>
+              </div>
+              <div className="p-6 pt-0 relative">
+                <JobAnalysis onJobData={handleJobData} />
+                {jobAnalysisStatus === 'processing' && (
+                  <div className="text-sm text-purple-600 font-medium mt-4">
+                    🔍 Analyzing job posting...
+                  </div>
+                )}
+                {jobAnalysisStatus === 'completed' && (
+                  <div className="text-sm text-green-600 font-medium mt-4">
+                    ✅ Job analysis completed: {jobAnalysisData?.title} at {jobAnalysisData?.company}
+                  </div>
+                )}
+                {jobAnalysisStatus === 'error' && (
+                  <div className="text-sm text-red-600 font-medium mt-4">
+                    ❌ Job analysis failed. Please try again.
+                  </div>
+                )}
               </div>
             </div>
           </div>
 
-          {/* Enhanced Analysis Button */}
+          {/* Analysis Button */}
           {canAnalyze && (
-            <div className="text-center mb-16">
-              <div className="relative inline-block">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl blur-xl opacity-75 animate-pulse"></div>
-                <Button
-                  onClick={handleStartAnalysis}
-                  disabled={!bothAnalysesReady}
-                  className="relative bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white text-lg font-semibold px-12 py-6 h-auto shadow-2xl transition-all duration-300 disabled:opacity-50 hover:scale-105 rounded-2xl border-0"
-                >
-                  {comprehensiveAnalysisReady ? (
-                    <>
-                      <Zap className="w-5 h-5 mr-2" />
-                      Launch Instant Analysis
-                    </>
-                  ) : bothAnalysesReady ? (
-                    <>
-                      <Brain className="w-5 h-5 mr-2" />
-                      Generate Interview Guide
-                    </>
-                  ) : (
-                    <>
-                      <Loader className="w-5 h-5 mr-2 animate-spin" />
-                      Preparing Analysis...
-                    </>
-                  )}
-                </Button>
-              </div>
+            <div className="text-center mb-12">
+              <Button
+                onClick={handleStartAnalysis}
+                disabled={!bothAnalysesReady}
+                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white text-lg px-8 py-4 h-auto shadow-lg transition-all duration-200 disabled:opacity-50"
+              >
+                {comprehensiveAnalysisReady ? (
+                  <>
+                    <Trophy className="w-5 h-5 mr-2" />
+                    View Your Interview Guide (Ready!)
+                  </>
+                ) : comprehensiveAnalysisStatus === 'processing' ? (
+                  <>
+                    <Loader className="w-5 h-5 mr-2 animate-spin" />
+                    Generating Interview Guide...
+                  </>
+                ) : bothAnalysesReady ? (
+                  <>
+                    <Sparkles className="w-5 h-5 mr-2" />
+                    Generate Interview Guide
+                  </>
+                ) : (
+                  <>
+                    <Clock className="w-5 h-5 mr-2" />
+                    Waiting for analyses to complete...
+                  </>
+                )}
+              </Button>
               
               {/* Status Messages */}
               {comprehensiveAnalysisReady && (
@@ -629,122 +539,95 @@ export default function IQKillerMainPage() {
             </div>
           )}
 
-          {/* Enhanced Feature Cards */}
-          <div className="grid md:grid-cols-3 gap-8 mt-20">
-            {/* Smart Question Generation Card */}
-            <div className="group relative overflow-hidden h-80"
+          {/* Feature Cards */}
+          <div className="grid md:grid-cols-3 gap-6 mt-16">
+            <div className="card-gradient text-center p-6 border-0 shadow-lg rounded-xl bg-card text-card-foreground relative overflow-hidden group h-72 flex flex-col"
                  onMouseEnter={() => setCard1Hovered(true)}
                  onMouseLeave={() => setCard1Hovered(false)}>
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-indigo-600/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-              <div className="relative backdrop-blur-sm bg-white/80 dark:bg-slate-800/80 border border-white/20 dark:border-slate-700/30 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] h-full flex flex-col overflow-hidden">
-                <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-blue-100/50 to-indigo-100/50 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-full -mr-20 -mt-20 group-hover:scale-110 transition-transform duration-500"></div>
-                
-                {/* Enhanced Coming Soon Badge */}
-                <div className="absolute top-4 right-4 px-3 py-1.5 bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 text-white text-xs font-bold rounded-full shadow-lg animate-pulse">
-                  Coming Soon
+              {/* Premium gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10 pointer-events-none"></div>
+              {/* Coming Soon Badge */}
+              <div className="absolute top-3 right-3 px-2 py-1 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-xs font-semibold rounded-full shadow-lg">
+                Coming Soon
+              </div>
+              <div className="relative flex-1 flex flex-col">
+                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Brain className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                 </div>
-                
-                <div className="relative p-8 flex-1 flex flex-col text-center">
-                  <div className="p-4 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300 mx-auto mb-6">
-                    <Brain className="w-8 h-8 text-white" />
-                  </div>
-                  
-                  <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-200 mb-3">Smart Question Generation</h3>
-                  
-                  <div className="flex-1 mb-6">
-                    <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed group-hover:hidden">
-                      AI-generated interview questions tailored to your resume and the specific job requirements.
-                    </p>
-                    <div className="hidden group-hover:block">
-                      <p className="text-blue-600 dark:text-blue-400 text-sm font-semibold mb-3 cursor-pointer" onClick={() => window.open('https://www.linkedin.com/in/avikalp/', '_blank')}>
-                        <span className="flex items-center justify-center gap-2 p-3 bg-blue-50 dark:bg-blue-900/30 rounded-xl border border-blue-200 dark:border-blue-800">
-                          <Zap className="w-4 h-4" />
-                          Wanna speed it up? Come build with us!
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <CountdownTimer targetDate={new Date('2025-07-26')} title="July 26th" isHovered={card1Hovered} />
+                <h3 className="text-lg font-semibold text-blue-600 dark:text-blue-400 mb-2">Smart Question Generation</h3>
+                <div className="flex-1 mb-4">
+                  <p className="text-gray-600 dark:text-gray-300 text-sm group-hover:hidden">
+                    AI-generated interview questions tailored to your resume and the specific job requirements.
+                  </p>
+                  <p className="text-blue-600 dark:text-blue-400 text-sm font-medium hidden group-hover:block cursor-pointer" onClick={() => window.open('https://www.linkedin.com/in/avikalp/', '_blank')}>
+                    <span className="flex items-center justify-center">
+                      <Zap className="w-4 h-4 mr-2" />
+                      Wanna speed it up? Come build with us!
+                    </span>
+                  </p>
                 </div>
+                {/* Premium feature indicator */}
+                <CountdownTimer targetDate={new Date('2025-07-26')} title="July 26th" isHovered={card1Hovered} />
               </div>
             </div>
             
-            {/* Skills Gap Analysis Card */}
-            <div className="group relative overflow-hidden h-80"
+            <div className="card-gradient text-center p-6 border-0 shadow-lg rounded-xl bg-card text-card-foreground relative overflow-hidden group h-72 flex flex-col"
                  onMouseEnter={() => setCard2Hovered(true)}
                  onMouseLeave={() => setCard2Hovered(false)}>
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-600/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-              <div className="relative backdrop-blur-sm bg-white/80 dark:bg-slate-800/80 border border-white/20 dark:border-slate-700/30 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] h-full flex flex-col overflow-hidden">
-                <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-purple-100/50 to-pink-100/50 dark:from-purple-900/30 dark:to-pink-900/30 rounded-full -mr-20 -mt-20 group-hover:scale-110 transition-transform duration-500"></div>
-                
-                {/* Enhanced Coming Soon Badge */}
-                <div className="absolute top-4 right-4 px-3 py-1.5 bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 text-white text-xs font-bold rounded-full shadow-lg animate-pulse">
-                  Coming Soon
+              {/* Premium gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-pink-500/10 pointer-events-none"></div>
+              {/* Coming Soon Badge */}
+              <div className="absolute top-3 right-3 px-2 py-1 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-xs font-semibold rounded-full shadow-lg">
+                Coming Soon
+              </div>
+              <div className="relative flex-1 flex flex-col">
+                <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Target className="w-6 h-6 text-purple-600 dark:text-purple-400" />
                 </div>
-                
-                <div className="relative p-8 flex-1 flex flex-col text-center">
-                  <div className="p-4 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300 mx-auto mb-6">
-                    <Target className="w-8 h-8 text-white" />
-                  </div>
-                  
-                  <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-200 mb-3">Skills Gap Analysis</h3>
-                  
-                  <div className="flex-1 mb-6">
-                    <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed group-hover:hidden">
-                      Identify gaps between your skills and job requirements, with personalized learning recommendations.
-                    </p>
-                    <div className="hidden group-hover:block">
-                      <p className="text-purple-600 dark:text-purple-400 text-sm font-semibold mb-3 cursor-pointer" onClick={() => window.open('https://www.linkedin.com/in/avikalp/', '_blank')}>
-                        <span className="flex items-center justify-center gap-2 p-3 bg-purple-50 dark:bg-purple-900/30 rounded-xl border border-purple-200 dark:border-purple-800">
-                          <Zap className="w-4 h-4" />
-                          Wanna speed it up? Come build with us!
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <CountdownTimer targetDate={new Date('2025-08-09')} title="August 9th" isHovered={card2Hovered} />
+                <h3 className="text-lg font-semibold text-purple-600 dark:text-purple-400 mb-2">Skills Gap Analysis</h3>
+                <div className="flex-1 mb-4">
+                  <p className="text-gray-600 dark:text-gray-300 text-sm group-hover:hidden">
+                    Identify gaps between your skills and job requirements, with personalized learning recommendations.
+                  </p>
+                  <p className="text-purple-600 dark:text-purple-400 text-sm font-medium hidden group-hover:block cursor-pointer" onClick={() => window.open('https://www.linkedin.com/in/avikalp/', '_blank')}>
+                    <span className="flex items-center justify-center">
+                      <Zap className="w-4 h-4 mr-2" />
+                      Wanna speed it up? Come build with us!
+                    </span>
+                  </p>
                 </div>
+                {/* Premium feature indicator */}
+                <CountdownTimer targetDate={new Date('2025-08-09')} title="August 9th" isHovered={card2Hovered} />
               </div>
             </div>
             
-            {/* Salary Negotiation Card */}
-            <div className="group relative overflow-hidden h-80"
+            <div className="card-gradient text-center p-6 border-0 shadow-lg rounded-xl bg-card text-card-foreground relative overflow-hidden group h-72 flex flex-col"
                  onMouseEnter={() => setCard3Hovered(true)}
                  onMouseLeave={() => setCard3Hovered(false)}>
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-teal-600/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-              <div className="relative backdrop-blur-sm bg-white/80 dark:bg-slate-800/80 border border-white/20 dark:border-slate-700/30 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] h-full flex flex-col overflow-hidden">
-                <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-emerald-100/50 to-teal-100/50 dark:from-emerald-900/30 dark:to-teal-900/30 rounded-full -mr-20 -mt-20 group-hover:scale-110 transition-transform duration-500"></div>
-                
-                {/* Enhanced Coming Soon Badge */}
-                <div className="absolute top-4 right-4 px-3 py-1.5 bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 text-white text-xs font-bold rounded-full shadow-lg animate-pulse">
-                  Coming Soon
+              {/* Premium gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 via-transparent to-emerald-500/10 pointer-events-none"></div>
+              {/* Coming Soon Badge */}
+              <div className="absolute top-3 right-3 px-2 py-1 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-xs font-semibold rounded-full shadow-lg">
+                Coming Soon
+              </div>
+              <div className="relative flex-1 flex flex-col">
+                <div className="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Trophy className="w-6 h-6 text-green-600 dark:text-green-400" />
                 </div>
-                
-                <div className="relative p-8 flex-1 flex flex-col text-center">
-                  <div className="p-4 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300 mx-auto mb-6">
-                    <Trophy className="w-8 h-8 text-white" />
-                  </div>
-                  
-                  <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-200 mb-3">Salary Negotiation</h3>
-                  
-                  <div className="flex-1 mb-6">
-                    <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed group-hover:hidden">
-                      AI-powered salary insights and negotiation strategies based on market data and your profile.
-                    </p>
-                    <div className="hidden group-hover:block">
-                      <p className="text-emerald-600 dark:text-emerald-400 text-sm font-semibold mb-3 cursor-pointer" onClick={() => window.open('https://www.linkedin.com/in/avikalp/', '_blank')}>
-                        <span className="flex items-center justify-center gap-2 p-3 bg-emerald-50 dark:bg-emerald-900/30 rounded-xl border border-emerald-200 dark:border-emerald-800">
-                          <Zap className="w-4 h-4" />
-                          Wanna speed it up? Come build with us!
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <CountdownTimer targetDate={new Date('2025-08-23')} title="August 23rd" isHovered={card3Hovered} />
+                <h3 className="text-lg font-semibold text-green-600 dark:text-green-400 mb-2">Salary Negotiation</h3>
+                <div className="flex-1 mb-4">
+                  <p className="text-gray-600 dark:text-gray-300 text-sm group-hover:hidden">
+                    AI-powered salary insights and negotiation strategies based on market data and your profile.
+                  </p>
+                  <p className="text-green-600 dark:text-green-400 text-sm font-medium hidden group-hover:block cursor-pointer" onClick={() => window.open('https://www.linkedin.com/in/avikalp/', '_blank')}>
+                    <span className="flex items-center justify-center">
+                      <Zap className="w-4 h-4 mr-2" />
+                      Wanna speed it up? Come build with us!
+                    </span>
+                  </p>
                 </div>
+                {/* Premium feature indicator */}
+                <CountdownTimer targetDate={new Date('2025-08-23')} title="August 23rd" isHovered={card3Hovered} />
               </div>
             </div>
           </div>
