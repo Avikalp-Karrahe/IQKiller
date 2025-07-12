@@ -25,7 +25,7 @@ import {
   Mail
 } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
-import { formatComprehensiveGuide, generateQuestionSummary, getGuideStats, type ComprehensiveGuide } from '@/lib/guide-formatter'
+import { formatComprehensiveGuide, generateQuestionSummary, getGuideStats, getUILabelsForRole, type ComprehensiveGuide } from '@/lib/guide-formatter'
 import { type Question } from '@/lib/questions-processor'
 
 interface ComprehensiveGuideDisplayProps {
@@ -41,13 +41,18 @@ export function ComprehensiveGuideDisplay({ guide, isGenerating = false }: Compr
     return <GeneratingGuideLoader />
   }
 
+  // Extract role information for dynamic labeling
+  const roleTitle = guide.roleContext?.title
+  const roleDescription = guide.roleContext?.description
+  const uiLabels = getUILabelsForRole(roleTitle, roleDescription)
+
   return (
     <div className="w-full max-w-5xl mx-auto space-y-6">
       {/* Header Section */}
       <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
-                <div className="mb-4">
+        <div className="mb-4">
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-            {guide.title}
+            {roleTitle ? `${roleTitle} Interview Guide` : 'Interview Preparation Guide'}
           </h1>
           <p className="text-gray-600 dark:text-gray-300 mb-4">
             Personalized for {(guide as any).personalizedFor || 'You'} • Generated on {new Date().toLocaleDateString()}
@@ -59,13 +64,13 @@ export function ComprehensiveGuideDisplay({ guide, isGenerating = false }: Compr
           <StatCard
             icon={<BookOpen className="w-5 h-5" />}
             label="Questions"
-            value={stats.questionCount.total.toString()}
+            value={stats.totalQuestions.toString()}
             subtitle="Personalized"
           />
           <StatCard
             icon={<Clock className="w-5 h-5" />}
             label="Reading Time"
-            value={`${stats.readingTime} min`}
+            value={`${Math.max(5, Math.ceil(stats.totalQuestions * 0.5))} min`}
             subtitle="Estimated"
           />
           <StatCard
@@ -98,7 +103,7 @@ export function ComprehensiveGuideDisplay({ guide, isGenerating = false }: Compr
         </TabsList>
 
         <TabsContent value="overview" className="space-y-6">
-          <OverviewSection guide={guide} />
+          <OverviewSection guide={guide} roleTitle={roleTitle} roleDescription={roleDescription} />
         </TabsContent>
 
         <TabsContent value="process" className="space-y-6">
@@ -106,7 +111,7 @@ export function ComprehensiveGuideDisplay({ guide, isGenerating = false }: Compr
         </TabsContent>
 
         <TabsContent value="questions" className="space-y-6">
-          <QuestionsSection guide={guide} />
+          <QuestionsSection guide={guide} uiLabels={uiLabels} />
         </TabsContent>
 
         <TabsContent value="preparation" className="space-y-6">
@@ -166,30 +171,34 @@ function StatCard({ icon, label, value, subtitle }: {
   )
 }
 
-function OverviewSection({ guide }: { guide: ComprehensiveGuide }) {
+function OverviewSection({ guide, roleTitle, roleDescription }: { 
+  guide: ComprehensiveGuide
+  roleTitle?: string
+  roleDescription?: string 
+}) {
   return (
     <div className="space-y-6">
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Briefcase className="w-5 h-5" />
-            Role & Company Overview
+            <Target className="w-5 h-5" />
+            Interview Overview
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
             <h4 className="font-semibold mb-2">Role Overview</h4>
-            <p className="text-gray-700 dark:text-gray-300">{guide.introduction.roleOverview}</p>
+            <p className="text-gray-700 dark:text-gray-300">{guide.introduction?.roleOverview || 'Role overview information will be provided during analysis.'}</p>
           </div>
           <Separator />
           <div>
             <h4 className="font-semibold mb-2">Company Culture</h4>
-            <p className="text-gray-700 dark:text-gray-300">{guide.introduction.culture}</p>
+            <p className="text-gray-700 dark:text-gray-300">{guide.introduction?.culture || 'Company culture insights will be provided during analysis.'}</p>
           </div>
           <Separator />
           <div>
             <h4 className="font-semibold mb-2">Why This Opportunity?</h4>
-            <p className="text-gray-700 dark:text-gray-300">{guide.introduction.whyThisRole}</p>
+            <p className="text-gray-700 dark:text-gray-300">{guide.introduction?.whyThisRole || 'Opportunity insights will be provided during analysis.'}</p>
           </div>
         </CardContent>
       </Card>
@@ -200,7 +209,7 @@ function OverviewSection({ guide }: { guide: ComprehensiveGuide }) {
         </CardHeader>
         <CardContent>
           <ReactMarkdown className="prose prose-sm dark:prose-invert max-w-none">
-            {generateQuestionSummary(guide)}
+            {generateQuestionSummary(guide, roleTitle, roleDescription)}
           </ReactMarkdown>
         </CardContent>
       </Card>
@@ -216,57 +225,81 @@ function OverviewSection({ guide }: { guide: ComprehensiveGuide }) {
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
               Join the Community Building This
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
-              This tool gets better with every user. Share your interview experience, suggest features, 
-              or just let us know how your prep went. Your input directly shapes what we build next.
-            </p>
             
-            <div className="flex justify-center gap-4">
+            {/* Stats and Community Info */}
+            <div className="grid grid-cols-2 gap-4 mb-6">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">1,000+</div>
+                <div className="text-sm text-gray-600 dark:text-gray-300">Job Seekers Helped</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-green-600 dark:text-green-400">100%</div>
+                <div className="text-sm text-gray-600 dark:text-gray-300">Free & Open Source</div>
+              </div>
+            </div>
+            
+            <div className="flex gap-3 justify-center">
               <Button 
-                variant="default"
-                className="bg-blue-600 hover:bg-blue-700"
-                onClick={() => window.open('https://forms.gle/hnHyghiA6WxPbUE19', '_blank')}
-              >
-                Share Feedback
-              </Button>
-              <Button 
-                variant="outline"
-                onClick={() => window.open('https://github.com/Avikalp-Karrahe/IQKiller', '_blank')}
+                className="bg-blue-600 hover:bg-blue-700 text-white"
+                onClick={() => window.open('https://github.com/Avikalp-Karrahe/iqkiller-vercel', '_blank')}
               >
                 <Github className="w-4 h-4 mr-2" />
                 Star on GitHub
+              </Button>
+              <Button 
+                variant="outline"
+                onClick={() => window.location.href = 'mailto:akarrahe@ucdavis.edu?subject=IQKiller Feedback'}
+              >
+                <Mail className="w-4 h-4 mr-2" />
+                Send Feedback
               </Button>
             </div>
           </CardContent>
         </Card>
 
         {/* Creator Section */}
-        <Card>
+        <Card className="border-2 border-amber-200 dark:border-amber-800 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/20">
           <CardContent className="p-8">
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Left Side - About the Creator */}
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              {/* Left Side - About Creator */}
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">About the Creator</h3>
-                
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0">
-                    <img 
-                      src="https://github.com/Avikalp-Karrahe.png?size=96"
-                      alt="Avikalp Karrahe"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                <div className="flex items-center gap-4 mb-6">
+                  <img 
+                    src="https://github.com/Avikalp-Karrahe.png?size=256" 
+                    alt="Avikalp Karrahe" 
+                    className="w-16 h-16 rounded-full border-2 border-amber-300 dark:border-amber-600"
+                  />
                   <div>
-                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                      <strong>Avikalp Karrahe</strong> is an AI Engineer and 3x hackathon winner building production-grade AI tools, from crisis intelligence systems to autonomous agents. He's currently helping Coca-Cola reduce dispenser downtime using predictive modeling.
-                    </p>
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white">About the Creator</h3>
+                    <p className="text-amber-700 dark:text-amber-300 font-medium">Avikalp Karrahe</p>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">AI Engineer & 3x San Francisco Bay Area Hackathon Winner</p>
                   </div>
                 </div>
-
-                <div className="bg-blue-50 dark:bg-blue-950/20 border-l-4 border-blue-400 dark:border-blue-500 p-4 rounded">
-                  <p className="text-blue-800 dark:text-blue-200 italic">
-                    "Interview prep shouldn't be a luxury. IQKiller is for anyone who builds, learns, and dares to apply."
-                  </p>
+                
+                <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                  I've been through 50+ interviews at companies like Google, Microsoft, and startups. 
+                  I know the frustration of generic prep materials that don't match what you actually get asked. 
+                  That's why IQKiller generates questions tailored to YOUR specific background and the exact role you want.
+                </p>
+                
+                <div className="mb-6">
+                  <p className="text-gray-900 dark:text-white font-medium mb-3">Connect with me:</p>
+                  <div className="flex gap-3">
+                    <Button 
+                      className="bg-blue-600 hover:bg-blue-700 text-white flex-1"
+                      onClick={() => window.open('https://www.linkedin.com/in/avikalp/', '_blank')}
+                    >
+                      <Linkedin className="w-4 h-4 mr-2" />
+                      LinkedIn
+                    </Button>
+                    <Button 
+                      className="bg-gray-800 hover:bg-gray-900 text-white flex-1"
+                      onClick={() => window.open('https://github.com/Avikalp-Karrahe', '_blank')}
+                    >
+                      <Github className="w-4 h-4 mr-2" />
+                      GitHub
+                    </Button>
+                  </div>
                 </div>
               </div>
 
@@ -367,23 +400,26 @@ function InterviewProcessSection({ guide }: { guide: ComprehensiveGuide }) {
   )
 }
 
-function QuestionsSection({ guide }: { guide: ComprehensiveGuide }) {
+function QuestionsSection({ guide, uiLabels }: { 
+  guide: ComprehensiveGuide
+  uiLabels: { technical: string; behavioral: string; systemDesign: string }
+}) {
   return (
     <div className="space-y-6">
       <QuestionCategoryCard 
-        title="Technical Questions" 
+        title={uiLabels.technical}
         questions={guide.questions?.technical || []}
         icon={<Target className="w-5 h-5" />}
         color="blue"
       />
       <QuestionCategoryCard 
-        title="Behavioral Questions" 
+        title={uiLabels.behavioral}
         questions={guide.questions?.behavioral || []}
         icon={<Users className="w-5 h-5" />}
         color="green"
       />
       <QuestionCategoryCard 
-        title="System Design Questions" 
+        title={uiLabels.systemDesign}
         questions={guide.questions?.caseStudy || []}
         icon={<BookOpen className="w-5 h-5" />}
         color="purple"
@@ -957,23 +993,22 @@ function PreparationSection({ guide }: { guide: ComprehensiveGuide }) {
     <div className="space-y-6">
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <CheckCircle className="w-5 h-5" />
-            Preparation Tips
-          </CardTitle>
+          <CardTitle>Preparation Tips</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {(guide.preparation.tips || []).map((tip, idx) => (
-              <div key={idx} className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                  {tip.title}
-                </h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
-                  {tip.description}
-                </p>
-              </div>
-            ))}
+          <div className="space-y-4">
+            {guide.preparation?.tips?.length ? (
+              guide.preparation.tips.map((tip, idx) => (
+                <div key={idx} className="border-l-4 border-blue-500 pl-4 py-2">
+                  <h4 className="font-semibold text-gray-900 dark:text-white mb-1">{tip.title}</h4>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">{tip.description}</p>
+                </div>
+              ))
+            ) : (
+              <p className="text-gray-600 dark:text-gray-300">
+                Preparation tips will be customized based on your specific role and experience.
+              </p>
+            )}
           </div>
         </CardContent>
       </Card>
@@ -984,19 +1019,8 @@ function PreparationSection({ guide }: { guide: ComprehensiveGuide }) {
         </CardHeader>
         <CardContent>
           <ReactMarkdown className="prose prose-sm dark:prose-invert max-w-none">
-            {guide.preparation.studyPlan || 'Study plan will be customized based on your timeline selection.'}
+            {guide.preparation?.studyPlan || 'A personalized study plan will be generated based on your interview timeline and the specific role requirements.'}
           </ReactMarkdown>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Mock Interview Practice</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-gray-700 dark:text-gray-300">
-            Schedule practice sessions with peers or use platforms like Pramp, InterviewBuddy, or LeetCode Mock Interview. Focus on explaining your thought process clearly and handling follow-up questions. Practice presenting your Agentic LLM pipeline for real-time news scraping and financial sentiment classification projects concisely.
-          </p>
         </CardContent>
       </Card>
     </div>
@@ -1008,12 +1032,29 @@ function ResourcesSection({ guide }: { guide: ComprehensiveGuide }) {
     <div className="space-y-6">
       <Card>
         <CardHeader>
-          <CardTitle>Salary Information</CardTitle>
+          <CardTitle>Frequently Asked Questions</CardTitle>
         </CardHeader>
-        <CardContent>
-          <ReactMarkdown className="prose prose-sm dark:prose-invert max-w-none">
-            {guide.faqs.salary}
-          </ReactMarkdown>
+        <CardContent className="space-y-6">
+          <div>
+            <h4 className="font-semibold mb-2">Salary Information</h4>
+            <ReactMarkdown className="prose prose-sm dark:prose-invert max-w-none">
+              {guide.faqs?.salary || 'Salary information will be researched based on the specific role and location.'}
+            </ReactMarkdown>
+          </div>
+          <Separator />
+          <div>
+            <h4 className="font-semibold mb-2">Interview Experiences</h4>
+            <ReactMarkdown className="prose prose-sm dark:prose-invert max-w-none">
+              {guide.faqs?.experiences || 'Interview experiences from similar roles will be compiled.'}
+            </ReactMarkdown>
+          </div>
+          <Separator />
+          <div>
+            <h4 className="font-semibold mb-2">Job Postings</h4>
+            <ReactMarkdown className="prose prose-sm dark:prose-invert max-w-none">
+              {guide.faqs?.jobPostings || 'Related job postings and requirements will be analyzed.'}
+            </ReactMarkdown>
+          </div>
         </CardContent>
       </Card>
 
@@ -1023,39 +1064,31 @@ function ResourcesSection({ guide }: { guide: ComprehensiveGuide }) {
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <h4 className="font-semibold mb-2">Interview Experiences</h4>
-            <ReactMarkdown className="prose prose-sm dark:prose-invert max-w-none">
-              {guide.faqs.experiences}
-            </ReactMarkdown>
-          </div>
-          <Separator />
-          <div>
-            <h4 className="font-semibold mb-2">Job Postings</h4>
-            <ReactMarkdown className="prose prose-sm dark:prose-invert max-w-none">
-              {guide.faqs.jobPostings}
-            </ReactMarkdown>
-          </div>
-          <Separator />
-          <div>
             <h4 className="font-semibold mb-2">Learning Resources</h4>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {Object.entries(guide.conclusion.resources).map(([key, resource]) => (
-                <a
-                  key={key}
-                  href={resource.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="font-medium text-gray-900 dark:text-white">
-                      {resource.title}
-                    </span>
-                    <ExternalLink className="w-4 h-4 text-gray-400" />
-                  </div>
-                </a>
-              ))}
-            </div>
+            {guide.conclusion?.resources ? (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {Object.entries(guide.conclusion.resources).map(([key, resource]) => (
+                  <a
+                    key={key}
+                    href={resource.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium text-gray-900 dark:text-white">
+                        {resource.title}
+                      </span>
+                      <ExternalLink className="w-4 h-4 text-gray-400" />
+                    </div>
+                  </a>
+                ))}
+              </div>
+            ) : (
+              <p className="text-gray-600 dark:text-gray-300">
+                Curated learning resources will be provided based on the role requirements.
+              </p>
+            )}
           </div>
         </CardContent>
       </Card>
@@ -1066,14 +1099,23 @@ function ResourcesSection({ guide }: { guide: ComprehensiveGuide }) {
         </CardHeader>
         <CardContent>
           <p className="text-gray-700 dark:text-gray-300 mb-4">
-            {guide.conclusion.summary}
+            {guide.conclusion?.summary || 'Your personalized interview preparation guide has been tailored to help you succeed in your upcoming interviews.'}
           </p>
-          <div className="bg-blue-50 dark:bg-blue-950/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
-            <p className="text-sm text-blue-800 dark:text-blue-200">
-              💡 Remember: This guide is personalized for your background and experience. 
-              Use it as a foundation, but adapt your preparation based on any new information 
-              about the role or company.
-            </p>
+          
+          <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
+            <div className="flex items-start gap-3">
+              <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5" />
+              <div>
+                <p className="font-medium text-green-800 dark:text-green-200 mb-2">
+                  You're Ready to Excel!
+                </p>
+                <p className="text-sm text-green-700 dark:text-green-300">
+                  With personalized questions, company insights, and strategic preparation tips, 
+                  you have everything needed to make a strong impression. Remember: confidence 
+                  comes from preparation, and you're now well-prepared.
+                </p>
+              </div>
+            </div>
           </div>
         </CardContent>
       </Card>
@@ -1248,14 +1290,14 @@ function CompanyResearchSection({ premiumContent }: { premiumContent?: any }) {
                 <div className="flex items-start gap-4 mb-6">
                   <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0">
                     <img 
-                      src="https://github.com/Avikalp-Karrahe.png?size=96"
+                      src="https://github.com/Avikalp-Karrahe.png?size=256"
                       alt="Avikalp Karrahe"
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <div>
                     <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                      <strong>Avikalp Karrahe</strong> is an AI Engineer and 3x hackathon winner building production-grade AI tools, from crisis intelligence systems to autonomous agents. He's currently helping Coca-Cola reduce dispenser downtime using predictive modeling.
+                      <strong>Avikalp Karrahe</strong> is an AI Engineer and 3x San Francisco Bay Area hackathon winner building production-grade AI tools, from crisis intelligence systems to autonomous agents. He's currently helping Coca-Cola reduce dispenser downtime using predictive modeling.
                     </p>
                   </div>
                 </div>

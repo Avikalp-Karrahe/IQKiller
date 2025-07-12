@@ -1,6 +1,43 @@
 // TypeScript fix version - Thu Jul 10 10:35:30 PDT 2025
 // Premium Coaching Engine for Elite Interview Preparation
-import { type EnhancedResumeData, type JobContext } from './enhanced-question-generator'
+// TypeScript interfaces for premium coaching
+interface EnhancedResumeData {
+  name: string
+  currentRole: string
+  experienceYears: number
+  technicalSkills: {
+    programmingLanguages: string[]
+    frameworks: string[]
+    databases: string[]
+    tools: string[]
+  }
+  projects: Array<{
+    title: string
+    technologies: string[]
+    description?: string
+  }>
+  workExperience?: Array<{
+    company: string
+    role: string
+    duration?: string
+  }>
+  education: {
+    degree: string
+    field: string
+    school?: string
+  }
+  stats: {
+    totalProjects: number
+    totalTechnologies: number
+  }
+}
+
+interface JobContext {
+  role?: string
+  company?: string
+  description?: string
+  level?: 'junior' | 'mid' | 'senior' | 'staff'
+}
 
 export interface PremiumCoachingFeatures {
   smartQuestions: SmartQuestionFramework

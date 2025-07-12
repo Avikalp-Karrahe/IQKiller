@@ -14,198 +14,7 @@ function normalizeCategory(category: string): string {
   return 'technical' // default fallback
 }
 
-// Generate exactly 5 personalized questions for each category (15 total)
-async function generatePersonalizedQuestionsByCategory(resumeData: any, jobData: any, jobContext: any) {
-  try {
-    console.log('🎯 === GENERATING 5 QUESTIONS PER CATEGORY ===')
-    
-    // Generate Technical Questions (5)
-    const technicalPrompt = `You are conducting a technical interview for a ${jobContext.role} position at ${jobContext.company}. 
-
-Generate exactly 5 personalized technical questions based on the candidate's specific background.
-
-CANDIDATE'S TECHNICAL BACKGROUND:
-- Name: ${resumeData.name}
-- Experience: ${resumeData.experienceYears} years
-- Programming Languages: ${resumeData.technicalSkills.programmingLanguages.join(', ')}
-- Frameworks: ${resumeData.technicalSkills.frameworks.join(', ')}
-- Databases: ${resumeData.technicalSkills.databases.join(', ')}
-- Tools: ${resumeData.technicalSkills.tools.join(', ')}
-- Key Projects: ${resumeData.projects.map((p: any) => `${p.title} (${p.technologies.join(', ')})`).join('; ')}
-
-JOB REQUIREMENTS:
-- Role: ${jobContext.role}
-- Required Skills: ${jobData.skills ? jobData.skills.join(', ') : 'General development'}
-- Experience Level: ${jobData.experienceLevel || 'Mid-level'}
-
-Generate 5 technical questions that:
-1. Reference their specific technologies and projects
-2. Test problem-solving abilities relevant to the role
-3. Are appropriate for ${resumeData.experienceYears} years of experience
-4. Feel conversational and personal
-
-Examples:
-- "I see you used ${resumeData.technicalSkills.programmingLanguages[0]} in your ${resumeData.projects[0]?.title} project. Can you walk me through..."
-- "Your experience with ${resumeData.technicalSkills.frameworks[0]} is interesting. How would you..."
-
-Return JSON format: {"questions": [{"question": "...", "reasoning": "..."}]}`
-
-    const behavioralPrompt = `You are conducting a behavioral interview for a ${jobContext.role} position at ${jobContext.company}.
-
-Generate exactly 5 personalized behavioral questions based on the candidate's specific experiences.
-
-CANDIDATE'S BACKGROUND:
-- Name: ${resumeData.name}
-- Current Role: ${resumeData.currentRole}
-- Experience: ${resumeData.experienceYears} years
-- Education: ${resumeData.education.degree} in ${resumeData.education.field}
-- Achievements: ${resumeData.achievements.map((a: { description: string }) => a.description).join('; ')}
-- Projects: ${resumeData.projects.map((p: { title: string }) => p.title).join(', ')}
-
-Generate 5 behavioral questions that:
-1. Reference their specific achievements and experiences
-2. Use STAR method (Situation, Task, Action, Result)
-3. Are relevant to ${jobContext.role} responsibilities
-4. Feel personal and specific to their background
-
-Examples:
-- "You mentioned ${resumeData.achievements[0]?.description}. Can you tell me about a time when..."
-- "In your role as ${resumeData.currentRole}, describe a challenging situation where..."
-
-Return JSON format: {"questions": [{"question": "...", "reasoning": "..."}]}`
-
-    const systemDesignPrompt = `You are conducting a system design interview for a ${jobContext.role} position at ${jobContext.company}.
-
-Generate exactly 5 system design questions appropriate for someone with ${resumeData.experienceYears} years of experience.
-
-CANDIDATE'S BACKGROUND:
-- Experience Level: ${resumeData.experienceYears} years
-- Technical Skills: ${resumeData.technicalSkills.programmingLanguages.join(', ')}
-- System Experience: ${resumeData.technicalSkills.frameworks.join(', ')}
-- Database Knowledge: ${resumeData.technicalSkills.databases.join(', ')}
-- Project Scale: ${resumeData.projects.map((p: { title: string }) => p.title).join(', ')}
-
-Generate 5 system design questions that:
-1. Are appropriate for ${resumeData.experienceYears <= 2 ? 'junior' : resumeData.experienceYears <= 5 ? 'mid' : 'senior'} level
-2. Reference technologies they've worked with
-3. Are relevant to ${jobContext.role} responsibilities
-4. Scale appropriately with their experience
-
-For ${resumeData.experienceYears <= 2 ? 'junior' : 'experienced'} candidates:
-${resumeData.experienceYears <= 2 ? 
-  '- Focus on basic architecture concepts and simple system design' : 
-  '- Include scalability, performance, and complex distributed systems'}
-
-Return JSON format: {"questions": [{"question": "...", "reasoning": "..."}]}`
-
-    // Make parallel API calls for all three categories
-    const [technicalResponse, behavioralResponse, systemDesignResponse] = await Promise.all([
-      openai.chat.completions.create({
-        model: 'gpt-4o-mini-2024-07-18',
-        messages: [
-          { role: 'system', content: 'You are an expert technical interviewer. Generate exactly 5 personalized questions in JSON format.' },
-          { role: 'user', content: technicalPrompt }
-        ],
-        response_format: { type: 'json_object' },
-        max_tokens: 1000
-      }),
-      openai.chat.completions.create({
-        model: 'gpt-4o-mini-2024-07-18',
-        messages: [
-          { role: 'system', content: 'You are an expert behavioral interviewer. Generate exactly 5 personalized questions in JSON format.' },
-          { role: 'user', content: behavioralPrompt }
-        ],
-        response_format: { type: 'json_object' },
-        max_tokens: 1000
-      }),
-      openai.chat.completions.create({
-        model: 'gpt-4o-mini-2024-07-18',
-        messages: [
-          { role: 'system', content: 'You are an expert system design interviewer. Generate exactly 5 personalized questions in JSON format.' },
-          { role: 'user', content: systemDesignPrompt }
-        ],
-        response_format: { type: 'json_object' },
-        max_tokens: 1000
-      })
-    ])
-
-    // Parse responses
-    const technicalQuestions = JSON.parse(technicalResponse.choices[0].message.content || '{"questions": []}').questions || []
-    const behavioralQuestions = JSON.parse(behavioralResponse.choices[0].message.content || '{"questions": []}').questions || []
-    const systemDesignQuestions = JSON.parse(systemDesignResponse.choices[0].message.content || '{"questions": []}').questions || []
-
-    // Combine with normalized categories and transform to match UI interface
-    const allQuestions = [
-      ...technicalQuestions.map((q: any, idx: number) => ({ 
-        idx: idx + 1,
-        title: q.question,
-        summaries: q.reasoning || 'Personalized question based on your background',
-        type: 'technical',
-        category: 'technical',
-        difficulty: (resumeData.experienceYears <= 2 ? 'junior' : resumeData.experienceYears <= 5 ? 'mid' : 'senior') as 'junior' | 'mid' | 'senior',
-        link: '',
-        isPersonalized: true,
-        approach: `Focus on demonstrating your practical experience with ${resumeData.technicalSkills.programmingLanguages.slice(0, 2).join(' and ')}.`,
-        relevance: `This question is tailored to your ${resumeData.experienceYears} years of experience and technical background.`,
-        followUps: [
-          'Can you walk me through your thought process?',
-          'How would you optimize this solution?',
-          'What alternative approaches did you consider?'
-        ]
-      })),
-      ...behavioralQuestions.map((q: any, idx: number) => ({ 
-        idx: idx + 1,
-        title: q.question,
-        summaries: q.reasoning || 'Behavioral question based on your specific experiences',
-        type: 'behavioral',
-        category: 'behavioral',
-        difficulty: (resumeData.experienceYears <= 2 ? 'junior' : resumeData.experienceYears <= 5 ? 'mid' : 'senior') as 'junior' | 'mid' | 'senior',
-        link: '',
-        isPersonalized: true,
-        approach: 'Use the STAR method (Situation, Task, Action, Result) to structure your response.',
-        relevance: `This question references your specific achievements and project experience.`,
-        followUps: [
-          'What would you do differently next time?',
-          'How did you measure success?',
-          'What did you learn from this experience?'
-        ]
-      })),
-      ...systemDesignQuestions.map((q: any, idx: number) => ({ 
-        idx: idx + 1,
-        title: q.question,
-        summaries: q.reasoning || 'System design question appropriate for your experience level',
-        type: 'system-design',
-        category: 'system-design',
-        difficulty: (resumeData.experienceYears <= 2 ? 'junior' : resumeData.experienceYears <= 5 ? 'mid' : 'senior') as 'junior' | 'mid' | 'senior',
-        link: '',
-        isPersonalized: true,
-        approach: `Start with high-level architecture, then dive into components. Consider scalability appropriate for ${resumeData.experienceYears <= 2 ? 'early-career' : 'experienced'} level.`,
-        relevance: `Scaled to your ${resumeData.experienceYears} years of experience and technical background.`,
-        followUps: [
-          'How would you handle increased load?',
-          'What are the potential failure points?',
-          'How would you monitor this system?'
-        ]
-      }))
-    ]
-
-    console.log(`✅ Generated ${allQuestions.length} personalized questions:`)
-    console.log(`   • Technical: ${technicalQuestions.length}`)
-    console.log(`   • Behavioral: ${behavioralQuestions.length}`)
-    console.log(`   • System Design: ${systemDesignQuestions.length}`)
-
-    return allQuestions
-
-  } catch (error) {
-    console.error('❌ Personalized question generation failed:', error)
-    // Fallback to ensure we always have some questions
-    return [
-      { category: 'technical', question: 'Tell me about your experience with the technologies listed on your resume.', reasoning: 'Fallback question', isPersonalized: false },
-      { category: 'behavioral', question: 'Describe a challenging project you worked on and how you overcame obstacles.', reasoning: 'Fallback question', isPersonalized: false },
-      { category: 'system-design', question: 'How would you design a simple web application architecture?', reasoning: 'Fallback question', isPersonalized: false }
-    ]
-  }
-}
+// Old function removed - now using dynamic role-based question generation
 
 // Enhanced job matching using AI with scraped structured data
 async function generateEnhancedJobMatch(resumeData: any, jobData: any, jobDescription: string) {
@@ -430,11 +239,11 @@ export async function POST(req: NextRequest) {
       }
     })
 
-    // Generate exactly 5 personalized questions per category (15 total)
-    const combinedQuestions = await generatePersonalizedQuestionsByCategory(resumeData, jobData, jobContext)
+    // Generate dynamic role-specific questions using the new system
+    const combinedQuestions = await generateEnhancedQuestions(enhancedResumeData, jobContext)
     
-    console.log(`✅ Enhanced question generation complete: ${combinedQuestions.length} questions across ${new Set(combinedQuestions.map((q: any) => q.category)).size} categories`)
-    console.log(`📊 Question breakdown: Technical: ${combinedQuestions.filter((q: any) => q.category === 'technical').length}, Behavioral: ${combinedQuestions.filter((q: any) => q.category === 'behavioral').length}, System Design: ${combinedQuestions.filter((q: any) => q.category === 'system-design').length}`)
+    console.log(`✅ Enhanced question generation complete: ${combinedQuestions.length} questions across ${new Set(combinedQuestions.map((q: any) => q.type)).size} categories`)
+    console.log(`📊 Question breakdown: Technical: ${combinedQuestions.filter((q: any) => q.type === 'technical').length}, Behavioral: ${combinedQuestions.filter((q: any) => q.type === 'behavioral').length}, System Design: ${combinedQuestions.filter((q: any) => q.type === 'system-design').length}`)
     console.log(`🎯 Role detected: ${jobContext.role} (${jobContext.level} level)`)
     console.log(`💡 Questions personalized with: Resume-specific details and ${resumeData.technicalSkills.programmingLanguages.slice(0, 2).join(', ')} experience`)
 
@@ -473,6 +282,13 @@ export async function POST(req: NextRequest) {
       jobType: jobData.jobType || 'Full-time',
       experienceLevel: jobData.experienceLevel || (resumeData.experienceYears <= 2 ? 'Entry Level' : resumeData.experienceYears <= 5 ? 'Mid Level' : 'Senior Level'),
       matchScore: `${matchData.overallMatch}%`,
+      
+      // Add role context for dynamic UI labeling
+      roleContext: {
+        title: jobData.title || jobData.role || 'Software Engineer',
+        company: jobData.company || 'Target Company',
+        description: jobData.content || body.jobDescription || ''
+      },
       
       introduction: {
         roleOverview: `This ${jobData.title || jobData.role || 'role'} position at ${jobData.company || 'the company'}${jobData.location ? ` in ${jobData.location}` : ''} aligns well with your ${resumeData.experienceDescription}. With ${resumeData.experienceYears} years of experience in ${resumeData.technicalSkills.programmingLanguages.slice(0, 2).join(' and ')}, you bring valuable technical expertise to this ${jobData.experienceLevel || jobData.jobType || 'opportunity'}.`,
@@ -533,10 +349,10 @@ export async function POST(req: NextRequest) {
       },
       
       questions: {
-        technical: combinedQuestions.filter((q: any) => q.category === 'technical'),
-        behavioral: combinedQuestions.filter((q: any) => q.category === 'behavioral'),
-        caseStudy: combinedQuestions.filter((q: any) => q.category === 'system-design'), // UI expects caseStudy, not systemDesign
-        systemDesign: combinedQuestions.filter((q: any) => q.category === 'system-design') // Keep both for compatibility
+        technical: combinedQuestions.filter((q: any) => q.type === 'technical'),
+        behavioral: combinedQuestions.filter((q: any) => q.type === 'behavioral'),
+        caseStudy: combinedQuestions.filter((q: any) => q.type === 'system-design'), // UI expects caseStudy, not systemDesign
+        systemDesign: combinedQuestions.filter((q: any) => q.type === 'system-design') // Keep both for compatibility
       },
       
       preparation: {

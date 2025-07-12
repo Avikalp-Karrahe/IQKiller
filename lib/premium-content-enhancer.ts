@@ -1,5 +1,5 @@
 // Premium Content Enhancement Engine for Professional-Grade Interview Preparation
-import { type EnhancedResumeData, type JobContext } from './enhanced-question-generator'
+import { type EnhancedResumeData, type JobContext, getRoleFamily } from './enhanced-question-generator'
 
 export interface PremiumPreparationPlan {
   timelineOptions: {
@@ -143,7 +143,7 @@ export function generatePremiumContent(
   const experienceLevel = resumeData.experienceYears <= 2 ? 'junior' : 
                          resumeData.experienceYears <= 5 ? 'mid' : 'senior'
   
-  const roleCategory = getRoleCategory(jobContext.role || resumeData.currentRole)
+  const roleCategory = getRoleFamily(jobContext.role || resumeData.currentRole, jobContext.description)
   
   return {
     timelineOptions: generatePreparationTimelines(resumeData, jobContext, experienceLevel, roleCategory),
@@ -1004,19 +1004,7 @@ function generateDayOfPreparation(
   }
 }
 
-function getRoleCategory(role: string): string {
-  const roleStr = role.toLowerCase()
-  if (roleStr.includes('data scientist') || roleStr.includes('machine learning') || roleStr.includes('ml engineer')) {
-    return 'data-scientist'
-  }
-  if (roleStr.includes('software engineer') || roleStr.includes('developer') || roleStr.includes('backend') || roleStr.includes('frontend')) {
-    return 'software-engineer'
-  }
-  if (roleStr.includes('product manager') || roleStr.includes('product owner')) {
-    return 'product-manager'
-  }
-  return 'technical'
-}
+
 
 // Legacy exports for backward compatibility
 export interface PremiumContent {
