@@ -384,7 +384,7 @@ export default function IQKillerMainPage() {
           <div className="flex items-center justify-center gap-8 text-gray-500 dark:text-gray-400 mb-12">
             <div className="flex items-center gap-2">
               <FileText className="w-5 h-5" />
-              <span className="text-sm">PDF Analysis</span>
+                              <span className="text-sm">Resume Analysis</span>
             </div>
             <div className="flex items-center gap-2">
               <Globe className="w-5 h-5" />
@@ -414,7 +414,7 @@ export default function IQKillerMainPage() {
                   </div>
                   <div className="flex-1">
                     <div className="font-semibold tracking-tight text-xl">Upload Your Resume</div>
-                    <div className="text-sm text-muted-foreground">PDF analysis with AI-powered skills extraction</div>
+                    <div className="text-sm text-muted-foreground">Resume analysis with AI-powered skills extraction</div>
                   </div>
                   {/* Resume Analysis Status */}
                   <div className="flex items-center gap-2">
