@@ -2,7 +2,7 @@
 
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
-import { Sun, Moon, Star, ExternalLink } from 'lucide-react'
+import { Sun, Moon, Star, ExternalLink, Github } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export function HeaderControls() {
@@ -21,82 +21,89 @@ export function HeaderControls() {
       const response = await fetch('https://api.github.com/repos/Avikalp-Karrahe/IQKiller')
       const data = await response.json()
       const stars = data.stargazers_count
-      setStarCount(stars >= 1000 ? `${(stars / 1000).toFixed(1)}k` : stars.toString())
+      setStarCount(stars > 1000 ? `${(stars / 1000).toFixed(1)}k` : stars.toString())
     } catch (error) {
-      console.log('Failed to fetch GitHub stars:', error)
-      // Keep default value
+      console.error('Error fetching GitHub stars:', error)
     }
   }
 
-  if (!mounted) {
-    return (
-      <div className="flex items-center gap-3">
-        <div className="w-20 h-8 bg-gray-200 dark:bg-gray-700 rounded-full animate-pulse" />
-        <div className="w-12 h-6 bg-gray-200 dark:bg-gray-700 rounded-full animate-pulse" />
-      </div>
-    )
-  }
-
-  const isDark = theme === 'dark'
+  if (!mounted) return null
 
   return (
     <div className="flex items-center gap-3">
       {/* GitHub Star Badge */}
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={() => window.open('https://github.com/Avikalp-Karrahe/IQKiller', '_blank')}
-        className="flex items-center gap-2 px-3 py-1.5 h-8 bg-black text-white border-gray-600 hover:bg-gray-800 dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-800 transition-all duration-200 hover:scale-105 hover:shadow-lg group"
+      <a
+        href="https://github.com/Avikalp-Karrahe/IQKiller"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group relative overflow-hidden px-3 py-2 h-10 
+                   bg-gradient-to-r from-gray-900 to-black hover:from-gray-800 hover:to-gray-900
+                   dark:from-gray-800 dark:to-gray-900 dark:hover:from-gray-700 dark:hover:to-gray-800
+                   text-white rounded-full shadow-lg hover:shadow-xl 
+                   transition-all duration-300 ease-in-out hover:scale-105
+                   border border-gray-700/50 dark:border-gray-600/50"
       >
-        <Star className="w-3.5 h-3.5 fill-current" />
-        <span className="text-xs font-medium">{starCount}</span>
-        <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-      </Button>
+        {/* Shimmer effect */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent 
+                        transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"></div>
+        
+        <div className="relative flex items-center gap-1.5 z-10">
+          <Github className="w-4 h-4 text-white group-hover:text-gray-200 transition-colors duration-300" />
+          <Star className="w-4 h-4 fill-current text-yellow-400 group-hover:text-yellow-300 transition-colors duration-300 group-hover:rotate-12" />
+          <span className="text-sm font-bold tracking-wide text-white">{starCount}</span>
+          <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1" />
+        </div>
+      </a>
 
-      {/* Enhanced Theme Toggle */}
-      <Button
-        variant="ghost"
-        size="sm"
-        onClick={() => setTheme(isDark ? 'light' : 'dark')}
-        className="relative w-14 h-7 p-0 rounded-full border-2 border-gray-300 dark:border-gray-600 bg-gradient-to-r from-blue-400 to-blue-600 dark:from-purple-600 dark:to-indigo-700 transition-all duration-500 hover:scale-105 hover:shadow-xl overflow-hidden group"
+      {/* Theme Toggle */}
+      <button
+        onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+        className="group relative w-20 h-10 rounded-full p-1 
+                   bg-gradient-to-r from-amber-400 to-orange-500 
+                   dark:from-indigo-500 dark:to-purple-600
+                   hover:from-amber-300 hover:to-orange-400 
+                   dark:hover:from-indigo-400 dark:hover:to-purple-500
+                   shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out hover:scale-105
+                   border-2 border-white/20 dark:border-white/10"
         aria-label="Toggle theme"
       >
-        {/* Background gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-yellow-300 via-orange-400 to-pink-400 dark:from-indigo-900 dark:via-purple-800 dark:to-blue-900 transition-opacity duration-500" />
+        {/* Animated background glow */}
+        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400/50 to-orange-500/50 
+                        dark:from-indigo-500/50 dark:to-purple-600/50 blur-lg opacity-0 group-hover:opacity-100 
+                        transition-opacity duration-300"></div>
         
         {/* Sliding circle */}
-        <div
-          className={`absolute top-0.5 w-6 h-6 bg-white dark:bg-gray-800 rounded-full shadow-xl transform transition-all duration-500 ease-in-out flex items-center justify-center border border-gray-200 dark:border-gray-600 ${
-            isDark ? 'translate-x-7' : 'translate-x-0.5'
-          }`}
-        >
-          {/* Icons with fade transition */}
-          <div className="relative w-3.5 h-3.5">
-            <Sun
-              className={`absolute inset-0 w-3.5 h-3.5 text-yellow-500 transition-all duration-300 ${
-                isDark ? 'opacity-0 rotate-180 scale-0' : 'opacity-100 rotate-0 scale-100'
-              }`}
-            />
-            <Moon
-              className={`absolute inset-0 w-3.5 h-3.5 text-blue-600 transition-all duration-300 ${
-                isDark ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-180 scale-0'
-              }`}
-            />
+        <div className={`relative w-8 h-8 rounded-full shadow-lg transform transition-all duration-300 ease-in-out
+                        ${theme === 'light' ? 'translate-x-0' : 'translate-x-10'}
+                        bg-white dark:bg-gray-800 border-2 border-white/30 dark:border-gray-600/30
+                        group-hover:scale-110 group-hover:shadow-xl`}>
+          
+          {/* Light mode decorations */}
+          <div className={`absolute inset-0 flex items-center justify-center transition-all duration-300
+                          ${theme === 'light' ? 'opacity-100 rotate-0' : 'opacity-0 -rotate-180'}`}>
+            <Sun className="w-4 h-4 text-amber-600 group-hover:rotate-12 transition-transform duration-300" />
+            {/* Light rays */}
+            <div className="absolute inset-0 rounded-full">
+              <div className="absolute top-0 left-1/2 w-0.5 h-1 bg-amber-400 rounded-full transform -translate-x-1/2 -translate-y-1"></div>
+              <div className="absolute bottom-0 left-1/2 w-0.5 h-1 bg-amber-400 rounded-full transform -translate-x-1/2 translate-y-1"></div>
+              <div className="absolute left-0 top-1/2 w-1 h-0.5 bg-amber-400 rounded-full transform -translate-y-1/2 -translate-x-1"></div>
+              <div className="absolute right-0 top-1/2 w-1 h-0.5 bg-amber-400 rounded-full transform -translate-y-1/2 translate-x-1"></div>
+            </div>
+          </div>
+          
+          {/* Dark mode decorations */}
+          <div className={`absolute inset-0 flex items-center justify-center transition-all duration-300
+                          ${theme === 'dark' ? 'opacity-100 rotate-0' : 'opacity-0 rotate-180'}`}>
+            <Moon className="w-4 h-4 text-indigo-400 group-hover:-rotate-12 transition-transform duration-300" />
+            {/* Stars */}
+            <div className="absolute inset-0 rounded-full">
+              <div className="absolute top-1 right-1 w-1 h-1 bg-purple-300 rounded-full"></div>
+              <div className="absolute bottom-1 left-1 w-0.5 h-0.5 bg-indigo-300 rounded-full"></div>
+              <div className="absolute top-2 left-2 w-0.5 h-0.5 bg-purple-400 rounded-full"></div>
+            </div>
           </div>
         </div>
-        
-        {/* Enhanced glowing effect */}
-        <div
-          className={`absolute inset-0 rounded-full transition-all duration-500 ${
-            isDark
-              ? 'shadow-[inset_0_0_15px_rgba(99,102,241,0.5),0_0_20px_rgba(99,102,241,0.3)] bg-gradient-to-r from-indigo-500/20 to-purple-600/20'
-              : 'shadow-[inset_0_0_15px_rgba(251,191,36,0.5),0_0_20px_rgba(251,191,36,0.3)] bg-gradient-to-r from-yellow-400/20 to-orange-500/20'
-          }`}
-        />
-
-        {/* Shine effect on hover */}
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
-      </Button>
+      </button>
     </div>
   )
 } 
