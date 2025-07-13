@@ -1,5 +1,6 @@
 import { NextRequest } from 'next/server'
 import { parseResumeWithEnhancedAI } from '../../../lib/enhanced-resume-parser'
+import { track } from '@vercel/analytics/server'
 
 export async function POST(req: NextRequest) {
   console.log('🚀 === IMMEDIATE RESUME ANALYSIS: Starting ===')
@@ -12,6 +13,10 @@ export async function POST(req: NextRequest) {
     })
     
     if (!body.resumeText) {
+      await track('Resume Analysis Failed', {
+        error: 'No resume text provided',
+        source: 'server'
+      })
       return Response.json({ error: 'Resume text is required' }, { status: 400 });
     }
 
@@ -22,17 +27,36 @@ export async function POST(req: NextRequest) {
     const resumeData = await parseResumeWithEnhancedAI(body.resumeText);
     
     const endTime = Date.now()
-    console.log(`✅ Resume analysis complete in ${endTime - startTime}ms:`, resumeData.name, resumeData.currentRole)
+    const processingTime = endTime - startTime
+    console.log(`✅ Resume analysis complete in ${processingTime}ms:`, resumeData.name, resumeData.currentRole)
+
+    // Track successful resume analysis
+    await track('Resume Analysis Server Success', {
+      candidateName: resumeData.name || 'Unknown',
+      currentRole: resumeData.currentRole || 'Unknown',
+      experienceYears: resumeData.experienceYears || 0,
+      processingTimeMs: processingTime,
+      contentLength: body.resumeText.length,
+      skillsCount: Object.values(resumeData.technicalSkills || {}).flat().length,
+      projectsCount: (resumeData.projects || []).length
+    })
 
     return Response.json({
       success: true,
       resumeData,
-      processingTime: endTime - startTime,
+      processingTime: processingTime,
       message: 'Resume analysis completed successfully'
     });
 
   } catch (error) {
     console.error('❌ === RESUME ANALYSIS ERROR ===', error)
+    
+    // Track failed resume analysis
+    await track('Resume Analysis Server Error', {
+      error: (error as any)?.message || 'Unknown error',
+      source: 'server'
+    })
+    
     return Response.json({
       error: 'Resume analysis failed',
       details: (error as any)?.message || 'Unknown error'

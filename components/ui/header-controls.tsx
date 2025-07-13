@@ -4,6 +4,7 @@ import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 import { Sun, Moon, Star, ExternalLink, Github } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { track } from '@vercel/analytics'
 
 export function HeaderControls() {
   const { theme, setTheme } = useTheme()
@@ -27,6 +28,26 @@ export function HeaderControls() {
     }
   }
 
+  const handleGitHubClick = () => {
+    // Track GitHub star button click
+    track('GitHub Star Button Clicked', {
+      starCount: starCount,
+      currentTheme: theme || 'unknown'
+    })
+  }
+
+  const handleThemeToggle = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light'
+    
+    // Track theme toggle
+    track('Theme Toggle', {
+      fromTheme: theme || 'unknown',
+      toTheme: newTheme
+    })
+    
+    setTheme(newTheme)
+  }
+
   if (!mounted) return null
 
   return (
@@ -36,6 +57,7 @@ export function HeaderControls() {
         href="https://github.com/Avikalp-Karrahe/IQKiller"
         target="_blank"
         rel="noopener noreferrer"
+        onClick={handleGitHubClick}
         className="group relative overflow-hidden px-3 py-2 h-10 
                    bg-gradient-to-r from-gray-900 to-black hover:from-gray-800 hover:to-gray-900
                    dark:from-gray-800 dark:to-gray-900 dark:hover:from-gray-700 dark:hover:to-gray-800
@@ -57,7 +79,7 @@ export function HeaderControls() {
 
       {/* Theme Toggle */}
       <button
-        onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+        onClick={handleThemeToggle}
         className="group relative w-20 h-10 rounded-full p-1 
                    bg-gradient-to-r from-amber-400 to-orange-500 
                    dark:from-indigo-500 dark:to-purple-600

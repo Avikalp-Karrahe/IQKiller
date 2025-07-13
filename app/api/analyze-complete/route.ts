@@ -4,6 +4,7 @@ import { generateEnhancedQuestions, type EnhancedResumeData, type JobContext } f
 import { generatePremiumContent, type PremiumPreparationPlan } from '../../../lib/premium-content-enhancer'
 import { generatePremiumCoaching, type PremiumCoachingFeatures } from '../../../lib/premium-coaching-engine'
 import { openai } from '@/lib/openai'
+import { track } from '@vercel/analytics/server'
 
 // Helper function to normalize question categories
 function normalizeCategory(category: string): string {
@@ -444,6 +445,21 @@ export async function POST(req: NextRequest) {
 
     console.log(`🎉 === ANALYSIS COMPLETE in ${totalTime}ms ===`)
 
+    // Track successful comprehensive analysis completion
+    await track('Comprehensive Analysis Completed', {
+      candidateName: resumeData.name || 'Unknown',
+      targetRole: jobData.role || jobData.title || 'Unknown',
+      targetCompany: jobData.company || 'Unknown',
+      overallMatch: matchData.overallMatch || 0,
+      questionsGenerated: combinedQuestions.length || 0,
+      experienceYears: resumeData.experienceYears || 0,
+      processingTimeMs: totalTime,
+      hasResumeData: !!resumeData,
+      hasJobData: !!jobData,
+      hasPremiumContent: !!premiumContent,
+      questionCategories: [...new Set(combinedQuestions.map((q: any) => q.category))].join(',') || 'none'
+    })
+
     return Response.json({
       success: true,
       processingTime: totalTime,
@@ -472,6 +488,15 @@ export async function POST(req: NextRequest) {
 
   } catch (error) {
     console.error('❌ === COMPLETE ANALYSIS ERROR ===', error)
+    
+    // Track failed comprehensive analysis
+    await track('Comprehensive Analysis Failed', {
+      error: (error as any)?.message || 'Unknown error',
+      timestamp: new Date().toISOString(),
+      hasResumeText: !!(req as any).resumeText,
+      hasJobData: !!(req as any).jobData
+    })
+    
     return Response.json({
       error: 'Analysis failed',
       details: (error as any)?.message || 'Unknown error',

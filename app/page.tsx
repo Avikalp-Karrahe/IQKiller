@@ -9,6 +9,7 @@ import { Upload, FileText, Globe, Sparkles, Target, Brain, Trophy, Users, CheckC
 import StreamingAnalysis from '@/components/streaming-analysis'
 import { FileUpload } from '@/components/file-upload'
 import { JobAnalysis } from '@/components/job-analysis'
+import { track } from '@vercel/analytics'
 
 
 // Countdown Timer Component
@@ -185,6 +186,13 @@ export default function IQKillerMainPage() {
 
   // Handle resume upload and immediately start analysis
   const handleResumeUpload = async (text: string) => {
+    // Track resume upload event
+    track('Resume Upload', {
+      hasContent: text.length > 0,
+      contentLength: text.length,
+      source: 'file_upload'
+    })
+    
     setResumeText(text)
     
     // Start resume analysis immediately
@@ -200,16 +208,32 @@ export default function IQKillerMainPage() {
         })
 
         if (!response.ok) {
+          // Track failed resume analysis
+          track('Resume Analysis Failed', {
+            error: response.statusText,
+            contentLength: text.length
+          })
           throw new Error(`Resume analysis failed: ${response.statusText}`)
         }
 
         const data = await response.json()
         console.log('✅ Resume analysis completed:', data)
         
+        // Track successful resume analysis
+        track('Resume Analysis Completed', {
+          name: data.resumeData?.name || 'Unknown',
+          experienceYears: data.resumeData?.experienceYears || 0,
+          contentLength: text.length
+        })
+        
         setResumeAnalysisData(data.resumeData)
         setResumeAnalysisStatus('completed')
       } catch (error) {
         console.error('❌ Resume analysis failed:', error)
+        track('Resume Analysis Error', {
+          error: error instanceof Error ? error.message : 'Unknown error',
+          contentLength: text.length
+        })
         setResumeAnalysisStatus('error')
       }
     }
@@ -217,6 +241,14 @@ export default function IQKillerMainPage() {
 
   // Handle job data and immediately start job analysis
   const handleJobData = async (data: any) => {
+    // Track job analysis initiation
+    track('Job Analysis Started', {
+      hasUrl: !!data.url,
+      hasDescription: !!data.description,
+      source: data.url ? 'url' : 'manual_input',
+      contentLength: data.description?.length || 0
+    })
+    
     setJobData(data)
     
     // Start job analysis immediately if we have meaningful job data
@@ -232,16 +264,32 @@ export default function IQKillerMainPage() {
         })
 
         if (!response.ok) {
+          // Track failed job analysis
+          track('Job Analysis Failed', {
+            error: response.statusText,
+            source: data.url ? 'url' : 'manual_input'
+          })
           throw new Error(`Job analysis failed: ${response.statusText}`)
         }
 
         const analysisData = await response.json()
         console.log('✅ Job analysis completed:', analysisData)
         
+        // Track successful job analysis
+        track('Job Analysis Completed', {
+          title: analysisData.jobAnalysis?.title || 'Unknown',
+          company: analysisData.jobAnalysis?.company || 'Unknown',
+          source: data.url ? 'url' : 'manual_input'
+        })
+        
         setJobAnalysisData(analysisData.jobAnalysis)
         setJobAnalysisStatus('completed')
       } catch (error) {
         console.error('❌ Job analysis failed:', error)
+        track('Job Analysis Error', {
+          error: error instanceof Error ? error.message : 'Unknown error',
+          source: data.url ? 'url' : 'manual_input'
+        })
         setJobAnalysisStatus('error')
       }
     }
@@ -250,9 +298,20 @@ export default function IQKillerMainPage() {
   const handleStartAnalysis = () => {
     if (!resumeText.trim() || !jobData) return
     
+    // Track interview guide generation
+    track('Interview Guide Generation Started', {
+      hasPrecomputedResults: comprehensiveAnalysisReady && !!comprehensiveAnalysisData,
+      resumeLength: resumeText.length,
+      jobTitle: jobData.title || 'Unknown'
+    })
+    
     // If comprehensive analysis is already complete, show results immediately
     if (comprehensiveAnalysisReady && comprehensiveAnalysisData) {
       console.log('🚀 Using pre-computed comprehensive analysis results!')
+      track('Interview Guide Displayed', {
+        source: 'precomputed',
+        jobTitle: jobData.title || 'Unknown'
+      })
       setShowAnalysis(true)
       setAnalysisComplete(true)
     } else {
