@@ -106,7 +106,8 @@ RESPONSIBILITIES:
           {/* Header */}
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              IQKiller Streaming Demo
+              <span className="text-slate-800 dark:text-slate-200">IQ</span>
+              <span className="text-blue-600 dark:text-blue-400">Killer</span> Streaming Demo
             </h1>
             <p className="text-xl text-gray-600 mb-6">
               Experience real-time AI analysis that breaks through Vercel&apos;s 10-second limit

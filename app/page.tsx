@@ -333,7 +333,8 @@ export default function IQKillerMainPage() {
               ← Start New Analysis
             </Button>
             <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-50 mb-2">
-              IQKiller Analysis
+              <span className="text-slate-800 dark:text-slate-200">IQ</span>
+              <span className="text-blue-600 dark:text-blue-400">Killer</span> Analysis
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-300">
               Real-time AI-powered interview preparation
@@ -362,7 +363,8 @@ export default function IQKillerMainPage() {
               AI-Powered Interview Preparation
             </div>
             <h1 className="text-6xl font-bold text-gray-900 dark:text-gray-50 mb-6">
-              IQKiller
+              <span className="text-slate-800 dark:text-slate-200">IQ</span>
+              <span className="text-blue-600 dark:text-blue-400">Killer</span>
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
               Upload your resume, analyze job postings, and get personalized interview questions, salary negotiation strategies, and real-time preparation insights powered by AI.
