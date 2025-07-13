@@ -4,6 +4,7 @@ import { Toaster } from "sonner";
 import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "next-themes";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -46,6 +47,7 @@ export default function RootLayout({
             </div>
           </main>
         </ThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
