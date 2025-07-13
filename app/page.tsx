@@ -11,6 +11,26 @@ import { FileUpload } from '@/components/file-upload'
 import { JobAnalysis } from '@/components/job-analysis'
 import { track } from '@vercel/analytics'
 
+// Feature flags for IQKiller
+const FEATURE_FLAGS = {
+  PREMIUM_FEATURES_ENABLED: 'premium-features-enabled',
+  AI_MODEL_VERSION: 'ai-model-version',
+  QUESTION_GENERATION_V2: 'question-generation-v2',
+  CUSTOM_COMPANY_RESEARCH: 'custom-company-research',
+  ADVANCED_RESUME_PARSING: 'advanced-resume-parsing'
+}
+
+// Emit feature flags to DOM for Web Analytics
+const emitFeatureFlags = () => {
+  if (typeof window !== 'undefined') {
+    // Set feature flags as data attributes on the body
+    document.body.setAttribute('data-flag-premium-features-enabled', 'true')
+    document.body.setAttribute('data-flag-ai-model-version', 'gpt-4')
+    document.body.setAttribute('data-flag-question-generation-v2', 'true')
+    document.body.setAttribute('data-flag-custom-company-research', 'true')
+    document.body.setAttribute('data-flag-advanced-resume-parsing', 'true')
+  }
+}
 
 // Countdown Timer Component
 function CountdownTimer({ targetDate, title, isHovered }: { targetDate: Date; title: string; isHovered: boolean }) {
@@ -184,13 +204,24 @@ export default function IQKillerMainPage() {
   const [card2Hovered, setCard2Hovered] = useState(false)
   const [card3Hovered, setCard3Hovered] = useState(false)
 
+  // Emit feature flags on component mount
+  useEffect(() => {
+    emitFeatureFlags()
+  }, [])
+
   // Handle resume upload and immediately start analysis
   const handleResumeUpload = async (text: string) => {
     // Track resume upload event
     track('Resume Upload', {
       hasContent: text.length > 0,
       contentLength: text.length,
-      source: 'file_upload'
+      source: 'file_upload',
+      timestamp: new Date().toISOString()
+    }, { 
+      flags: [
+        FEATURE_FLAGS.ADVANCED_RESUME_PARSING,
+        FEATURE_FLAGS.AI_MODEL_VERSION
+      ]
     })
     
     setResumeText(text)
@@ -211,7 +242,13 @@ export default function IQKillerMainPage() {
           // Track failed resume analysis
           track('Resume Analysis Failed', {
             error: response.statusText,
-            contentLength: text.length
+            contentLength: text.length,
+            timestamp: new Date().toISOString()
+          }, { 
+            flags: [
+              FEATURE_FLAGS.ADVANCED_RESUME_PARSING,
+              FEATURE_FLAGS.AI_MODEL_VERSION
+            ]
           })
           throw new Error(`Resume analysis failed: ${response.statusText}`)
         }
@@ -223,7 +260,13 @@ export default function IQKillerMainPage() {
         track('Resume Analysis Completed', {
           name: data.resumeData?.name || 'Unknown',
           experienceYears: data.resumeData?.experienceYears || 0,
-          contentLength: text.length
+          contentLength: text.length,
+          timestamp: new Date().toISOString()
+        }, { 
+          flags: [
+            FEATURE_FLAGS.ADVANCED_RESUME_PARSING,
+            FEATURE_FLAGS.AI_MODEL_VERSION
+          ]
         })
         
         setResumeAnalysisData(data.resumeData)
@@ -232,7 +275,13 @@ export default function IQKillerMainPage() {
         console.error('❌ Resume analysis failed:', error)
         track('Resume Analysis Error', {
           error: error instanceof Error ? error.message : 'Unknown error',
-          contentLength: text.length
+          contentLength: text.length,
+          timestamp: new Date().toISOString()
+        }, { 
+          flags: [
+            FEATURE_FLAGS.ADVANCED_RESUME_PARSING,
+            FEATURE_FLAGS.AI_MODEL_VERSION
+          ]
         })
         setResumeAnalysisStatus('error')
       }
@@ -246,7 +295,13 @@ export default function IQKillerMainPage() {
       hasUrl: !!data.url,
       hasDescription: !!data.description,
       source: data.url ? 'url' : 'manual_input',
-      contentLength: data.description?.length || 0
+      contentLength: data.description?.length || 0,
+      timestamp: new Date().toISOString()
+    }, { 
+      flags: [
+        FEATURE_FLAGS.CUSTOM_COMPANY_RESEARCH,
+        FEATURE_FLAGS.AI_MODEL_VERSION
+      ]
     })
     
     setJobData(data)
@@ -267,7 +322,13 @@ export default function IQKillerMainPage() {
           // Track failed job analysis
           track('Job Analysis Failed', {
             error: response.statusText,
-            source: data.url ? 'url' : 'manual_input'
+            source: data.url ? 'url' : 'manual_input',
+            timestamp: new Date().toISOString()
+          }, { 
+            flags: [
+              FEATURE_FLAGS.CUSTOM_COMPANY_RESEARCH,
+              FEATURE_FLAGS.AI_MODEL_VERSION
+            ]
           })
           throw new Error(`Job analysis failed: ${response.statusText}`)
         }
@@ -279,7 +340,13 @@ export default function IQKillerMainPage() {
         track('Job Analysis Completed', {
           title: analysisData.jobAnalysis?.title || 'Unknown',
           company: analysisData.jobAnalysis?.company || 'Unknown',
-          source: data.url ? 'url' : 'manual_input'
+          source: data.url ? 'url' : 'manual_input',
+          timestamp: new Date().toISOString()
+        }, { 
+          flags: [
+            FEATURE_FLAGS.CUSTOM_COMPANY_RESEARCH,
+            FEATURE_FLAGS.AI_MODEL_VERSION
+          ]
         })
         
         setJobAnalysisData(analysisData.jobAnalysis)
@@ -288,7 +355,13 @@ export default function IQKillerMainPage() {
         console.error('❌ Job analysis failed:', error)
         track('Job Analysis Error', {
           error: error instanceof Error ? error.message : 'Unknown error',
-          source: data.url ? 'url' : 'manual_input'
+          source: data.url ? 'url' : 'manual_input',
+          timestamp: new Date().toISOString()
+        }, { 
+          flags: [
+            FEATURE_FLAGS.CUSTOM_COMPANY_RESEARCH,
+            FEATURE_FLAGS.AI_MODEL_VERSION
+          ]
         })
         setJobAnalysisStatus('error')
       }
@@ -302,7 +375,14 @@ export default function IQKillerMainPage() {
     track('Interview Guide Generation Started', {
       hasPrecomputedResults: comprehensiveAnalysisReady && !!comprehensiveAnalysisData,
       resumeLength: resumeText.length,
-      jobTitle: jobData.title || 'Unknown'
+      jobTitle: jobData.title || 'Unknown',
+      timestamp: new Date().toISOString()
+    }, { 
+      flags: [
+        FEATURE_FLAGS.PREMIUM_FEATURES_ENABLED,
+        FEATURE_FLAGS.QUESTION_GENERATION_V2,
+        FEATURE_FLAGS.AI_MODEL_VERSION
+      ]
     })
     
     // If comprehensive analysis is already complete, show results immediately
@@ -310,7 +390,14 @@ export default function IQKillerMainPage() {
       console.log('🚀 Using pre-computed comprehensive analysis results!')
       track('Interview Guide Displayed', {
         source: 'precomputed',
-        jobTitle: jobData.title || 'Unknown'
+        jobTitle: jobData.title || 'Unknown',
+        timestamp: new Date().toISOString()
+      }, { 
+        flags: [
+          FEATURE_FLAGS.PREMIUM_FEATURES_ENABLED,
+          FEATURE_FLAGS.QUESTION_GENERATION_V2,
+          FEATURE_FLAGS.AI_MODEL_VERSION
+        ]
       })
       setShowAnalysis(true)
       setAnalysisComplete(true)

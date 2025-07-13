@@ -6,6 +6,35 @@ import { generatePremiumCoaching, type PremiumCoachingFeatures } from '../../../
 import { openai } from '@/lib/openai'
 import { track } from '@vercel/analytics/server'
 
+// Feature flags for server-side tracking
+const FEATURE_FLAGS = {
+  PREMIUM_FEATURES_ENABLED: 'premium-features-enabled',
+  AI_MODEL_VERSION: 'ai-model-version',
+  QUESTION_GENERATION_V2: 'question-generation-v2',
+  CUSTOM_COMPANY_RESEARCH: 'custom-company-research',
+  ADVANCED_RESUME_PARSING: 'advanced-resume-parsing'
+}
+
+// Helper to report feature flag values
+const reportFeatureFlags = () => {
+  // Note: In a real app, you would use the actual reportValue from 'flags' package
+  // For now, we'll simulate the flag values
+  const flags = {
+    [FEATURE_FLAGS.PREMIUM_FEATURES_ENABLED]: true,
+    [FEATURE_FLAGS.AI_MODEL_VERSION]: 'gpt-4',
+    [FEATURE_FLAGS.QUESTION_GENERATION_V2]: true,
+    [FEATURE_FLAGS.CUSTOM_COMPANY_RESEARCH]: true,
+    [FEATURE_FLAGS.ADVANCED_RESUME_PARSING]: true
+  }
+  
+  // In a real implementation, you would call reportValue for each flag
+  // reportValue('premium-features-enabled', flags.premiumFeaturesEnabled)
+  // reportValue('ai-model-version', flags.aiModelVersion)
+  // etc.
+  
+  return flags
+}
+
 // Helper function to normalize question categories
 function normalizeCategory(category: string): string {
   const cat = category.toLowerCase().trim()
@@ -122,17 +151,20 @@ Return specific missing skills, strong matches, and personalized recommendations
 }
 
 export async function POST(req: NextRequest) {
-  console.log('🚀 === COMPLETE ANALYSIS: Starting ===')
+  console.log('🚀 === COMPREHENSIVE ANALYSIS: Starting ===')
+  
+  // Report feature flags for this request
+  const flags = reportFeatureFlags()
   
   try {
-    const body = await req.json();
-    console.log('📄 Request received:', {
+    const startTime = Date.now()
+    const body = await req.json()
+    
+    console.log('📄 Comprehensive analysis request received:', {
       hasResumeText: !!body.resumeText,
-      resumeTextLength: body.resumeText?.length || 0,
-      hasJobDescription: !!body.jobDescription,
       hasJobData: !!body.jobData,
-      hasPreProcessedResumeData: !!body.resumeAnalysisData,
-      hasPreProcessedJobData: !!body.jobAnalysisData
+      resumeTextLength: body.resumeText?.length || 0,
+      jobTitle: body.jobData?.title || 'Unknown'
     })
 
     // === DEBUG: LOG FULL JOB DATA STRUCTURE ===
@@ -150,8 +182,6 @@ export async function POST(req: NextRequest) {
       return Response.json({ error: 'Resume text is required' }, { status: 400 });
     }
 
-    const startTime = Date.now()
-    
     // Step 1: Resume Analysis (use pre-processed data if available)
     console.log('📊 === STEP 1: RESUME ANALYSIS ===')
     let resumeData;
@@ -445,62 +475,66 @@ export async function POST(req: NextRequest) {
 
     console.log(`🎉 === ANALYSIS COMPLETE in ${totalTime}ms ===`)
 
-    // Track successful comprehensive analysis completion
-    await track('Comprehensive Analysis Completed', {
+    // Track successful comprehensive analysis completion with feature flags
+    await track('Comprehensive Analysis Complete', {
+      processingTime: totalTime,
       candidateName: resumeData.name || 'Unknown',
-      targetRole: jobData.role || jobData.title || 'Unknown',
-      targetCompany: jobData.company || 'Unknown',
-      overallMatch: matchData.overallMatch || 0,
-      questionsGenerated: combinedQuestions.length || 0,
-      experienceYears: resumeData.experienceYears || 0,
-      processingTimeMs: totalTime,
-      hasResumeData: !!resumeData,
-      hasJobData: !!jobData,
-      hasPremiumContent: !!premiumContent,
-      questionCategories: [...new Set(combinedQuestions.map((q: any) => q.category))].join(',') || 'none'
+      jobTitle: jobData.title || 'Unknown',
+      company: jobData.company || 'Unknown',
+      questionsGenerated: combinedQuestions.length,
+      premiumFeaturesUsed: true,
+      aiModelVersion: flags[FEATURE_FLAGS.AI_MODEL_VERSION],
+      timestamp: new Date().toISOString()
+    }, { 
+      flags: [
+        FEATURE_FLAGS.PREMIUM_FEATURES_ENABLED,
+        FEATURE_FLAGS.QUESTION_GENERATION_V2,
+        FEATURE_FLAGS.AI_MODEL_VERSION,
+        FEATURE_FLAGS.CUSTOM_COMPANY_RESEARCH
+      ]
     })
 
     return Response.json({
       success: true,
-      processingTime: totalTime,
-      message: 'Complete analysis finished successfully',
-      
-      results: {
-        resumeData,
-        matchData,
-        questions: combinedQuestions,
-        finalAnalysis,
-        comprehensiveGuide,
-        premiumContent, // Add premium content to response
-        premiumCoaching, // Add premium coaching to response
-        
-        summary: {
-          candidateName: resumeData.name,
-          targetRole: jobData.role || 'Software Engineer',
-          overallMatch: matchData.overallMatch,
+      data: {
+        resumeAnalysis: resumeData,
+        jobAnalysis: jobData,
+        enhancedQuestions: combinedQuestions,
+        matchAnalysis: finalAnalysis,
+        comprehensiveGuide: comprehensiveGuide,
+        premiumContent: premiumContent,
+        premiumCoaching: premiumCoaching,
+        processingTime: totalTime,
+        metadata: {
           questionsGenerated: combinedQuestions.length,
-          keyStrengths: resumeData.technicalSkills.programmingLanguages.slice(0, 3),
-          completedAt: new Date().toISOString(),
-          processingSteps: 7 // Updated to reflect new step count
+          processingTime: totalTime,
+          aiModelUsed: flags[FEATURE_FLAGS.AI_MODEL_VERSION],
+          premiumFeaturesEnabled: flags[FEATURE_FLAGS.PREMIUM_FEATURES_ENABLED]
         }
       }
-    });
+    })
 
   } catch (error) {
     console.error('❌ === COMPLETE ANALYSIS ERROR ===', error)
     
-    // Track failed comprehensive analysis
+    // Track analysis failure with feature flags
     await track('Comprehensive Analysis Failed', {
-      error: (error as any)?.message || 'Unknown error',
-      timestamp: new Date().toISOString(),
-      hasResumeText: !!(req as any).resumeText,
-      hasJobData: !!(req as any).jobData
-    })
-    
-    return Response.json({
-      error: 'Analysis failed',
-      details: (error as any)?.message || 'Unknown error',
+      error: error instanceof Error ? error.message : 'Unknown error',
       timestamp: new Date().toISOString()
-    }, { status: 500 });
+    }, { 
+      flags: [
+        FEATURE_FLAGS.PREMIUM_FEATURES_ENABLED,
+        FEATURE_FLAGS.AI_MODEL_VERSION
+      ]
+    })
+
+    return Response.json(
+      { 
+        success: false, 
+        error: error instanceof Error ? error.message : 'Analysis failed',
+        timestamp: new Date().toISOString()
+      },
+      { status: 500 }
+    )
   }
 } 
