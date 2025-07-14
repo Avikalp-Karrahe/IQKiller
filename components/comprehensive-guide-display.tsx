@@ -315,9 +315,9 @@ function OverviewSection({ guide, roleTitle, roleDescription }: {
                   <Button 
                     variant="outline"
                     className="w-full justify-center mb-4"
-                    onClick={() => window.location.href = 'mailto:akarrahe@ucdavis.edu?subject=Partnership Opportunity'}
+                    onClick={() => window.open('https://discord.gg/sEAEu6abdn', '_blank')}
                   >
-                    <Mail className="w-4 h-4 mr-2" />
+                    <MessageSquare className="w-4 h-4 mr-2" />
                     Partner with Us
                   </Button>
                 </div>
