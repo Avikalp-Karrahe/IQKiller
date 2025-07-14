@@ -279,7 +279,7 @@ function OverviewSection({ guide, roleTitle, roleDescription }: {
                 <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                   I've been through 50+ interviews at companies like Google, Microsoft, and startups. 
                   I know the frustration of generic prep materials that don't match what you actually get asked. 
-                  That's why IQKiller generates questions tailored to YOUR specific background and the exact role you want.
+                  That's why <span className="text-slate-800 dark:text-slate-200">IQ</span><span className="text-blue-600 dark:text-blue-400">Killer</span> generates questions tailored to YOUR specific background and the exact role you want.
                 </p>
                 
                 <div className="mb-6">
@@ -308,7 +308,7 @@ function OverviewSection({ guide, roleTitle, roleDescription }: {
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Want to Reach Job Seekers?</h3>
                 
                 <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-                  IQKiller reaches professionals actively preparing for interviews at top companies. If you build tools, courses, or services for job seekers, this is where they're looking.
+                  <span className="text-slate-800 dark:text-slate-200">IQ</span><span className="text-blue-600 dark:text-blue-400">Killer</span> reaches professionals actively preparing for interviews at top companies. If you build tools, courses, or services for job seekers, this is where they're looking.
                 </p>
 
                 <div className="mb-6">

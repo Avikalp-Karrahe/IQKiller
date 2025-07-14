@@ -668,7 +668,7 @@ export default function StreamingAnalysis({ resumeText, jobDescription, jobData,
             
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 leading-tight">
               Stop guessing what they'll ask.<br />
-              <span className="text-blue-600 dark:text-blue-400">Know what to say</span> with IQKiller.
+              Know what to say with <span className="text-slate-800 dark:text-slate-200">IQ</span><span className="text-blue-600 dark:text-blue-400">Killer</span>.
             </h1>
             
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
