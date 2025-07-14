@@ -262,6 +262,15 @@ export default function IQKillerMainPage() {
         // Ensure we have proper data before proceeding
         if (!resumeData || !resumeData.name) {
           console.warn('⚠️ Resume data incomplete:', resumeData)
+          console.warn('⚠️ Raw response data:', data)
+          // Try to extract from different response structures
+          const fallbackData = data.resumeData || data.data || data
+          if (fallbackData && fallbackData.name) {
+            console.log('✅ Using fallback data extraction')
+            setResumeAnalysisData(fallbackData)
+            setResumeAnalysisStatus('completed')
+            return
+          }
           throw new Error('Incomplete resume analysis data received')
         }
         

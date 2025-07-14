@@ -226,6 +226,33 @@ export default function StreamingAnalysis({ resumeText, jobDescription, jobData,
     // Update the current step's progress
     updateStep(step, status, message, progress || 0, results, error)
 
+    // Handle question generation completion - update real progress
+    if (step === 'question_generation' && status === 'completed' && results?.questions) {
+      const questions = results.questions
+      const questionCount = questions.length || 15
+      
+      // Count questions by type
+      const technicalCount = questions.filter((q: any) => q.type === 'technical').length
+      const behavioralCount = questions.filter((q: any) => q.type === 'behavioral').length  
+      const systemDesignCount = questions.filter((q: any) => q.type === 'system-design').length
+      
+      // Update question progress with real counts
+      setQuestionProgress({
+        total: questionCount,
+        completed: questionCount,
+        technical: { completed: technicalCount, total: technicalCount },
+        behavioral: { completed: behavioralCount, total: behavioralCount },
+        systemDesign: { completed: systemDesignCount, total: systemDesignCount }
+      })
+      
+      console.log('✅ Updated question progress with real data:', {
+        total: questionCount, 
+        technical: technicalCount,
+        behavioral: behavioralCount, 
+        systemDesign: systemDesignCount
+      })
+    }
+
     if (status === 'completed') {
       const stepIndex = analysisSteps.findIndex(s => s.key === step)
       
