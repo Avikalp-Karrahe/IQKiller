@@ -1243,10 +1243,10 @@ function CompanyResearchSection({ premiumContent }: { premiumContent?: any }) {
           <div className="flex justify-center gap-4">
             <Button 
               variant="default"
-              className="bg-blue-600 hover:bg-blue-700"
-              onClick={() => window.open('https://forms.gle/hnHyghiA6WxPbUE19', '_blank')}
+              className="bg-indigo-600 hover:bg-indigo-700"
+              onClick={() => window.open('https://discord.gg/sEAEu6abdn', '_blank')}
             >
-              Share Feedback
+              Join Discord
             </Button>
             <Button 
               variant="outline"

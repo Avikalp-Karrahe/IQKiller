@@ -585,10 +585,10 @@ export default function StreamingAnalysis({ resumeText, jobDescription, jobData,
                   <span 
                     className="flex-1 cursor-pointer transition-all duration-300 hover:text-blue-600 hover:drop-shadow-[0_0_6px_rgba(59,130,246,0.6)]"
                     onClick={() => {
-                      window.open('https://forms.gle/FD95Wn8YJWk34ekP9', '_blank')
+                      window.open('https://discord.gg/sEAEu6abdn', '_blank')
                     }}
                   >
-                    Help us improve! Your feedback shapes the next version.
+                    Join our Discord! Share feedback & shape the next version.
                   </span>
                 </div>
             </div>

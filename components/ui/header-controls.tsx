@@ -2,7 +2,7 @@
 
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
-import { Sun, Moon, Star, ExternalLink, Github } from 'lucide-react'
+import { Sun, Moon, Star, ExternalLink, Github, MessageSquare } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { track } from '@vercel/analytics'
 
@@ -10,6 +10,12 @@ export function HeaderControls() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [starCount, setStarCount] = useState('4.3k')
+  // Track Discord clicks separately
+  const handleDiscordClick = () => {
+    track('Discord Button Clicked', {
+      currentTheme: theme || 'unknown'
+    })
+  }
 
   useEffect(() => {
     setMounted(true)
@@ -52,6 +58,27 @@ export function HeaderControls() {
 
   return (
     <div className="flex items-center gap-3">
+      {/* Discord Community Button */}
+      <a
+        href="https://discord.gg/sEAEu6abdn"
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={handleDiscordClick}
+        className="group relative overflow-hidden px-3 py-2 h-10
+                   bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500
+                   text-white rounded-full shadow-lg hover:shadow-xl
+                   transition-all duration-300 ease-in-out hover:scale-105
+                   border border-indigo-700/50"
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent
+                        transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"></div>
+
+        <div className="relative flex items-center gap-1.5 z-10">
+          <MessageSquare className="w-4 h-4 text-white group-hover:text-gray-200 transition-colors duration-300" />
+          <span className="text-sm font-bold tracking-wide text-white">Discord</span>
+          <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1" />
+        </div>
+      </a>
       {/* GitHub Star Badge */}
       <a
         href="https://github.com/Avikalp-Karrahe/IQKiller"
