@@ -82,7 +82,14 @@ export default function StreamingAnalysis({ resumeText, jobDescription, jobData,
       setOverallProgress(100)
       setCurrentStep(analysisSteps.length - 1)
     }
-  }, [steps, isComplete])
+
+    // Recovery mechanism: if resume analysis is in error state but we have valid data, recover
+    const resumeStatus = getStepStatus('resume_analysis')
+    if (resumeStatus === 'error' && resumeAnalysisData && !isComplete) {
+      console.log('🔄 Recovering resume analysis from error state - we have valid data')
+      updateStep('resume_analysis', 'completed', '✅ Resume analysis recovered', 100, resumeAnalysisData)
+    }
+  }, [steps, isComplete, resumeAnalysisData])
 
   const startAnalysis = async () => {
     try {
@@ -108,6 +115,33 @@ export default function StreamingAnalysis({ resumeText, jobDescription, jobData,
           setCurrentStep(i)
           setOverallProgress(((i + 1) / steps.length) * 100)
           
+          // Update question progress for pre-computed questions
+          if (step.key === 'question_generation' && step.data) {
+            const questions = step.data
+            const questionCount = questions.length || 15
+            
+            // Count questions by type
+            const technicalCount = questions.filter((q: any) => q.type === 'technical').length
+            const behavioralCount = questions.filter((q: any) => q.type === 'behavioral').length  
+            const systemDesignCount = questions.filter((q: any) => q.type === 'system-design').length
+            
+            console.log('📊 Updating question progress with pre-computed data:', {
+              total: questionCount, 
+              technical: technicalCount,
+              behavioral: behavioralCount, 
+              systemDesign: systemDesignCount
+            })
+            
+            // Update question progress with real counts
+            setQuestionProgress({
+              total: questionCount,
+              completed: questionCount,
+              technical: { completed: technicalCount, total: technicalCount },
+              behavioral: { completed: behavioralCount, total: behavioralCount },
+              systemDesign: { completed: systemDesignCount, total: systemDesignCount }
+            })
+          }
+          
           // Small delay for UI effect
           if (i < steps.length - 1) {
             await new Promise(resolve => setTimeout(resolve, 100))
@@ -123,105 +157,179 @@ export default function StreamingAnalysis({ resumeText, jobDescription, jobData,
         return
       }
 
-      // If we have pre-processed data, skip those steps and show as completed
+      // Initialize steps - be more conservative with status updates
       if (resumeAnalysisData) {
         updateStep('resume_analysis', 'completed', '✅ Resume analysis already completed', 100, resumeAnalysisData)
         setCurrentStep(1)
       } else {
-        updateStep('resume_analysis', 'processing', 'Starting resume analysis...', 0)
+        updateStep('resume_analysis', 'processing', 'Starting resume analysis...', 10)
+        setCurrentStep(0)
       }
 
       if (jobAnalysisData) {
         updateStep('job_matching', 'completed', '✅ Job analysis already completed', 100, jobAnalysisData)
-        setCurrentStep(2)
+        if (!resumeAnalysisData) setCurrentStep(1)
+        else setCurrentStep(2)
       } else {
-        updateStep('job_matching', 'processing', 'Starting job analysis...', 0)
+        updateStep('job_matching', 'processing', 'Starting job analysis...', 10)
       }
       
-      // Simulate progress for better UX
+      // Simulate progress for better UX - but be more conservative
       const progressInterval = setInterval(() => {
-        setOverallProgress(prev => Math.min(prev + 10, 80))
-      }, 300)
+        setOverallProgress(prev => Math.min(prev + 5, 70)) // More conservative progress
+      }, 500) // Slower updates
       
       console.log('🚀 Starting enhanced analysis with pre-processed data:', {
         hasResumeData: !!resumeAnalysisData,
         hasJobData: !!jobAnalysisData
       })
       
-      const response = await fetch('/api/analyze-complete', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          resumeText, 
-          jobDescription,
-          jobData,
-          resumeAnalysisData, // Pass pre-processed data
-          jobAnalysisData    // Pass pre-processed data
+      // Add timeout and retry logic for better resilience
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => controller.abort(), 30000) // 30 second timeout
+      
+      try {
+        const response = await fetch('/api/analyze-complete', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            resumeText, 
+            jobDescription,
+            jobData,
+            resumeAnalysisData, // Pass pre-processed data
+            jobAnalysisData    // Pass pre-processed data
+          }),
+          signal: controller.signal
         })
-      })
 
-      clearInterval(progressInterval)
+        clearTimeout(timeoutId)
+        clearInterval(progressInterval)
 
-      if (!response.ok) {
-        throw new Error(`Analysis failed: ${response.statusText}`)
-      }
-
-      const data = await response.json()
-      console.log('Enhanced analysis result:', data)
-
-      if (data.success && data.results) {
-        // Simulate step completion for UI
-        const steps = [
-          { key: 'resume_analysis', message: 'Resume analysis completed', data: data.results.resumeData },
-          { key: 'job_matching', message: 'Job matching completed', data: data.results.matchData },
-          { key: 'question_generation', message: 'Questions generated', data: data.results.questions },
-          { key: 'question_generated', message: 'Questions ready', data: data.results.questions },
-          { key: 'final_analysis', message: 'Final analysis completed', data: data.results.finalAnalysis },
-          { key: 'comprehensive_guide', message: 'Professional guide created', data: data.results.comprehensiveGuide },
-          { key: 'completed', message: 'Analysis complete!', data: data.results }
-        ]
-
-        // Complete all steps rapidly with question generation simulation
-        for (let i = 0; i < steps.length; i++) {
-          const step = steps[i]
-          
-          // If this is the question generation step, simulate progress
-          if (step.key === 'question_generation') {
-            updateStep(step.key, 'processing', 'Starting question generation...', 0, step.data)
-            setCurrentStep(i)
-            await simulateQuestionProgress()
-          } else {
-            updateStep(step.key, 'completed', step.message, 100, step.data)
-            setCurrentStep(i)
-            setOverallProgress(((i + 1) / steps.length) * 100)
-          }
-          
-          // Small delay for UI effect
-          if (i < steps.length - 1) {
-            await new Promise(resolve => setTimeout(resolve, 200))
-          }
+        if (!response.ok) {
+          // Don't immediately mark as error - try to get more info
+          const errorText = await response.text()
+          console.error('Response not OK:', response.status, errorText)
+          throw new Error(`Analysis failed: ${response.status} - ${errorText}`)
         }
 
-        // Set final results
-        setFinalResults(data.results)
-        setComprehensiveGuide(data.results.comprehensiveGuide)
-        setIsComplete(true)
-        setOverallProgress(100)
-        onComplete?.(data.results)
-        
-      } else {
-        throw new Error(data.error || 'Analysis failed')
+        const data = await response.json()
+        console.log('Enhanced analysis result:', data)
+
+        if (data.success && data.results) {
+          // Simulate step completion for UI
+          const steps = [
+            { key: 'resume_analysis', message: 'Resume analysis completed', data: data.results.resumeData },
+            { key: 'job_matching', message: 'Job matching completed', data: data.results.matchData },
+            { key: 'question_generation', message: 'Questions generated', data: data.results.questions },
+            { key: 'question_generated', message: 'Questions ready', data: data.results.questions },
+            { key: 'final_analysis', message: 'Final analysis completed', data: data.results.finalAnalysis },
+            { key: 'comprehensive_guide', message: 'Professional guide created', data: data.results.comprehensiveGuide },
+            { key: 'completed', message: 'Analysis complete!', data: data.results }
+          ]
+
+          // Complete all steps rapidly with question generation simulation
+          for (let i = 0; i < steps.length; i++) {
+            const step = steps[i]
+            
+            // If this is the question generation step, simulate progress
+            if (step.key === 'question_generation') {
+              updateStep(step.key, 'processing', 'Starting question generation...', 0, step.data)
+              setCurrentStep(i)
+              
+              // Update question progress with real data from API
+              if (step.data && step.data.length > 0) {
+                const questions = step.data
+                const questionCount = questions.length || 15
+                
+                // Count questions by type
+                const technicalCount = questions.filter((q: any) => q.type === 'technical').length
+                const behavioralCount = questions.filter((q: any) => q.type === 'behavioral').length  
+                const systemDesignCount = questions.filter((q: any) => q.type === 'system-design').length
+                
+                console.log('📊 Updating question progress with real API data:', {
+                  total: questionCount, 
+                  technical: technicalCount,
+                  behavioral: behavioralCount, 
+                  systemDesign: systemDesignCount
+                })
+                
+                // Update question progress with real counts
+                setQuestionProgress({
+                  total: questionCount,
+                  completed: questionCount,
+                  technical: { completed: technicalCount, total: technicalCount },
+                  behavioral: { completed: behavioralCount, total: behavioralCount },
+                  systemDesign: { completed: systemDesignCount, total: systemDesignCount }
+                })
+              }
+              
+              await simulateQuestionProgress()
+            } else {
+              updateStep(step.key, 'completed', step.message, 100, step.data)
+              setCurrentStep(i)
+              setOverallProgress(((i + 1) / steps.length) * 100)
             }
+            
+            // Small delay for UI effect
+            if (i < steps.length - 1) {
+              await new Promise(resolve => setTimeout(resolve, 200))
+            }
+          }
+
+          // Set final results
+          setFinalResults(data.results)
+          setComprehensiveGuide(data.results.comprehensiveGuide)
+          setIsComplete(true)
+          setOverallProgress(100)
+          onComplete?.(data.results)
+          
+        } else {
+          throw new Error(data.error || 'Analysis failed - no results returned')
+        }
+      } catch (fetchError) {
+        clearTimeout(timeoutId)
+        clearInterval(progressInterval)
+        
+        // Handle different types of errors more gracefully
+        const error = fetchError as Error
+        if (error.name === 'AbortError') {
+          console.error('Analysis timed out after 30 seconds')
+          updateStep('resume_analysis', 'error', 'Analysis timed out. Please try again.', 0, undefined, 'Timeout after 30 seconds')
+        } else if (error.message.includes('NetworkError') || error.message.includes('fetch')) {
+          console.error('Network error during analysis:', error)
+          updateStep('resume_analysis', 'error', 'Network error. Please check your connection and try again.', 0, undefined, error.message)
+        } else {
+          console.error('Analysis error:', error)
+          updateStep('resume_analysis', 'error', 'Analysis failed. Please try again.', 0, undefined, error.message)
+        }
+        throw error // Re-throw so caller knows about the error
+      }
       
-         } catch (error) {
-       console.error('Analysis error:', error)
-      updateStep('resume_analysis', 'error', 'Analysis failed. Please try again.', 0, undefined, error instanceof Error ? error.message : 'Unknown error')
+    } catch (error) {
+      console.error('Unexpected analysis error:', error)
+      // Only update error state if we haven't already handled it above
+      const currentResumeStatus = getStepStatus('resume_analysis')
+      if (currentResumeStatus !== 'error') {
+        updateStep('resume_analysis', 'error', 'Unexpected error. Please refresh and try again.', 0, undefined, error instanceof Error ? error.message : 'Unknown error')
+      }
     }
   }
 
   const handleStreamData = (data: any) => {
     const { step, status, message, progress, results, error } = data
-    console.log('Handling stream data:', { step, status, message, progress })
+    console.log('📥 Handling stream data:', { step, status, message, progress, hasResults: !!results, hasError: !!error })
+    
+    // Validate the data before processing
+    if (!step || !status) {
+      console.warn('⚠️ Invalid stream data received:', data)
+      return
+    }
+    
+    // Don't mark resume_analysis as error if we have valid data already
+    if (step === 'resume_analysis' && status === 'error' && resumeAnalysisData) {
+      console.log('🛡️ Preventing resume analysis error - we have valid data')
+      return
+    }
         
     // Update the current step's progress
     updateStep(step, status, message, progress || 0, results, error)
@@ -284,14 +392,34 @@ export default function StreamingAnalysis({ resumeText, jobDescription, jobData,
   }
 
   const updateStep = (step: string, status: AnalysisStep['status'], message: string, progress: number, data?: any, error?: string) => {
-    setSteps(prev => {
-      const existing = prev.find(s => s.step === step)
-      const newStep = { step, status, message, progress, data, error }
+    setSteps(prevSteps => {
+      const existingStepIndex = prevSteps.findIndex(s => s.step === step)
+      const newStep: AnalysisStep = { step, status, message, progress, data, error }
       
-      if (existing) {
-        return prev.map(s => s.step === step ? newStep : s)
+      // Don't allow backward state transitions unless it's a real error
+      if (existingStepIndex >= 0) {
+        const existingStep = prevSteps[existingStepIndex]
+        
+        // If existing step is completed and we're trying to set it to processing/error,
+        // only allow if this is a genuine error (has error message)
+        if (existingStep.status === 'completed' && status !== 'completed') {
+          if (status === 'error' && error) {
+            // Allow error state if there's a real error message
+            console.log(`⚠️ Overriding completed step ${step} with error: ${error}`)
+          } else {
+            // Ignore the update - don't go backwards
+            console.log(`🚫 Ignoring backward transition for ${step}: ${existingStep.status} -> ${status}`)
+            return prevSteps
+          }
+        }
+        
+        // Update existing step
+        const updatedSteps = [...prevSteps]
+        updatedSteps[existingStepIndex] = newStep
+        return updatedSteps
       } else {
-        return [...prev, newStep]
+        // Add new step
+        return [...prevSteps, newStep]
       }
     })
   }
@@ -498,7 +626,7 @@ export default function StreamingAnalysis({ resumeText, jobDescription, jobData,
                   </span>
                         
                         {/* Progress indicator for question generation */}
-                        {step.key === 'question_generation' && isActive && (
+                        {step.key === 'question_generation' && (isActive || isCompleted) && (
                           <div className="mt-1 text-xs text-blue-600 dark:text-blue-400 font-medium">
                             {questionProgress.completed}/{questionProgress.total}
                           </div>
