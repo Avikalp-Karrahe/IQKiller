@@ -248,9 +248,9 @@ function OverviewSection({ guide, roleTitle, roleDescription }: {
               </Button>
               <Button 
                 variant="outline"
-                onClick={() => window.location.href = 'mailto:akarrahe@ucdavis.edu?subject=IQKiller Feedback'}
+                onClick={() => window.open('https://discord.gg/sEAEu6abdn', '_blank')}
               >
-                <Mail className="w-4 h-4 mr-2" />
+                <MessageSquare className="w-4 h-4 mr-2" />
                 Send Feedback
               </Button>
             </div>
