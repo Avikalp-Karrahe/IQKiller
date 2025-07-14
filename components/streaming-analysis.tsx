@@ -215,16 +215,34 @@ export default function StreamingAnalysis({ resumeText, jobDescription, jobData,
         const data = await response.json()
         console.log('Enhanced analysis result:', data)
 
-        if (data.success && data.results) {
+        if (data.success && data.data) {
+          // Map the API response structure to match expected format
+          const apiData = data.data
+          const mappedResults = {
+            resumeData: apiData.resumeAnalysis,
+            matchData: apiData.jobAnalysis,
+            questions: apiData.enhancedQuestions,
+            finalAnalysis: apiData.matchAnalysis,
+            comprehensiveGuide: apiData.comprehensiveGuide,
+            premiumContent: apiData.premiumContent,
+            premiumCoaching: apiData.premiumCoaching
+          }
+          
+          console.log('📊 Mapped API data structure:', {
+            questionsCount: mappedResults.questions?.length,
+            hasResumeData: !!mappedResults.resumeData,
+            hasMatchData: !!mappedResults.matchData
+          })
+          
           // Simulate step completion for UI
           const steps = [
-            { key: 'resume_analysis', message: 'Resume analysis completed', data: data.results.resumeData },
-            { key: 'job_matching', message: 'Job matching completed', data: data.results.matchData },
-            { key: 'question_generation', message: 'Questions generated', data: data.results.questions },
-            { key: 'question_generated', message: 'Questions ready', data: data.results.questions },
-            { key: 'final_analysis', message: 'Final analysis completed', data: data.results.finalAnalysis },
-            { key: 'comprehensive_guide', message: 'Professional guide created', data: data.results.comprehensiveGuide },
-            { key: 'completed', message: 'Analysis complete!', data: data.results }
+            { key: 'resume_analysis', message: 'Resume analysis completed', data: mappedResults.resumeData },
+            { key: 'job_matching', message: 'Job matching completed', data: mappedResults.matchData },
+            { key: 'question_generation', message: 'Questions generated', data: mappedResults.questions },
+            { key: 'question_generated', message: 'Questions ready', data: mappedResults.questions },
+            { key: 'final_analysis', message: 'Final analysis completed', data: mappedResults.finalAnalysis },
+            { key: 'comprehensive_guide', message: 'Professional guide created', data: mappedResults.comprehensiveGuide },
+            { key: 'completed', message: 'Analysis complete!', data: mappedResults }
           ]
 
           // Complete all steps rapidly with question generation simulation
@@ -277,11 +295,11 @@ export default function StreamingAnalysis({ resumeText, jobDescription, jobData,
           }
 
           // Set final results
-          setFinalResults(data.results)
-          setComprehensiveGuide(data.results.comprehensiveGuide)
+          setFinalResults(mappedResults)
+          setComprehensiveGuide(mappedResults.comprehensiveGuide)
           setIsComplete(true)
           setOverallProgress(100)
-          onComplete?.(data.results)
+          onComplete?.(mappedResults)
           
         } else {
           throw new Error(data.error || 'Analysis failed - no results returned')
