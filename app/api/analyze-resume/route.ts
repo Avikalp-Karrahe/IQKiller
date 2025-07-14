@@ -63,7 +63,8 @@ export async function POST(req: NextRequest) {
     // Step 1: Resume Analysis
     console.log('📊 === STEP 1: RESUME ANALYSIS ===')
     const resumeData = await parseResumeWithEnhancedAI(body.resumeText)
-    console.log('✅ Resume analysis complete in 0ms:', resumeData.name, resumeData.currentRole)
+    console.log('✅ Resume analysis complete in 0ms:', resumeData.name, `${resumeData.experienceYears} years`, resumeData.currentRole)
+    console.log('🔍 Debug - Experience Years:', resumeData.experienceYears, typeof resumeData.experienceYears)
     
     const processingTime = Date.now() - startTime
     

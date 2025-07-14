@@ -256,10 +256,19 @@ export default function IQKillerMainPage() {
         const data = await response.json()
         console.log('✅ Resume analysis completed:', data)
         
+        // Extract resume data from the nested structure
+        const resumeData = data.data?.resumeData || data.resumeData
+        
+        // Ensure we have proper data before proceeding
+        if (!resumeData || !resumeData.name) {
+          console.warn('⚠️ Resume data incomplete:', resumeData)
+          throw new Error('Incomplete resume analysis data received')
+        }
+        
         // Track successful resume analysis
         track('Resume Analysis Completed', {
-          name: data.resumeData?.name || 'Unknown',
-          experienceYears: data.resumeData?.experienceYears || 0,
+          name: resumeData?.name || 'Unknown',
+          experienceYears: resumeData?.experienceYears || 0,
           contentLength: text.length,
           timestamp: new Date().toISOString()
         }, { 
@@ -269,7 +278,7 @@ export default function IQKillerMainPage() {
           ]
         })
         
-        setResumeAnalysisData(data.resumeData)
+        setResumeAnalysisData(resumeData)
         setResumeAnalysisStatus('completed')
       } catch (error) {
         console.error('❌ Resume analysis failed:', error)
@@ -571,7 +580,7 @@ export default function IQKillerMainPage() {
                     )}
                     {resumeAnalysisStatus === 'completed' && (
                       <div className="text-sm text-green-600 font-medium">
-                        ✅ Resume analysis completed: {resumeAnalysisData?.name} ({resumeAnalysisData?.experienceYears} years)
+                        ✅ Resume analysis completed: {resumeAnalysisData?.name} ({resumeAnalysisData?.experienceYears || 'N/A'} years)
                       </div>
                     )}
                     {resumeAnalysisStatus === 'error' && (

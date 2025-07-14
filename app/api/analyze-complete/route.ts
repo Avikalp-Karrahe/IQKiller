@@ -273,9 +273,18 @@ export async function POST(req: NextRequest) {
     // Generate dynamic role-specific questions using the new system
     const combinedQuestions = await generateEnhancedQuestions(enhancedResumeData, jobContext)
     
-    console.log(`✅ Enhanced question generation complete: ${combinedQuestions.length} questions across ${new Set(combinedQuestions.map((q: any) => q.type)).size} categories`)
-    console.log(`📊 Question breakdown: Technical: ${combinedQuestions.filter((q: any) => q.type === 'technical').length}, Behavioral: ${combinedQuestions.filter((q: any) => q.type === 'behavioral').length}, System Design: ${combinedQuestions.filter((q: any) => q.type === 'system-design').length}`)
-    console.log(`Role detected: ${jobContext.role} (${jobContext.level} level)`)
+    // Debug question types before counting
+    console.log(`🔍 Debug - Generated question types:`, combinedQuestions.map((q: any) => q.type))
+    
+    const uniqueTypes = new Set(combinedQuestions.map((q: any) => q.type))
+    const technicalCount = combinedQuestions.filter((q: any) => q.type === 'technical').length
+    const behavioralCount = combinedQuestions.filter((q: any) => q.type === 'behavioral').length  
+    const systemDesignCount = combinedQuestions.filter((q: any) => q.type === 'system-design').length
+    
+    console.log(`✅ Enhanced question generation complete: ${combinedQuestions.length} questions across ${uniqueTypes.size} categories`)
+    console.log(`🔍 All question types found:`, Array.from(uniqueTypes))
+    console.log(`📊 Question breakdown: Technical: ${technicalCount}, Behavioral: ${behavioralCount}, System Design: ${systemDesignCount}`)
+    console.log(`🎯 Role detected: ${jobContext.role} (${jobContext.level} level)`)
     console.log(`💡 Questions personalized with: Resume-specific details and ${resumeData.technicalSkills.programmingLanguages.slice(0, 2).join(', ')} experience`)
 
     // Step 4: Final Analysis

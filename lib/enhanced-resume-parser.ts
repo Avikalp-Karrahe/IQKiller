@@ -95,7 +95,7 @@ export async function parseResumeWithEnhancedAI(resumeText: string): Promise<Det
 RESUME TEXT:
 ${resumeText}
 
-Return ONLY a JSON object with this exact structure:
+Return ONLY a JSON object with this exact structure (experienceYears must be a NUMBER):
 {
   "name": "Full Name",
   "experienceYears": 3,
@@ -140,17 +140,32 @@ Return ONLY a JSON object with this exact structure:
     const extracted = JSON.parse(completion.choices[0].message.content)
     console.log('✅ === JSON parsed successfully ===')
     console.log('👤 Extracted name:', extracted.name)
+    console.log('🔍 Raw experienceYears from AI:', extracted.experienceYears, typeof extracted.experienceYears)
     console.log('Experience:', extracted.experienceYears, 'years')
+    console.log('📄 Full extracted object keys:', Object.keys(extracted))
     
     // Convert to full DetailedResumeData format
+    console.log('🔧 === Converting to DetailedResumeData ===')
+    
+    // Robust experience years extraction
+    let experienceYears = 2 // default fallback
+    if (extracted.experienceYears !== undefined && extracted.experienceYears !== null) {
+      // Convert to number if it's a string
+      const parsedYears = typeof extracted.experienceYears === 'string' 
+        ? parseInt(extracted.experienceYears, 10) 
+        : extracted.experienceYears
+      experienceYears = !isNaN(parsedYears) && parsedYears > 0 ? parsedYears : 2
+    }
+    
+    console.log('Setting experienceYears to:', experienceYears, '(original:', extracted.experienceYears, typeof extracted.experienceYears, ')')
     const result: DetailedResumeData = {
       name: extracted.name || 'Professional',
       email: extracted.email,
       phone: extracted.phone,
       location: extracted.location,
       
-      experienceYears: extracted.experienceYears || 2,
-      experienceDescription: extracted.experienceDescription || `${extracted.experienceYears || 2} years of professional experience`,
+      experienceYears: experienceYears,
+      experienceDescription: extracted.experienceDescription || `${experienceYears} years of professional experience`,
       currentRole: extracted.currentRole || 'Software Engineer',
       currentCompany: extracted.currentCompany || 'Current Company',
       
@@ -207,6 +222,8 @@ Return ONLY a JSON object with this exact structure:
     }
     
     console.log('🎉 === SIMPLE RESUME EXTRACTION COMPLETED ===')
+    console.log('📋 Final result experienceYears:', result.experienceYears, typeof result.experienceYears)
+    console.log('📋 Final result name:', result.name)
     return result
 
   } catch (error) {
