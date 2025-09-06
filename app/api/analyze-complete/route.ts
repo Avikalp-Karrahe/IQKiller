@@ -5,6 +5,7 @@ import { generatePremiumContent, type PremiumPreparationPlan } from '../../../li
 import { generatePremiumCoaching, type PremiumCoachingFeatures } from '../../../lib/premium-coaching-engine'
 import { openai } from '@/lib/openai'
 import { track } from '@vercel/analytics/server'
+import { createRouteHandlerClient } from '@/lib/supabase-server'
 
 // Feature flags for server-side tracking
 const FEATURE_FLAGS = {
@@ -159,6 +160,50 @@ export async function POST(req: NextRequest) {
   try {
     const startTime = Date.now()
     const body = await req.json()
+    
+    // === AUTHENTICATION & CREDIT CHECK ===
+    const supabase = createRouteHandlerClient(req)
+    
+    // Get the current user
+    const { data: { user }, error: authError } = await supabase.auth.getUser()
+    
+    if (authError || !user) {
+      console.log('❌ Unauthorized access attempt')
+      return Response.json(
+        { error: 'Authentication required. Please sign in to use this feature.' },
+        { status: 401 }
+      )
+    }
+    
+    // Check and deduct credits (1 credit per analysis)
+    const creditCost = 1
+    const { data: creditDeducted, error: creditError } = await supabase.rpc('deduct_credits', {
+      p_user_id: user.id,
+      p_amount: creditCost,
+      p_description: 'Complete interview analysis'
+    })
+    
+    if (creditError) {
+      console.error('❌ Credit deduction error:', creditError)
+      return Response.json(
+        { error: 'Failed to process credit transaction. Please try again.' },
+        { status: 500 }
+      )
+    }
+    
+    if (!creditDeducted) {
+      console.log('❌ Insufficient credits for user:', user.id)
+      return Response.json(
+        { 
+          error: 'Insufficient credits. You need 1 credit to run a complete analysis.',
+          creditsRequired: creditCost,
+          userEmail: user.email
+        },
+        { status: 402 } // Payment Required
+      )
+    }
+    
+    console.log('✅ Credit deducted successfully for user:', user.email)
     
     console.log('📄 Comprehensive analysis request received:', {
       hasResumeText: !!body.resumeText,
@@ -546,4 +591,4 @@ export async function POST(req: NextRequest) {
       { status: 500 }
     )
   }
-} 
+}

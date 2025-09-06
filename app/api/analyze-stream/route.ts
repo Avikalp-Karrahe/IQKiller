@@ -5,6 +5,7 @@ import { processQuestionBank, selectQuestionsByRole, type Question } from '@/lib
 import { researchCompanyInsights, generateSalaryInsights, type CompanyInsights } from '@/lib/company-research'
 import { parseResumeWithEnhancedAI, type DetailedResumeData } from '@/lib/enhanced-resume-parser'
 import { createHighlyPersonalizedQuestions, generatePersonalizedIntroduction, generatePersonalizedTalkingPoints, type PersonalizationContext } from '@/lib/enhanced-question-personalizer'
+import { createRouteHandlerClient } from '@/lib/supabase-server'
 import fs from 'fs'
 import path from 'path'
 
@@ -147,7 +148,7 @@ async function loadQuestionBank(): Promise<Question[]> {
 4,Random Number,algorithms,"Summary: Select a random number from a stream with equal probability using O(1) space.",interviewquery.com/questions/random-number`
     }
     
-    const questions = processQuestionBank(csvData)
+    const questions = processQuestionBank([])
     console.log('Question bank processed:', { questionCount: questions.length })
     return questions
   } catch (error) {
@@ -160,6 +161,51 @@ async function loadQuestionBank(): Promise<Question[]> {
 
 export async function POST(req: NextRequest) {
   console.log('=== ANALYZE-STREAM: POST Request Started ===')
+  
+  // === AUTHENTICATION & CREDIT CHECK ===
+  const supabase = createRouteHandlerClient(req)
+  
+  // Get the current user
+  const { data: { user }, error: authError } = await supabase.auth.getUser()
+  
+  if (authError || !user) {
+    console.log('❌ Unauthorized access attempt')
+    return NextResponse.json(
+      { error: 'Authentication required. Please sign in to use this feature.' },
+      { status: 401 }
+    )
+  }
+  
+  // Check and deduct credits (1 credit per streaming analysis)
+  const creditCost = 1
+  const { data: creditDeducted, error: creditError } = await supabase.rpc('deduct_credits', {
+    p_user_id: user.id,
+    p_amount: creditCost,
+    p_description: 'Streaming interview analysis'
+  })
+  
+  if (creditError) {
+    console.error('❌ Credit deduction error:', creditError)
+    return NextResponse.json(
+      { error: 'Failed to process credit transaction. Please try again.' },
+      { status: 500 }
+    )
+  }
+  
+  if (!creditDeducted) {
+    console.log('❌ Insufficient credits for user:', user.id)
+    return NextResponse.json(
+      { 
+        error: 'Insufficient credits. You need 1 credit to run a streaming analysis.',
+        creditsRequired: creditCost,
+        userEmail: user.email
+      },
+      { status: 402 } // Payment Required
+    )
+  }
+  
+  console.log('✅ Credit deducted successfully for user:', user.email)
+  
   const encoder = new TextEncoder();
   const stream = new TransformStream();
   const writer = stream.writable.getWriter();
@@ -283,7 +329,7 @@ export async function POST(req: NextRequest) {
     const questionBank = await loadQuestionBank();
     console.log('=== loadQuestionBank() COMPLETED ===')
     console.log('Starting question selection and personalization')
-    const selectedQuestions = await selectQuestionsByRole(questionBank, jobData.title || 'Software Engineer', 'technical');
+    const selectedQuestions = selectQuestionsByRole(questionBank, jobData.title || 'Software Engineer');
 
     await writeToStream({
       step: 'question_generation',
@@ -319,7 +365,7 @@ export async function POST(req: NextRequest) {
           matchScore: matchData.overallMatch
         };
         
-        const technicalQuestions = selectQuestionsByRole(questionBank, jobData.role, 'technical').slice(0, 3);
+        const technicalQuestions = selectQuestionsByRole(questionBank, jobData.role).slice(0, 3);
         personalizedQuestions = await createHighlyPersonalizedQuestions(technicalQuestions, personalizationContext);
         console.log('=== QUESTION PERSONALIZATION COMPLETED ===')
       } catch (error) {
@@ -491,9 +537,9 @@ async function generateComprehensiveGuide(finalAnalysis: any, jobData: any, resu
     }
 
     // Select and personalize questions
-    const technicalQuestions = selectQuestionsByRole(questionBank, jobData.role, 'technical').slice(0, 4)
-    const behavioralQuestions = selectQuestionsByRole(questionBank, jobData.role, 'behavioral').slice(0, 3)
-    const caseStudyQuestions = selectQuestionsByRole(questionBank, jobData.role, 'caseStudy').slice(0, 3)
+    const technicalQuestions = selectQuestionsByRole(questionBank, jobData.role).slice(0, 4)
+    const behavioralQuestions = selectQuestionsByRole(questionBank, jobData.role).slice(0, 3)
+    const caseStudyQuestions = selectQuestionsByRole(questionBank, jobData.role).slice(0, 3)
     
     const [personalizedTechnical, personalizedBehavioral, personalizedCaseStudy] = await Promise.all([
       createHighlyPersonalizedQuestions(technicalQuestions, personalizationContext),

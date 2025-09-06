@@ -5,11 +5,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { HeaderControls } from '@/components/ui/header-controls'
-import { Upload, FileText, Globe, Sparkles, Target, Brain, Trophy, Users, CheckCircle, Clock, Loader, Calendar, Zap } from 'lucide-react'
+import { Upload, FileText, Globe, Sparkles, Target, Brain, Trophy, Users, CheckCircle, Clock, Loader, Calendar, Zap, Coins } from 'lucide-react'
 import StreamingAnalysis from '@/components/streaming-analysis'
 import { FileUpload } from '@/components/file-upload'
 import { JobAnalysis } from '@/components/job-analysis'
 import { track } from '@vercel/analytics'
+import { useAuth } from '@/contexts/AuthContext'
+import { useCredits } from '@/hooks/useCredits'
 
 // Feature flags for IQKiller
 const FEATURE_FLAGS = {
@@ -186,6 +188,8 @@ export default function IQKillerMainPage() {
   const [resumeText, setResumeText] = useState('')
   const [jobData, setJobData] = useState<any>(null)
   const [showAnalysis, setShowAnalysis] = useState(false)
+  const { user } = useAuth()
+  const { credits, hasEnoughCredits } = useCredits()
 
   const [analysisComplete, setAnalysisComplete] = useState(false)
   
@@ -531,11 +535,11 @@ export default function IQKillerMainPage() {
               <span className="text-blue-600 dark:text-blue-400">Killer</span>
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
-              Upload your resume, analyze job postings, and get personalized interview questions, salary negotiation strategies, and real-time preparation insights powered by AI.
+              Upload your resume, analyze job postings, and get personalized interview questions, salary negotiation strategies, and real-time preparation insights powered by AI. Sign in with Google to get started with 10 free credits!
             </p>
             
             {/* Feature highlights */}
-            <div className="flex items-center justify-center gap-8 text-gray-500 dark:text-gray-400 mb-12">
+            <div className="flex items-center justify-center gap-8 text-gray-500 dark:text-gray-400 mb-8">
               <div className="flex items-center gap-2">
                 <FileText className="w-5 h-5" />
                 <span className="text-sm">Resume Analysis</span>
@@ -553,13 +557,41 @@ export default function IQKillerMainPage() {
                 <span className="text-sm">Strategy</span>
               </div>
             </div>
+            
+            {/* Credit-based pricing highlight */}
+            <div className="max-w-2xl mx-auto mb-12">
+              <div className="glass-effect rounded-xl p-6 border border-yellow-200/50 dark:border-yellow-800/50">
+                <div className="flex items-center justify-center gap-3 mb-4">
+                  <div className="p-2 bg-yellow-100 dark:bg-yellow-900/50 rounded-lg">
+                    <Coins className="w-6 h-6 text-yellow-600 dark:text-yellow-400" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Credit-Based System</h3>
+                </div>
+                <div className="text-center space-y-2">
+                  <p className="text-gray-600 dark:text-gray-300">
+                    <strong className="text-green-600 dark:text-green-400">10 free credits</strong> when you sign in with Google
+                  </p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    Each complete analysis costs 1 credit • Request more via LinkedIn
+                  </p>
+                  {!user && (
+                    <div className="pt-2">
+                      <span className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium">
+                        <span>👆 Sign in above to get started</span>
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Main Content */}
-          <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-8 mb-12">
-              {/* Resume Upload with Real-time Analysis */}
-              <div className="card-gradient relative overflow-hidden border-0 shadow-lg rounded-xl bg-card text-card-foreground">
+          {/* Main Content - Only show for authenticated users */}
+          {user && (
+            <div className="max-w-6xl mx-auto">
+              <div className="grid lg:grid-cols-2 gap-8 mb-12">
+                {/* Resume Upload with Real-time Analysis */}
+                <div className="card-gradient relative overflow-hidden border-0 shadow-lg rounded-xl bg-card text-card-foreground">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-100/50 to-transparent rounded-full -mr-16 -mt-16"></div>
                 <div className="flex flex-col space-y-1.5 p-6 relative">
                   <div className="flex items-center gap-3">
@@ -569,6 +601,21 @@ export default function IQKillerMainPage() {
                     <div className="flex-1">
                       <div className="font-semibold tracking-tight text-xl">Upload Your Resume</div>
                       <div className="text-sm text-muted-foreground">Resume analysis with AI-powered skills extraction</div>
+                      {user && (
+                        <div className="flex items-center gap-2 mt-2">
+                          <Coins className="w-4 h-4 text-yellow-600" />
+                          <span className={`text-sm font-medium ${
+                            credits <= 2 ? 'text-red-600' : credits <= 5 ? 'text-orange-600' : 'text-green-600'
+                          }`}>
+                            {credits} credits remaining
+                          </span>
+                          {!hasEnoughCredits(1) && (
+                            <span className="text-xs text-red-500 font-medium">
+                              (Insufficient credits)
+                            </span>
+                          )}
+                        </div>
+                      )}
                     </div>
                     {/* Resume Analysis Status */}
                     <div className="flex items-center gap-2">
@@ -693,8 +740,8 @@ export default function IQKillerMainPage() {
               </div>
             )}
 
-            {/* Feature Cards */}
-            <div className="grid md:grid-cols-3 gap-6 mt-16">
+              {/* Feature Cards */}
+              <div className="grid md:grid-cols-3 gap-6 mt-16">
               <div className="card-gradient text-center p-6 border-0 shadow-lg rounded-xl bg-card text-card-foreground relative overflow-hidden group h-72 flex flex-col"
                    onMouseEnter={() => setCard1Hovered(true)}
                    onMouseLeave={() => setCard1Hovered(false)}>
@@ -786,8 +833,9 @@ export default function IQKillerMainPage() {
               </div>
             </div>
           </div>
+        )}
         </div>
       )}
     </div>
   )
-} 
+}

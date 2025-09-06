@@ -6,6 +6,9 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "next-themes";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import { AuthProvider } from "@/contexts/AuthContext";
+import CreditsBadge from "@/components/billing/CreditsBadge";
+import UserMenu from "@/components/auth/UserMenu";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -133,16 +136,40 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="relative flex min-h-screen flex-col">
-            <div className="flex-1">
-              <Toaster position="top-center" />
-              {children}
-            </div>
-          </main>
+          <AuthProvider>
+            <header className="sticky top-0 z-50 backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 border-b border-gray-200/20 dark:border-white/10">
+               <div className="max-w-[1200px] mx-auto px-6 py-4 flex items-center justify-between">
+                 <a href="/" className="flex items-center gap-3 group">
+                   <div className="text-2xl font-black bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                     IQ
+                   </div>
+                   <span className="font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                     Interview Quotient
+                   </span>
+                 </a>
+                 <nav className="flex items-center gap-6">
+                   <a href="/#features" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 text-sm font-medium transition-colors">
+                     Features
+                   </a>
+                   <a href="/pricing" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 text-sm font-medium transition-colors">
+                     Pricing
+                   </a>
+                   <div className="hidden sm:block"><CreditsBadge/></div>
+                   <UserMenu/>
+                 </nav>
+               </div>
+             </header>
+            <main className="relative flex min-h-screen flex-col">
+              <div className="flex-1">
+                <Toaster position="top-center" />
+                {children}
+              </div>
+            </main>
+          </AuthProvider>
         </ThemeProvider>
         <SpeedInsights />
         <Analytics />
       </body>
     </html>
   );
-} 
+}

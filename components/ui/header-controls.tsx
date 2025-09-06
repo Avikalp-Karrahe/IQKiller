@@ -2,14 +2,19 @@
 
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
-import { Sun, Moon, Star, ExternalLink, Github, MessageSquare } from 'lucide-react'
+import { Sun, Moon, Star, ExternalLink, Github, MessageSquare, Coins } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { track } from '@vercel/analytics'
+import { useAuth } from '@/contexts/AuthContext'
+import { useCredits } from '@/hooks/useCredits'
+import Link from 'next/link'
 
 export function HeaderControls() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [starCount, setStarCount] = useState('4.3k')
+  const { user } = useAuth()
+  const { credits } = useCredits()
   // Track Discord clicks separately
   const handleDiscordClick = () => {
     track('Discord Button Clicked', {
@@ -58,6 +63,26 @@ export function HeaderControls() {
 
   return (
     <div className="flex items-center gap-3">
+      {/* Credits Link - Only show when user is authenticated */}
+      {user && (
+        <Link
+          href="/credits"
+          className="group relative overflow-hidden px-3 py-2 h-10
+                     bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-400 hover:to-amber-500
+                     text-white rounded-full shadow-lg hover:shadow-xl
+                     transition-all duration-300 ease-in-out hover:scale-105
+                     border border-yellow-600/50"
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent
+                          transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"></div>
+
+          <div className="relative flex items-center gap-1.5 z-10">
+            <Coins className="w-4 h-4 text-white group-hover:text-gray-200 transition-colors duration-300" />
+            <span className="text-sm font-bold tracking-wide text-white">{credits}</span>
+            <span className="text-xs text-white/80">credits</span>
+          </div>
+        </Link>
+      )}
       {/* Discord Community Button */}
       <a
         href="https://discord.gg/sEAEu6abdn"
@@ -155,4 +180,4 @@ export function HeaderControls() {
       </button>
     </div>
   )
-} 
+}
